@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ahammedkabeerkp.netlify.app/sitemap.xml

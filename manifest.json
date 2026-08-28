@@ -1,0 +1,26 @@
+{
+  "name": "Ahammed Kabeer | Electrical Specialist UAE",
+  "short_name": "Ahammed Kabeer",
+  "description": "Professional residential electrical installations, fault diagnosis, and building maintenance specialist based in Umm Al Quwain, UAE.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#07080c",
+  "theme_color": "#f59e0b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "business", "productivity"],
+  "lang": "en-AE"
+}
