@@ -2,8 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>https://ahammedkabeerkp.netlify.app/</loc>
-      <lastmod>2026-08-15</lastmod>
+      <lastmod>2026-09-05</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
+   </url>
+   <url>
+      <loc>https://ahammedkabeerkp.netlify.app/guides/elcb-rccb-tripping-troubleshooting.html</loc>
+      <lastmod>2026-09-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://ahammedkabeerkp.netlify.app/guides/three-phase-db-wiring-balancing.html</loc>
+      <lastmod>2026-09-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://ahammedkabeerkp.netlify.app/guides/ac-circuit-sizing-overload-prevention.html</loc>
+      <lastmod>2026-09-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://ahammedkabeerkp.netlify.app/guides/residential-villa-electrical-safety-inspection.html</loc>
+      <lastmod>2026-09-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://ahammedkabeerkp.netlify.app/guides/water-pump-wiring-pressure-switch-repair.html</loc>
+      <lastmod>2026-09-05</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
    </url>
 </urlset>

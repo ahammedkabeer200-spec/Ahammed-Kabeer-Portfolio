@@ -207,12 +207,18 @@
             {
               "@type": "ListItem",
               "position": 3,
+              "name": "Technical Guides",
+              "item": "https://ahammedkabeerkp.netlify.app/#guides"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
               "name": "Load Calculator",
               "item": "https://ahammedkabeerkp.netlify.app/#estimator"
             },
             {
               "@type": "ListItem",
-              "position": 4,
+              "position": 5,
               "name": "Contact & Booking",
               "item": "https://ahammedkabeerkp.netlify.app/#contact"
             }
@@ -2808,6 +2814,7 @@
             <a href="#experience">Experience</a>
             <a href="#skills">Skills</a>
             <a href="#services">Services</a>
+            <a href="#guides">Guides</a>
             <a href="#estimator">Tools</a>
             <a href="#contact">Contact</a>
         </div>
@@ -3183,9 +3190,83 @@
         </div>
     </section>
 
+    <!-- ── TECHNICAL GUIDES & KNOWLEDGE BASE SECTION ── -->
+    <section id="guides" class="guides-section" style="padding: 100px 0; background: linear-gradient(180deg, var(--bg) 0%, #0a0d14 50%, var(--bg) 100%); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative;">
+        <div class="container">
+            <span class="section-label" style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 12px; background: rgba(245, 158, 11, 0.1); padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(245, 158, 11, 0.2);"><i class="fa-solid fa-book-open"></i> Technical Knowledge Base</span>
+            <h2 class="section-title" style="font-family: var(--heading); font-size: 2.8rem; font-weight: 800; color: var(--hi); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 16px;">Electrical & Maintenance Engineering Guides</h2>
+            <p class="section-desc" style="color: var(--mid); max-width: 650px; line-height: 1.6; margin-bottom: 48px; font-size: 1rem;">In-depth technical articles, step-by-step troubleshooting workflows, and UAE code compliance guides written by a licensed wireman specialist.</p>
+            
+            <div class="guides-portal-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;">
+                
+                <!-- Guide Card 1 -->
+                <article class="guide-portal-card reveal glow-card" style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; backdrop-filter: blur(12px); display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s var(--ease);">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #ef4444; background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.25); padding: 3px 10px; border-radius: 12px;"><i class="fa-solid fa-shield-halved"></i> Fault Diagnosis</span>
+                            <span style="font-size: 0.78rem; color: var(--mid);"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+                        </div>
+                        <h3 style="font-family: var(--heading); font-size: 1.45rem; color: var(--hi); margin-bottom: 12px; line-height: 1.25; text-transform: uppercase;">Why Your Main ELCB/RCCB Breaker Keeps Tripping in UAE</h3>
+                        <p style="font-size: 0.9rem; color: var(--mid); line-height: 1.6; margin-bottom: 20px;">Complete step-by-step diagnostic guide for identifying neutral-to-earth leakage faults, water heater element decay, and high-humidity junction short circuits.</p>
+                    </div>
+                    <a href="guides/elcb-rccb-tripping-troubleshooting.html" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); transition: color 0.2s;">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
 
+                <!-- Guide Card 2 -->
+                <article class="guide-portal-card reveal glow-card" style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; backdrop-filter: blur(12px); display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s var(--ease); transition-delay: 0.1s;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #f59e0b; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.25); padding: 3px 10px; border-radius: 12px;"><i class="fa-solid fa-network-wired"></i> DB Dressing</span>
+                            <span style="font-size: 0.78rem; color: var(--mid);"><i class="fa-regular fa-clock"></i> 10 Min Read</span>
+                        </div>
+                        <h3 style="font-family: var(--heading); font-size: 1.45rem; color: var(--hi); margin-bottom: 12px; line-height: 1.25; text-transform: uppercase;">3-Phase DB Dressing, Balancing & FEWA/DEWA Wiring Standards</h3>
+                        <p style="font-size: 0.9rem; color: var(--mid); line-height: 1.6; margin-bottom: 20px;">Master the art of balancing 400V 3-phase residential circuits to prevent neutral overheating, including ferrule numbering schedules and busbar torque ratings.</p>
+                    </div>
+                    <a href="guides/three-phase-db-wiring-balancing.html" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); transition: color 0.2s;">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
 
-    <!-- ── INTERACTIVE WIDGETS SECTION ── -->
+                <!-- Guide Card 3 -->
+                <article class="guide-portal-card reveal glow-card" style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; backdrop-filter: blur(12px); display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s var(--ease); transition-delay: 0.2s;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #3b82f6; background: rgba(59, 130, 246, 0.12); border: 1px solid rgba(59, 130, 246, 0.25); padding: 3px 10px; border-radius: 12px;"><i class="fa-solid fa-snowflake"></i> HVAC Electrical</span>
+                            <span style="font-size: 0.78rem; color: var(--mid);"><i class="fa-regular fa-clock"></i> 9 Min Read</span>
+                        </div>
+                        <h3 style="font-family: var(--heading); font-size: 1.45rem; color: var(--hi); margin-bottom: 12px; line-height: 1.25; text-transform: uppercase;">AC Circuit Sizing & Thermal Overload Prevention in 50°C Heat</h3>
+                        <p style="font-size: 0.9rem; color: var(--mid); line-height: 1.6; margin-bottom: 20px;">Detailed engineering guide on ambient de-rating factors, Type C breaker selection for compressor inrush, and IP66 rooftop isolator specifications.</p>
+                    </div>
+                    <a href="guides/ac-circuit-sizing-overload-prevention.html" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); transition: color 0.2s;">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
+
+                <!-- Guide Card 4 -->
+                <article class="guide-portal-card reveal glow-card" style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; backdrop-filter: blur(12px); display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s var(--ease); transition-delay: 0.3s;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #10b981; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.25); padding: 3px 10px; border-radius: 12px;"><i class="fa-solid fa-clipboard-check"></i> Safety Audit</span>
+                            <span style="font-size: 0.78rem; color: var(--mid);"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+                        </div>
+                        <h3 style="font-family: var(--heading); font-size: 1.45rem; color: var(--hi); margin-bottom: 12px; line-height: 1.25; text-transform: uppercase;">Comprehensive Villa Electrical Safety Inspection Checklist</h3>
+                        <p style="font-size: 0.9rem; color: var(--mid); line-height: 1.6; margin-bottom: 20px;">The complete audit protocol for UAE property owners: testing earth pit resistance (&lt; 5Ω), RCD trip timing, and thermal infrared scanning for hidden hotspots.</p>
+                    </div>
+                    <a href="guides/residential-villa-electrical-safety-inspection.html" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); transition: color 0.2s;">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
+
+                <!-- Guide Card 5 -->
+                <article class="guide-portal-card reveal glow-card" style="background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; backdrop-filter: blur(12px); display: flex; flex-direction: column; justify-content: space-between; transition: all 0.3s var(--ease); transition-delay: 0.4s;">
+                    <div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+                            <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #06b6d4; background: rgba(6, 182, 212, 0.12); border: 1px solid rgba(6, 182, 212, 0.25); padding: 3px 10px; border-radius: 12px;"><i class="fa-solid fa-faucet-drip"></i> Pumps & Electromechanical</span>
+                            <span style="font-size: 0.78rem; color: var(--mid);"><i class="fa-regular fa-clock"></i> 8 Min Read</span>
+                        </div>
+                        <h3 style="font-family: var(--heading); font-size: 1.45rem; color: var(--hi); margin-bottom: 12px; line-height: 1.25; text-transform: uppercase;">Villa Water Pressure Drops & Booster Pump Control Relay Wiring</h3>
+                        <p style="font-size: 0.9rem; color: var(--mid); line-height: 1.6; margin-bottom: 20px;">Fix rapid pump cycling and low shower pressure. Step-by-step pressure switch calibration, pressure tank bladder testing, and dry-run float switch relay wiring.</p>
+                    </div>
+                    <a href="guides/water-pump-wiring-pressure-switch-repair.html" style="display: inline-flex; align-items: center; gap: 8px; color: var(--accent); font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); transition: color 0.2s;">Read Full Guide <i class="fa-solid fa-arrow-right"></i></a>
+                </article>
+
+            </div>
+        </div>
+    </section>
     <section id="estimator" class="interactive-section">
         <div class="container">
             <span class="section-label">Interactive Corner</span>

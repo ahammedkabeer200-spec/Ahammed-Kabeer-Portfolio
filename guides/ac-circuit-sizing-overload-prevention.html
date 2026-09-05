@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC Circuit Sizing, Cable Selection & Thermal Overload Prevention in 50°C UAE Heat | Ahammed Kabeer</title>
+    <meta name="description" content="Technical HVAC electrical engineering guide for AC cable sizing, thermal de-rating factors, Type C breaker selection, and rooftop rotary isolators in extreme UAE climates.">
+    <meta name="keywords" content="ac cable sizing uae, air conditioner breaker tripping dubai, ambient derating factor bs 7671, dewa ac wiring standards, rooftop rotary isolator switch ip65, split ac mcb rating">
+    <meta name="author" content="Ahammed Kabeer">
+    <link rel="canonical" href="https://ahammedkabeerkp.netlify.app/guides/ac-circuit-sizing-overload-prevention.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AC Circuit Sizing, Cable Selection & Thermal Overload Prevention in 50°C UAE Heat">
+    <meta property="og:description" content="Engineering specifications and troubleshooting guide for sizing air conditioning electrical circuits under extreme Arabian Gulf summer temperatures.">
+    <meta property="og:url" content="https://ahammedkabeerkp.netlify.app/guides/ac-circuit-sizing-overload-prevention.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg">
+    
+    <!-- Google AdSense Verification & Auto Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6638001296817740" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-72FEPVGYQ4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-72FEPVGYQ4');
+    </script>
+    
+    <!-- Article & Breadcrumb Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "AC Circuit Sizing, Cable Selection & Thermal Overload Prevention in 50°C UAE Heat",
+          "description": "Comprehensive guide on selecting copper cable cross-sections, breaker curves, and thermal protection for residential AC units operating in UAE summer heat.",
+          "author": {
+            "@type": "Person",
+            "name": "Ahammed Kabeer",
+            "jobTitle": "Electrical & Maintenance Specialist",
+            "url": "https://ahammedkabeerkp.netlify.app/"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Ahammed Kabeer Technical Services",
+            "url": "https://ahammedkabeerkp.netlify.app/"
+          },
+          "datePublished": "2026-08-25",
+          "dateModified": "2026-09-05",
+          "mainEntityOfPage": "https://ahammedkabeerkp.netlify.app/guides/ac-circuit-sizing-overload-prevention.html"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ahammedkabeerkp.netlify.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Technical Guides", "item": "https://ahammedkabeerkp.netlify.app/#guides" },
+            { "@type": "ListItem", "position": 3, "name": "AC Circuit Sizing & Thermal Overload", "item": "https://ahammedkabeerkp.netlify.app/guides/ac-circuit-sizing-overload-prevention.html" }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="guide-style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="../index.html" class="nav-logo">
+            <i class="fa-solid fa-bolt-lightning"></i> Ahammed <span>Kabeer</span>
+        </a>
+        <div class="nav-links">
+            <a href="../index.html#about">About</a>
+            <a href="../index.html#experience">Experience</a>
+            <a href="../index.html#skills">Skills</a>
+            <a href="../index.html#services">Services</a>
+            <a href="../index.html#guides">Guides</a>
+            <a href="../index.html#estimator">Tools</a>
+            <a href="../index.html#contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <a href="../Ahammed_Kabeer_Resume.pdf" download class="nav-resume-link"><i class="fa-regular fa-file-lines"></i> Resume</a>
+            <a href="../index.html#contact" class="nav-cta">Hire Me</a>
+        </div>
+        <button class="hamburger" aria-label="Toggle Navigation Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Header / Hero of Article -->
+    <header class="guide-header">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="../index.html"><i class="fa-solid fa-house"></i> Home</a>
+                <span>/</span>
+                <a href="../index.html#guides">Technical Guides</a>
+                <span>/</span>
+                <span>AC Circuit Sizing & Thermal Overload</span>
+            </div>
+            <span class="guide-tag"><i class="fa-solid fa-snowflake"></i> HVAC Electrical Engineering</span>
+            <h1 class="guide-title">AC Circuit Sizing, Cable Selection & Thermal Overload Prevention in 50°C UAE Heat</h1>
+            <div class="guide-meta">
+                <span><i class="fa-regular fa-user"></i> By Ahammed Kabeer (Wireman Licensed Specialist)</span>
+                <span><i class="fa-regular fa-calendar"></i> Updated September 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 9 Min Read</span>
+                <span><i class="fa-solid fa-temperature-arrow-up"></i> Designed for 50°C+ Ambient UAE Conditions</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="container">
+        <div class="guide-layout">
+            
+            <!-- Article Body -->
+            <article class="guide-content">
+                <p class="lead" style="font-size: 1.15rem; color: #f3f4f6; font-weight: 500;">
+                    During the peak summer months across the UAE (Dubai, Sharjah, Abu Dhabi, and the Northern Emirates), ambient outdoor air temperatures routinely reach <strong>45°C to 50°C</strong>, with direct solar radiation heating unshaded villa rooftops and external cable conduits to over <strong>65°C</strong>. In this punishing climate, air conditioning systems account for up to <strong>70% of a villa's total electrical power consumption</strong>. Electrical circuits that were sized casually without applying proper thermal de-rating factors suffer persistent nuisance tripping, melted terminal insulation, compressor burnouts, and dangerous electrical fires.
+                </p>
+
+                <h2>1. The Physics of Conductor Thermal De-Rating in the Arabian Gulf</h2>
+                <p>
+                    Standard international cable tables (such as BS 7671 baseline charts) define the continuous current-carrying capacity ($I_z$) of PVC and XLPE copper conductors at a European standard ambient temperature of <strong>30°C</strong>.
+                </p>
+                <p>
+                    In the UAE, the baseline design ambient temperature enforced by <strong>DEWA and FEWA regulations is 40°C in shaded areas and 50°C or higher for outdoor and rooftop installations</strong>. As ambient temperature climbs, the temperature difference between the energized copper core and the surrounding air narrows, drastically reducing the rate at which heat can dissipate. To prevent the conductor insulation from exceeding its maximum continuous thermal rating (70°C for standard PVC, 90°C for thermosetting XLPE), the cable's current rating must be multiplied by an <strong>Ambient Temperature Correction Factor ($C_a$)</strong>:
+                </p>
+
+                <div class="spec-table-wrapper">
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th>Ambient Operating Temperature</th>
+                                <th>PVC Conductor De-Rating Factor ($C_a$)</th>
+                                <th>XLPE Conductor De-Rating Factor ($C_a$)</th>
+                                <th>Practical Current Capacity Reduction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>30°C (Standard European Baseline)</td>
+                                <td>1.00</td>
+                                <td>1.00</td>
+                                <td>0% Reduction (Full Capacity)</td>
+                            </tr>
+                            <tr>
+                                <td>40°C (UAE Indoor / Shaded)</td>
+                                <td>0.87</td>
+                                <td>0.91</td>
+                                <td>13% Current Capacity Lost</td>
+                            </tr>
+                            <tr>
+                                <td>45°C (UAE Typical Summer)</td>
+                                <td>0.79</td>
+                                <td>0.87</td>
+                                <td>21% Current Capacity Lost</td>
+                            </tr>
+                            <tr>
+                                <td>50°C (UAE Rooftop Outdoor Ambience)</td>
+                                <td><strong>0.71</strong></td>
+                                <td><strong>0.82</strong></td>
+                                <td><strong>29% Current Capacity Lost</strong></td>
+                            </tr>
+                            <tr>
+                                <td>55°C (Direct Sunlight Rooftop Conduit)</td>
+                                <td>0.61</td>
+                                <td>0.76</td>
+                                <td>39% Current Capacity Lost</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="callout-box warning">
+                    <div class="callout-title"><i class="fa-solid fa-triangle-exclamation"></i> The Danger of Undersized 2.5mm² AC Cables</div>
+                    <p>Many contractors in older UAE buildings mistakenly used $2.5\text{mm}^2$ copper cables for 2.0-ton and 2.5-ton AC units. While $2.5\text{mm}^2$ carries 24A at 30°C, at 50°C on a blazing rooftop its safe capacity drops to just <strong>17A</strong>! A 2.0-ton compressor pulling 13A continuously with condenser fan heat will push the copper core beyond 75°C, turning the PVC insulation brittle and brittle, leading to direct copper shorts inside the ceiling.</p>
+                </div>
+
+                <h2>2. UAE Residential Air Conditioning Sizing & Protection Matrix</h2>
+                <p>
+                    Below is the field-tested sizing specification matrix compliant with UAE utility regulations (DEWA / FEWA / SEWA) and practical field installation standards:
+                </p>
+
+                <div class="spec-table-wrapper">
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th>AC Unit Capacity</th>
+                                <th>Typical FLA (Running Amps)</th>
+                                <th>Min. Copper Cable Size</th>
+                                <th>Recommended MCB Rating & Curve</th>
+                                <th>Rooftop Isolator Spec</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1.5 Ton (18,000 BTU)</strong> Split</td>
+                                <td>7.5A – 9.0A (230V)</td>
+                                <td>$4.0\text{ mm}^2$ (or $2.5\text{ mm}^2$ short run)</td>
+                                <td>20A Type C (10kA)</td>
+                                <td>20A Double Pole IP65</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2.0 Ton (24,000 BTU)</strong> Split</td>
+                                <td>10.5A – 13.0A (230V)</td>
+                                <td><strong>$4.0\text{ mm}^2$</strong></td>
+                                <td>25A or 32A Type C (10kA)</td>
+                                <td>32A Double Pole IP66</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2.5 – 3.0 Ton (36,000 BTU)</strong> Split</td>
+                                <td>14.0A – 17.5A (230V)</td>
+                                <td><strong>$6.0\text{ mm}^2$</strong></td>
+                                <td>32A Type C (10kA)</td>
+                                <td>40A Double Pole IP66</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5.0 Ton (60,000 BTU)</strong> Ducted / Package</td>
+                                <td>8.5A – 11.0A per phase (400V 3-Ph)</td>
+                                <td><strong>$4 \times 4.0\text{ mm}^2$ or $6.0\text{ mm}^2$</strong></td>
+                                <td>3-Pole 32A Type C (10kA)</td>
+                                <td>4-Pole 32A/40A IP66 Rotary</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h2>3. Why Breaker Tripping Curve Matters: Type B vs. Type C MCBs</h2>
+                <p>
+                    When an AC compressor starts up, it must overcome the stationary inertia of the pistons and high head refrigerant pressure in the copper lines. For approximately <strong>100 to 300 milliseconds</strong>, the compressor motor draws its <strong>Locked Rotor Amps (LRA)</strong>, which is typically <strong>$4\times$ to $6\times$ higher</strong> than its normal running Full Load Amps (FLA).
+                </p>
+                <ul>
+                    <li><strong>Type B MCB:</strong> Calibrated to trip magnetically at $3\times$ to $5\times$ rated current. Using a Type B breaker on an AC compressor will result in frequent nuisance trips on hot afternoons when compressor head pressure is at maximum.</li>
+                    <li><strong>Type C MCB (Mandatory for HVAC):</strong> Calibrated to withstand inductive motor inrush currents of <strong>$5\times$ to $10\times$ rated current</strong> without tripping, while still providing instantaneous protection against genuine short circuits.</li>
+                </ul>
+
+                <h2>4. Rooftop Weatherproof Rotary Isolator Switches</h2>
+                <p>
+                    Under UAE civil safety and utility regulations, an outdoor condensing unit mounted on a villa roof or external yard must have a dedicated, locked rotary isolator switch located within <strong>1.5 meters line-of-sight</strong> of the unit.
+                </p>
+                <div class="diag-steps">
+                    <div class="diag-step-card">
+                        <div class="step-num"><i class="fa-solid fa-water"></i></div>
+                        <div class="step-body">
+                            <h4>IP65 / IP66 Ingress Protection</h4>
+                            <p>Isolator enclosures must be sealed against high-pressure windblown dust and torrential winter rain. Never install indoor-rated toggle switches outdoors.</p>
+                        </div>
+                    </div>
+                    <div class="diag-step-card">
+                        <div class="step-num"><i class="fa-solid fa-sun"></i></div>
+                        <div class="step-body">
+                            <h4>UV-Stabilized Polycarbonate Casing</h4>
+                            <p>Intense UAE ultraviolet radiation destroys cheap plastic enclosures within 18 months, causing the rotary handle to crack and break. High-grade UV-resistant enclosures prevent water ingress.</p>
+                        </div>
+                    </div>
+                    <div class="diag-step-card">
+                        <div class="step-num"><i class="fa-solid fa-wrench"></i></div>
+                        <div class="step-body">
+                            <h4>Annual Terminal Retorquing</h4>
+                            <p>Due to severe daily thermal expansion (30°C at night to 50°C+ at noon), screw terminals inside isolators loosen over time. Loose screw terminals create micro-arcing that melts the switch base, frequently misdiagnosed as a compressor failure!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>5. Diagnostic Checklist When Your AC Keeps Tripping the Breaker</h2>
+                <ol>
+                    <li><strong>Does it trip instantly when the thermostat clicks?</strong> Indicates a dead short circuit in the contactor, a grounded compressor terminal, or a melted run capacitor.</li>
+                    <li><strong>Does it trip after running for 10 to 30 minutes?</strong> Indicates thermal overload caused by an undersized MCB, a blocked/dirty condenser coil causing extreme head pressure, or high ambient terminal resistance.</li>
+                    <li><strong>Does it trip the main RCCB (30mA) instead of the branch MCB?</strong> Indicates an internal motor winding breakdown where current is leaking through refrigerant oil to the compressor grounded metal shell.</li>
+                </ol>
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="guide-sidebar">
+                
+                <!-- Author Widget -->
+                <div class="sidebar-widget sidebar-author">
+                    <img src="https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg" alt="Ahammed Kabeer - Electrical Specialist UAE">
+                    <h4>Ahammed Kabeer</h4>
+                    <p>Specialist in residential air conditioning electrical circuit design, compressor diagnosis, and isolator installation in UAE villas.</p>
+                    <a href="https://wa.me/971526393293?text=Hi%20Kabeer,%20my%20AC%20breaker%20is%20tripping%20in%20my%20villa" target="_blank" rel="noopener" class="author-btn">
+                        <i class="fa-brands fa-whatsapp"></i> Emergency AC Electrical Help
+                    </a>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="sidebar-widget">
+                    <h3><i class="fa-solid fa-list-ol"></i> Article Contents</h3>
+                    <ul class="toc-list">
+                        <li><a href="#1-the-physics-of-conductor-thermal-de-rating-in-the-arabian-gulf"><i class="fa-solid fa-angle-right"></i> 1. 50°C Thermal De-Rating</a></li>
+                        <li><a href="#2-uae-residential-air-conditioning-sizing--protection-matrix"><i class="fa-solid fa-angle-right"></i> 2. AC Cable Sizing Matrix</a></li>
+                        <li><a href="#3-why-breaker-tripping-curve-matters-type-b-vs-type-c-mcbs"><i class="fa-solid fa-angle-right"></i> 3. Type C vs Type B MCBs</a></li>
+                        <li><a href="#4-rooftop-weatherproof-rotary-isolator-switches"><i class="fa-solid fa-angle-right"></i> 4. IP66 Isolator Standards</a></li>
+                        <li><a href="#5-diagnostic-checklist-when-your-ac-keeps-tripping-the-breaker"><i class="fa-solid fa-angle-right"></i> 5. Tripping Diagnostic Checklist</a></li>
+                    </ul>
+                </div>
+
+                <!-- Estimator Tool Callout -->
+                <div class="sidebar-widget" style="background: rgba(245, 158, 11, 0.05); border-color: rgba(245, 158, 11, 0.2);">
+                    <h3><i class="fa-solid fa-bolt"></i> Calculate AC Total Load</h3>
+                    <p style="font-size: 0.88rem; color: var(--mid); margin-bottom: 14px;">Select the number of AC units in your home to calculate total concurrent kW demand and breaker sizing.</p>
+                    <a href="../index.html#estimator" class="author-btn" style="background: transparent; color: var(--accent); border: 1px solid var(--accent);">Launch Load Calculator</a>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- Related Guides Section -->
+    <section class="related-guides-section">
+        <div class="container">
+            <h3 class="related-title">More Technical UAE Electrical Guides</h3>
+            <div class="related-grid">
+                <a href="elcb-rccb-tripping-troubleshooting.html" class="related-card">
+                    <div>
+                        <span class="guide-tag"><i class="fa-solid fa-shield-halved"></i> Safety</span>
+                        <h4>Why Your Main ELCB/RCCB Breaker Keeps Tripping in UAE</h4>
+                        <p>Step-by-step diagnostic guide to isolate neutral leakage, moisture ingress, and faulty water heaters.</p>
+                    </div>
+                    <span class="read-link">Read Full Guide <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="three-phase-db-wiring-balancing.html" class="related-card">
+                    <div>
+                        <span class="guide-tag"><i class="fa-solid fa-network-wired"></i> DB Panel</span>
+                        <h4>3-Phase DB Dressing, Balancing & FEWA/DEWA Wiring Standards</h4>
+                        <p>Learn how to balance residential villa loads across R, Y, and B phases to eliminate neutral overheating.</p>
+                    </div>
+                    <span class="read-link">Read Full Guide <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="residential-villa-electrical-safety-inspection.html" class="related-card">
+                    <div>
+                        <span class="guide-tag"><i class="fa-solid fa-clipboard-check"></i> Audit</span>
+                        <h4>Comprehensive Villa Electrical Safety Inspection Checklist</h4>
+                        <p>Complete step-by-step audit guide covering earthing pit resistance, socket polarity, and thermal imaging.</p>
+                    </div>
+                    <span class="read-link">Read Full Guide <i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+                <span class="footer-logo">Ahammed <span>Kabeer</span></span>
+                <span class="footer-copy">© 2026 · Electrical & Systems Specialist · UAE</span>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/share/18djRK9ysH/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/in/ahammed-kabeer-1b53b0250" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/kabeerahammed.kp" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

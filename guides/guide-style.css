@@ -1,0 +1,416 @@
+/* ── ARTICLE & TECHNICAL GUIDE STYLES ── */
+.guide-header {
+    padding: 140px 0 40px;
+    background: radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.08), transparent 70%);
+    border-bottom: 1px solid var(--border);
+}
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--mid);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.breadcrumbs a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.breadcrumbs a:hover {
+    text-decoration: underline;
+    color: var(--hi);
+}
+
+.guide-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(245, 158, 11, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 16px;
+}
+
+.guide-title {
+    font-family: var(--heading);
+    font-size: 2.5rem;
+    line-height: 1.15;
+    font-weight: 800;
+    color: var(--hi);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 18px;
+    max-width: 900px;
+}
+
+.guide-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.85rem;
+    color: var(--mid);
+    flex-wrap: wrap;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.guide-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.guide-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    padding: 50px 0 80px;
+}
+
+@media (max-width: 992px) {
+    .guide-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+.guide-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #d1d5db;
+}
+
+.guide-content h2 {
+    font-family: var(--heading);
+    font-size: 1.85rem;
+    color: var(--hi);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid rgba(245, 158, 11, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.guide-content h3 {
+    font-family: var(--heading);
+    font-size: 1.35rem;
+    color: var(--accent);
+    margin: 28px 0 12px;
+    letter-spacing: 0.5px;
+}
+
+.guide-content p {
+    margin-bottom: 20px;
+}
+
+.guide-content ul, .guide-content ol {
+    margin: 0 0 24px 24px;
+    padding-left: 8px;
+}
+
+.guide-content li {
+    margin-bottom: 10px;
+}
+
+.guide-content strong {
+    color: var(--hi);
+}
+
+/* Callout & Alert Boxes */
+.callout-box {
+    background: rgba(15, 17, 24, 0.7);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin: 28px 0;
+    backdrop-filter: blur(10px);
+}
+
+.callout-box.warning {
+    border-left-color: #ef4444;
+    background: rgba(239, 68, 68, 0.05);
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.callout-box.tip {
+    border-left-color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.callout-title {
+    font-weight: 700;
+    color: var(--hi);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+}
+
+.callout-box.warning .callout-title {
+    color: #f87171;
+}
+
+.callout-box.tip .callout-title {
+    color: #34d399;
+}
+
+/* Technical Specification Table */
+.spec-table-wrapper {
+    overflow-x: auto;
+    margin: 28px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(15, 17, 24, 0.6);
+    font-size: 0.92rem;
+    text-align: left;
+}
+
+.spec-table th {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--accent);
+    padding: 12px 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border);
+}
+
+.spec-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    color: #d1d5db;
+}
+
+.spec-table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Diagnostic Step Cards */
+.diag-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 28px 0;
+}
+
+.diag-step-card {
+    display: flex;
+    gap: 16px;
+    padding: 18px 20px;
+    background: rgba(15, 17, 24, 0.55);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    align-items: flex-start;
+}
+
+.step-num {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.step-body h4 {
+    color: var(--hi);
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.step-body p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--mid);
+}
+
+/* Sidebar Elements */
+.guide-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.sidebar-widget {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    backdrop-filter: blur(12px);
+}
+
+.sidebar-widget h3 {
+    font-family: var(--heading);
+    font-size: 1.25rem;
+    color: var(--hi);
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toc-list a {
+    color: var(--mid);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.toc-list a:hover {
+    color: var(--accent);
+    transform: translateX(4px);
+}
+
+.sidebar-author {
+    text-align: center;
+}
+
+.sidebar-author img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 14px;
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.sidebar-author h4 {
+    color: var(--hi);
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.sidebar-author p {
+    font-size: 0.82rem;
+    color: var(--mid);
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.author-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 10px 16px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 700;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+}
+
+.author-btn:hover {
+    background: var(--accent-d);
+}
+
+/* Related Articles Grid */
+.related-guides-section {
+    padding: 60px 0 90px;
+    border-top: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.related-title {
+    font-family: var(--heading);
+    font-size: 2rem;
+    color: var(--hi);
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.related-card {
+    background: var(--surface-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    text-decoration: none;
+    transition: all 0.3s var(--ease);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.related-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.related-card h4 {
+    color: var(--hi);
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+    line-height: 1.35;
+}
+
+.related-card p {
+    color: var(--mid);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.related-card .read-link {
+    color: var(--accent);
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
