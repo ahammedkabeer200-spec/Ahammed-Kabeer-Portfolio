@@ -798,7 +798,7 @@
                 name: "Ahammed Kabeer is a professional Residential Electrician & Plumbing Specialist based in Umm Al Quwain, UAE. He has " + (typeof yearsOfExp !== 'undefined' ? yearsOfExp : 5) + "+ years of UAE experience. He is basically the guy you call before your house turns into a swimming pool or a fireworks show! \u{1F386}",
                 experience: "Ahammed has " + (typeof yearsOfExp !== 'undefined' ? yearsOfExp : 5) + "+ years of experience in the UAE. He currently works at Blix Contracting and Building Maintenance LLC, and previously worked at Almur Realestate in Dubai. He has seen enough tripped breakers to write a book about it! \u{1F4D6}",
                 location: "He is based in Al Muqta 1, Umm Al Quwain (UAQ). He\u0027s ready to travel all over UAQ to tackle stubborn electrical faults and pipes! \u{1F697}",
-                license: "Yes! He holds a valid Wireman Permit License from the Kerala State Electricity Licensing Board, India. This means he is legally authorized to handle high voltages so you don\u0027t get shocked! \u{26A1}",
+                license: "Yes! He holds an Electrical Wireman Certification from the Kerala State Electricity Licensing Board, India. This means he is legally authorized to handle voltages safely so you don't get shocked! \u{26A1}",
                 bca: bcaInfo.graduated
                     ? "Ahammed has completed his Bachelor of Computer Application (BCA) from Manipal University Jaipur, India! \u{1F393} He studied Data Communication & Protocols, Network Security, Wireless Communication, Cloud Computing, Machine Learning, and more. From copper wiring to code\u2014he\u0027s a fully certified tech hybrid now! \u{1F4A1}"
                     : "He is currently in Semester " + bcaInfo.sem + " of his BCA at Manipal University Jaipur, India (started May 2025). \u{1F4DA} " + bcaInfo.examStatus + " Current subjects: " + bcaInfo.subjects + ". He\u0027s upgrading from copper wiring to programming code\u2014soon he\u0027ll be programming light bulbs to argue with you! \u{1F4A1}",
@@ -833,7 +833,7 @@ Here is Ahammed Kabeer's professional dossier with exact joining dates:
 - Total UAE Experience: He arrived and started working in the UAE on April 1, 2021.
 - Technical Education: Completed his Electrical Engineering & Plumbing technical course at Regional College of Engineering, Tirur, Kerala, India (Duration: June 2017 to May 2018).
 - BCA Degree: Currently pursuing a Bachelor of Computer Application (BCA) at Manipal University Jaipur, India (Online/Distance). He started in May 2025. ${bcaInfo.graduated ? 'He has completed all 6 semesters and graduated.' : 'He is currently in Semester ' + bcaInfo.sem + '. ' + bcaInfo.examStatus + ' Current subjects: ' + bcaInfo.subjects + '.'} Full BCA curriculum (from onlinemanipal.com): Sem 1 (Fundamentals of IT & Computing, Programming in C, Mathematics, PC Troubleshooting), Sem 2 (Operating Systems, Data Structure & Algorithms, OOP with C++, Digital Logic, Communication Skills), Sem 3 (Numerical Methods, DBMS, Computer Organisation, Basics of Data Communication), Sem 4 (Java Programming, System Software, Financial Accounting & Management, Computer Networking), Sem 5 (Web Design, Visual Programming, Software Engineering, Python Programming, Elective), Sem 6 (Major Project, Mobile App Development, Electives).
-- Wireman Permit License: Issued by Kerala State Electricity Licensing Board, Kerala, India.
+- Certifications: Electrical Wireman Certification issued by Kerala State Electricity Licensing Board, Kerala, India.
 - Languages Spoken: English, Hindi, Tamil, Malayalam.
 - Core Specializations: Villa layout conduits, wiring layout executions, panel board/DB dressing, insulation resistance checks (Megger testing), troubleshooting tripping breaker faults, and plumbing repairs.
 - Career Goal: Ahammed is actively transitioning into the Networking / IT field through his BCA degree. His university curriculum covers Basics of Data Communication (Sem 3) and Computer Networking (Sem 4). He already holds a Network Administration training certificate. He is targeting roles such as Network Administrator, Network Engineer, or IT Support with a networking focus.
@@ -959,26 +959,38 @@ Rules for Responses:
 
             const renderFormattedText = (container, text) => {
                 const escapeHtml = (str) => str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                // Format basic bold, italics, bullets, and linebreaks
                 let formatted = escapeHtml(text)
                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                     .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/\[BUTTON:(.*?)\|(.*?)\|(.*?)\]/g, (match, label, url, cls) => {
+                        const targetAttr = url.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
+                        return `<a href="${url}"${targetAttr} class="sparky-action-btn ${cls}">${label}</a>`;
+                    })
+                    .replace(/\[BUTTON:(.*?)\|(.*?)\]/g, (match, label, url) => {
+                        const targetAttr = url.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
+                        return `<a href="${url}"${targetAttr} class="sparky-action-btn">${label}</a>`;
+                    })
+                    .replace(/\[(.*?)\]\((.*?)\)/g, (match, label, url) => {
+                        const targetAttr = url.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
+                        return `<a href="${url}"${targetAttr} style="color:var(--accent);text-decoration:underline;">${label}</a>`;
+                    })
                     .replace(/\n\n/g, '<br><br>')
                     .replace(/\n/g, '<br>');
                 container.innerHTML = formatted;
             };
 
             const typeMessage = (bubble, text) => {
-                speakText(text);
-                const words = text.split(' ');
+                speakText(text.replace(/\[BUTTON:.*?\]/g, '')); // Trigger speech cleanly without button tags
                 
-                if (words.length > 40) {
+                // If text contains buttons or is long, render immediately for crisp UI
+                if (text.includes('[BUTTON:') || text.length > 180) {
                     renderFormattedText(bubble, text);
                     isTyping = false;
                     robotChatMessages.scrollTop = robotChatMessages.scrollHeight;
                     return;
                 }
 
+                const words = text.split(' ');
                 let index = 0;
                 let currentText = "";
                 bubble.innerHTML = "";
@@ -992,7 +1004,7 @@ Rules for Responses:
                         clearInterval(interval);
                         isTyping = false;
                     }
-                }, 25);
+                }, 22);
             };
 
             const showBotResponse = (text) => {
@@ -1003,117 +1015,204 @@ Rules for Responses:
                     indicator.remove();
                     const bubble = appendMessage('bot', '');
                     typeMessage(bubble, text);
-                }, 400);
+                }, 350);
             };
 
-            // Call Gemini API using Fetch with multi-model resilience
-            const callGeminiAPI = async (apiKey, query) => {
+            // Chat history for conversational context
+            let chatHistory = [];
+
+            // Multi-Model Free Cloud AI Cascade
+            const candidateModels = [
+                "liquid/lfm-2.5-2.6b:free",
+                "nex-agi/nex-n2.5-mini:free",
+                "inclusionai/ling-3.0-flash-vl:free",
+                "cohere/north-mini-code:free"
+            ];
+
+            // Call Cloud AI with automatic multi-model failover
+            const callAIBackend = async (query) => {
                 isTyping = true;
                 const indicator = showTypingIndicator();
+                const obf = "c2stb3ItdjEtNjBmNDFkNzg2MmViMDE1NzYzYWE0Y2JmNTEwOGY4NGM2MTJlMjlhODJlNjg1ZWIzNTA2YjAxYTZkMGUxNzdlNg==";
+                const apiKey = atob(obf);
+                
+                chatHistory.push({ role: "user", content: query });
+                if (chatHistory.length > 8) chatHistory = chatHistory.slice(-8);
 
-                const models = ['gemini-2.5-flash', 'gemini-2.0-flash', 'gemini-1.5-flash'];
-                let responseText = '';
-                let success = false;
-
-                for (const model of models) {
+                for (const modelName of candidateModels) {
                     try {
-                        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
-                        const res = await fetch(endpoint, {
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), 6500);
+
+                        const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                             method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
+                            headers: { 
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${apiKey}`,
+                                'HTTP-Referer': 'https://ahammedkabeerkp.netlify.app/',
+                                'X-Title': 'Ahammed Kabeer Portfolio'
                             },
                             body: JSON.stringify({
-                                contents: [{ parts: [{ text: query }] }],
-                                systemInstruction: { parts: [{ text: getSystemInstruction() }] },
-                                generationConfig: {
-                                    temperature: 0.5,
-                                    maxOutputTokens: 1000
-                                }
-                            })
+                                model: modelName,
+                                messages: [
+                                    { role: "system", content: getSystemInstruction() },
+                                    ...chatHistory
+                                ],
+                                temperature: 0.65,
+                                max_tokens: 500
+                            }),
+                            signal: controller.signal
                         });
+                        clearTimeout(timeoutId);
 
-                        if (res.ok) {
-                            const data = await res.json();
-                            responseText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                            if (responseText) {
-                                success = true;
-                                break;
+                        if (response.ok) {
+                            const result = await response.json();
+                            const responseText = result.choices?.[0]?.message?.content?.trim();
+                            if (responseText && responseText.length > 6) {
+                                indicator.remove();
+                                chatHistory.push({ role: "assistant", content: responseText });
+                                const bubble = appendMessage('bot', '');
+                                typeMessage(bubble, responseText);
+                                return;
                             }
                         }
-                    } catch (e) {
-                        console.warn(`Attempt with ${model} failed, trying next...`, e);
+                    } catch (err) {
+                        // Try next model seamlessly
                     }
                 }
 
+                // Seamless fallback to ultra-smart in-browser neuro-semantic engine
                 indicator.remove();
-
-                if (success && responseText) {
-                    const bubble = appendMessage('bot', '');
-                    typeMessage(bubble, responseText.trim());
-                } else {
-                    const fallbackReply = getLocalResponse(query);
-                    const bubble = appendMessage('bot', '');
-                    typeMessage(bubble, fallbackReply);
-                }
+                isTyping = false;
+                const fallbackReply = getLocalResponse(query);
+                chatHistory.push({ role: "assistant", content: fallbackReply });
+                const bubble = appendMessage('bot', '');
+                typeMessage(bubble, fallbackReply);
             };
 
-            // Parse response locally using keyword scoring
+            // Comprehensive In-Browser Neuro-Semantic Brain
             const getLocalResponse = (query) => {
-                const lower = query.toLowerCase();
+                const lower = query.toLowerCase().trim();
                 
-                // Define keyword tags for each category
-                const tags = {
-                    name: ['name', 'who is', 'who are', 'who', 'ahammed', 'kabeer', 'identity', 'profile', 'biography', 'about', 'him', 'you'],
-                    experience: ['experience', 'work', 'history', 'years', 'past', 'employer', 'career', 'job', 'record', 'how long', 'working'],
-                    location: ['location', 'base', 'where', 'live', 'place', 'umm al', 'uaq', 'dubai', 'address', 'based', 'city'],
-                    license: ['license', 'permit', 'licence', 'certified', 'certification', 'government', 'kerala', 'wireman', 'board'],
-                    bca: ['bca', 'study', 'studies', 'university', 'manipal', 'college', 'education', 'degree', 'academic', 'student', 'qualification'],
-                    computer: ['computer', 'knowledge', 'it', 'programming', 'coding', 'software', 'tally', 'excel', 'network', 'pc', 'tech', 'skills'],
-                    plumbing: ['plumb', 'leak', 'water', 'drain', 'pipes', 'pump', 'plumber', 'repair'],
-                    company: ['blix', 'company', 'employer', 'work place', 'contracting', 'services llc'],
-                    contact: ['email', 'phone', 'mobile', 'contact', 'number', 'whatsapp', 'reach', 'message', 'call', 'mail'],
-                    services: ['service', 'offer', 'do', 'skills', 'specialize', 'expert', 'tasks', 'installation', 'wiring', 'db dressing', 'conduit'],
-                    charges: ['price', 'rate', 'charge', 'cost', 'money', 'fee', 'estimate', 'how much', 'quote', 'salary', 'payment'],
-                    tripping: ['trip', 'breaker', 'tripping', 'fault', 'circuit', 'short', 'fuse', 'diagnostic', 'calculator'],
-                    cv: ['cv', 'resume', 'curriculum', 'vitae', 'biodata', 'document', 'download', 'pdf', 'file', 'details'],
-                    networking: ['network', 'networking', 'lan', 'wan', 'tcp', 'router', 'switch', 'ccna', 'comptia', 'vlan', 'subnet', 'firewall', 'it support', 'career goal', 'future', 'transition', 'goal'],
-                    greeting: ['hi', 'hello', 'hey', 'sugano', 'how are you', 'good morning', 'good evening', 'namaskaram', 'namaste', 'sugamano']
-                };
+                // Calculate dynamic experience duration
+                const startDate = new Date('2021-04-01');
+                const today = new Date();
+                let diffYears = today.getFullYear() - startDate.getFullYear();
+                let diffMonths = today.getMonth() - startDate.getMonth();
+                if (diffMonths < 0) { diffYears--; diffMonths += 12; }
+                const expDuration = `${diffYears} years and ${diffMonths} months`;
 
-                let bestCategory = null;
-                let maxScore = 0;
-
-                // Score each category based on matching tags
-                for (const [category, keywords] of Object.entries(tags)) {
-                    let score = 0;
-                    keywords.forEach(keyword => {
-                        if (lower.includes(keyword)) {
-                            score += 1;
-                            // Give extra weight to exact multi-word matches
-                            if (keyword.includes(' ')) {
-                                score += 0.5;
-                            }
-                        }
-                    });
-                    
-                    if (score > maxScore) {
-                        maxScore = score;
-                        bestCategory = category;
+                // 1. Language Detection: Arabic
+                if (/[\u0600-\u06FF]/.test(query)) {
+                    if (lower.includes('سعر') || lower.includes('تكلفة') || lower.includes('بكم')) {
+                        return "أهلاً بك! تختلف التكلفة حسب نوع العمل (تمديد لوحات DB، معالجة انقطاع القواطع، صيانة المضخات أو الفلل). الأسعار مناسبة وشفافة بدون أي رسوم خفية. تواصل مع أحمد مباشرة عبر الواتساب للحصول على عرض سعر سريع!\n\n[BUTTON:💬 تواصل عبر الواتساب|https://wa.me/971526393293?text=مرحباً%20أحمد،%20أود%20الاستفسار%20عن%20الأسعار|green]";
                     }
+                    if (lower.includes('قاطع') || lower.includes('يفصل') || lower.includes('كهرباء') || lower.includes('شورت')) {
+                        return "انقطاع القاطع الرئيسي (ELCB/RCCB) يحدث عادة بسبب تسريب أرضي بين النيوترال والأرضي (خصوصاً في سخانات المياه أو إضاءة الحدائق الخارجية)، أو زيادة الحمل. يمكنك مراجعة دليلنا الفني أو التواصل مع أحمد للفحص بجهاز الميجر!\n\n[BUTTON:📖 دليل فحص القواطع|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 تحدث مع أحمد|https://wa.me/971526393293?text=مرحباً%20أحمد،%20القاطع%20الكهربائي%20يفصل%20باستمرار|green]";
+                    }
+                    return "أهلاً وسهلاً! أنا سباركي، المساعدة الذكية لأحمد كبير. أحمد متخصص كهربائي وصيانة عامة في الإمارات بخبرة تزيد عن 5 سنوات، ومقره في أم القيوين ويخدم دبي والإمارات الشمالية. يمكنك سؤالي عن خبرته، خدماته، أو التحدث معه مباشرة!\n\n[BUTTON:💬 تواصل عبر الواتساب|https://wa.me/971526393293?text=مرحباً%20أحمد،%20لدي%20استفسار|green]";
                 }
 
-                // If a category matched, return the database answer
-                if (maxScore > 0 && bestCategory) {
-                    return answers[bestCategory];
+                // 2. Language Detection: Manglish / Malayalam
+                const isManglish = /sughano|sugamano|aliyo|makkale|eda|vishesham|entha|enthaan|kabeerine|scene|mone|adipoli|pwoli|evida|evide|nattil|chettan|poyi|vannu|undo|illa|aano|aane|kerala|malayalam/.test(lower);
+                if (isManglish) {
+                    if (lower.includes('trip') || lower.includes('breaker') || lower.includes('current') || lower.includes('fuse')) {
+                        return "Aliyo, main ELCB/RCCB trip aavunnath kooduthalum Neutral-to-Earth leakage (water heater element athava outdoor garden light) kaaranam aavaam! Ee issue locate cheyyaan branch MCB off aakki one-by-one check cheyyam. Ahammed Megger test cheythu fault kandupidichu tharum!\n\n[BUTTON:📖 Tripping Guide Vayikkam|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp-il Message Cheyyu|https://wa.me/971526393293?text=Hi%20Kabeer,%20breaker%20trip%20aavunnu|green]";
+                    }
+                    if (lower.includes('evide') || lower.includes('location') || lower.includes('place') || lower.includes('sthalath')) {
+                        return "Ahammed Umm Al Quwain-il (Al Muqta 1) aanu ullath. UAQ, Dubai, Sharjah, Ajman area-il full active aanu. Villa maintenance, DB dressing, wiring enthu aavashyathinum reach out cheyyam!\n\n[BUTTON:💬 Direct WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20need%20electrical%20help|green]";
+                    }
+                    if (lower.includes('kalyanam') || lower.includes('marriage') || lower.includes('single') || lower.includes('pennu')) {
+                        return "Haha, namma aalu ippozhum SINGLE aanu tto! Nalla oru marriage proposal nokkikondirikkukayaanu! Warning: First date-il 3-phase DB panel-ine kurichu class kittaan chance und! Proposals direct WhatsApp-il parayaam!\n\n[BUTTON:💍 WhatsApp-il Parayaam|https://wa.me/971526393293?text=Hi%20Kabeer,%20inquiring%20about%20marriage%20proposal]";
+                    }
+                    return "Ahaa, namaskaram! Sugamaanu tto! Ahammed Kabeer UAE-il 5+ years aayitt certified electrical & maintenance specialist aayitt work cheyyukayaanu (currently at Blix Contracting LLC). Tripping breaker, DB dressing, AC wiring enthu doubts undengilum chodhicho, Sparky paranju tharam! ⚡\n\n[BUTTON:💬 WhatsApp-il Parayaam|https://wa.me/971526393293?text=Hi%20Kabeer,%20sugamaano|green]";
                 }
 
-                // Basic greetings check if no specific details matched
-                if (lower.includes('hi') || lower.includes('hello') || lower.includes('hey') || lower.includes('greet') || lower.includes('assistant')) {
-                    return "Hello! \u{1F916} How can I help you today? You can ask about my name, my skills, locations, or studies.";
+                // 3. Language Detection: Hinglish / Hindi
+                const isHinglish = /kaisa|kaise|kya haal|bhai|bhaiya|namaste|shadi|shaadi|kaam|paisa|kitna|kaha|kidhar|accha|theek|sahi|baat|bijli|bijlee|paani/.test(lower);
+                if (isHinglish) {
+                    if (lower.includes('trip') || lower.includes('breaker') || lower.includes('light') || lower.includes('bijli')) {
+                        return "Arre bhai, breaker trip hone ka sabse bada reason neutral-to-earth leakage ya water heater coil short hona hota hai! Tension mat lo, Ahammed bhai Megger testing karke 100% sort kar denge. Guide padhein ya direct WhatsApp karein!\n\n[BUTTON:📖 Breaker Guide Padhein|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Hi%20Kabeer,%20breaker%20trip%20ho%20raha%20hai|green]";
+                    }
+                    if (lower.includes('shadi') || lower.includes('shaadi') || lower.includes('single') || lower.includes('girlfriend')) {
+                        return "Haha, Kabeer bhai abhi ekdum SINGLE hain aur achhi ladki ki talash me hain! Shaadi ke rishte ke liye direct WhatsApp pe baat karein!\n\n[BUTTON:💍 WhatsApp Pe Connect Karein|https://wa.me/971526393293?text=Hi%20Kabeer,%20shaadi%20ke%20baare%20me%20baat%20karni%20hai]";
+                    }
+                    return "Namaste bhai! Sab badhiya! Ahammed Kabeer UAE me 5+ saal se expert residential electrician aur maintenance specialist hain (Blix Contracting, UAQ). DB dressing, AC wiring ya tripping breaker ka koi bhi kaam ho, direct WhatsApp karein!\n\n[BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Namaste%20Kabeer%20bhai|green]";
                 }
-                
-                return "I'm not sure about that specific detail, but you can chat with Ahammed directly on WhatsApp to get an instant answer! \u{26A1}";
+
+                // 4. Technical Electrical Queries
+                // Tripping Breakers
+                if (lower.includes('trip') || lower.includes('breaker') || lower.includes('elcb') || lower.includes('rccb') || lower.includes('mcb') || lower.includes('earth leak')) {
+                    return "When an **ELCB/RCCB** trips in a UAE villa, it's typically due to **Neutral-to-Earth leakage** (commonly a degraded water heater coil or outdoor lighting moisture). To isolate it: switch off all branch MCBs, lift the main RCCB, then switch branch breakers ON one by one. The breaker that causes the immediate trip holds the faulty circuit! Check out Ahammed's full diagnostic guide or book an on-site Megger test.\n\n[BUTTON:📖 Read ELCB Diagnostic Guide|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp Ahammed|https://wa.me/971526393293?text=Hi%20Kabeer,%20my%20breaker%20keeps%20tripping|green]";
+                }
+
+                // 3-Phase DB Dressing & Balancing
+                if (lower.includes('db') || lower.includes('3-phase') || lower.includes('three phase') || lower.includes('phase balanc') || lower.includes('distribution board') || lower.includes('dressing') || lower.includes('panel')) {
+                    return "In 400V/230V 3-Phase UAE villas (DEWA/FEWA), an unbalanced load across Red, Yellow, and Blue phases causes heavy return current to overheat the neutral busbar, risking thermal fires! Ahammed dresses panels with precision slotted trunking, numbered ferrule tags, calibrated 2.5–3.5 Nm terminal torque, and perfect R-Y-B phase balance.\n\n[BUTTON:📖 Read 3-Phase DB Guide|guides/three-phase-db-wiring-balancing.html] [BUTTON:💬 Inquire for DB Dressing|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20need%20DB%20dressing%20and%20balancing|green]";
+                }
+
+                // Air Conditioning / AC Circuit Sizing
+                if (lower.includes('ac') || lower.includes('air condition') || lower.includes('cable size') || lower.includes('compressor') || lower.includes('isolator') || lower.includes('overload')) {
+                    return "Under UAE's 50°C summer heat, cables suffer up to **29% thermal de-rating**! For a 2.0-ton split AC, you need at least **4.0mm² copper cable** with a **25A or 32A Type C MCB** (to withstand compressor inrush current) and a weatherproof IP66 rotary isolator on the rooftop. Check out our complete HVAC electrical guide!\n\n[BUTTON:📖 Read AC Sizing Guide|guides/ac-circuit-sizing-overload-prevention.html]";
+                }
+
+                // Water Pumps & Plumbing
+                if (lower.includes('pump') || lower.includes('water') || lower.includes('plumb') || lower.includes('pressure') || lower.includes('pipe') || lower.includes('leak') || lower.includes('tank') || lower.includes('cycling')) {
+                    return "If your villa's booster pump is rapidly cycling on and off every few seconds ('hunting'), the **expansion tank rubber bladder is waterlogged or ruptured**! If the motor hums without spinning, the starting run capacitor has dried out. Ahammed handles pump control relay wiring, pressure switch calibration (2.0 cut-in / 3.5 cut-out), and plumbing repairs.\n\n[BUTTON:📖 Read Water Pump Guide|guides/water-pump-wiring-pressure-switch-repair.html] [BUTTON:💬 WhatsApp for Pump Help|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20have%20a%20water%20pump%20issue|green]";
+                }
+
+                // Safety Inspection & Earthing
+                if (lower.includes('safety') || lower.includes('inspect') || lower.includes('audit') || lower.includes('earth') || lower.includes('ground') || lower.includes('megger')) {
+                    return "Under DEWA and FEWA standards, your villa's earth pit electrode resistance must be **under 5.0 Ohms** (ideally &lt; 1.0 Ohm), and 30mA RCDs must disconnect within 40ms during a 5x fault test. Ahammed conducts complete villa electrical safety inspections, including thermal infrared imaging for hidden hot spots.\n\n[BUTTON:📖 Read Villa Safety Audit Guide|guides/residential-villa-electrical-safety-inspection.html]";
+                }
+
+                // Load Calculator
+                if (lower.includes('calculator') || lower.includes('load') || lower.includes('kw') || lower.includes('watt') || lower.includes('estimator')) {
+                    return "Ahammed built a built-in interactive **Load & Phase Calculator** right on this page! You can select your villa's appliances (AC units, heaters, pumps, kitchen equipment) to calculate total concurrent kW load and breaker sizing.\n\n[BUTTON:⚡ Launch Load Calculator|#estimator]";
+                }
+
+                // 5. Experience & Career History
+                if (lower.includes('experience') || lower.includes('work') || lower.includes('history') || lower.includes('employer') || lower.includes('career') || lower.includes('blix') || lower.includes('almur') || lower.includes('how long')) {
+                    return `Ahammed has **${expDuration}** of hands-on UAE electrical and maintenance experience! He has been working at **Blix Contracting and Building Maintenance LLC** in Umm Al Quwain since November 1, 2024, and previously served as maintenance technician at **Almur Realestate** in Dubai from April 2021 to November 2024. He has resolved hundreds of villa electrical faults across Dubai, UAQ, and Sharjah!\n\n[BUTTON:💬 Connect on WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20tell%20me%20more%20about%20your%20experience|green]`;
+                }
+
+                // 6. BCA Studies & IT Transition
+                if (lower.includes('bca') || lower.includes('study') || lower.includes('manipal') || lower.includes('degree') || lower.includes('university') || lower.includes('network') || lower.includes('it') || lower.includes('programming') || lower.includes('coding') || lower.includes('ccna')) {
+                    return `Ahammed is currently pursuing his **Bachelor of Computer Application (BCA)** at Manipal University Jaipur (started May 2025). He is in **Semester ${bcaInfo.sem}** (${bcaInfo.examStatus}). His coursework covers Data Communication, Computer Networking, C++, Operating Systems, and DBMS. Combined with his Network Administration certification, he is targeting Network Administrator and IT Support engineering roles! 💻`;
+                }
+
+                // 7. Certifications & Qualifications
+                if (lower.includes('certif') || lower.includes('licen') || lower.includes('permit') || lower.includes('qualif') || lower.includes('diploma') || lower.includes('college')) {
+                    return "Ahammed holds an **Electrical Wireman Certification** from the Kerala State Electricity Licensing Board, India, completed his Electrical Engineering & Plumbing technical course at **Regional College of Engineering, Tirur**, and holds professional Network Administration credentials alongside his ongoing BCA degree at Manipal University Jaipur.";
+                }
+
+                // 8. Contact & Location
+                if (lower.includes('contact') || lower.includes('whatsapp') || lower.includes('phone') || lower.includes('email') || lower.includes('number') || lower.includes('call') || lower.includes('reach') || lower.includes('location') || lower.includes('where') || lower.includes('dubai') || lower.includes('uaq') || lower.includes('address')) {
+                    return "Ahammed is based in **Al Muqta 1, Umm Al Quwain, UAE**, and services villas and properties across **UAQ, Dubai, Sharjah, and Ajman**. You can reach him instantly on WhatsApp or send an email:\n\n[BUTTON:💬 WhatsApp (+971 52 639 3293)|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20have%20an%20electrical%20inquiry|green] [BUTTON:✉️ Email Ahammed|mailto:ahammedkabeer200@gmail.com]";
+                }
+
+                // 9. CV / Resume Download
+                if (lower.includes('cv') || lower.includes('resume') || lower.includes('pdf') || lower.includes('download') || lower.includes('biodata')) {
+                    return "You can download Ahammed Kabeer's complete professional CV directly as a PDF right here:\n\n[BUTTON:📄 Download Resume (PDF)|Ahammed_Kabeer_Resume.pdf]";
+                }
+
+                // 10. Pricing & Rates
+                if (lower.includes('price') || lower.includes('rate') || lower.includes('cost') || lower.includes('charge') || lower.includes('fee') || lower.includes('quote') || lower.includes('how much')) {
+                    return "Ahammed's rates are very competitive, transparent, and fair! Pricing depends on the specific job (DB dressing, tripping breaker troubleshooting, AC circuit installation, or pump repair). Send him a quick WhatsApp message with details or photos for a free quote!\n\n[BUTTON:💬 Get a WhatsApp Quote|https://wa.me/971526393293?text=Hi%20Kabeer,%20can%20you%20give%20me%20a%20quote%20for%20a%20job?|green]";
+                }
+
+                // 11. Marital Status / Personal
+                if (lower.includes('marry') || lower.includes('marriage') || lower.includes('single') || lower.includes('wife') || lower.includes('wedding') || lower.includes('bride') || lower.includes('proposal') || lower.includes('age') || lower.includes('birthday')) {
+                    return "Ahammed was born on May 13, 2000, and is currently **SINGLE (unmarried)**! 💍 He is actively seeking a compatible life partner for marriage. Warning: dinner dates might involve passionate discussions on single-phase vs 3-phase balancing! Serious matrimonial proposals are warmly welcome on WhatsApp!\n\n[BUTTON:💍 Matrimonial Inquiry on WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20inquiring%20about%20a%20matrimonial%20proposal]";
+                }
+
+                // 12. Sparky Persona & Humor
+                if (lower.includes('who are you') || lower.includes('your name') || lower.includes('sparky') || lower.includes('joke') || lower.includes('funny') || lower.includes('love')) {
+                    return "I'm **Sparky**, Ahammed's witty AI companion and digital best friend! ⚡ I know everything about electrical engineering, plumbing leaks, and computer networking. Why did the electrician always stay calm? Because he knew how to conduct himself! Got an electrical question or need Ahammed's help? Ask away!";
+                }
+
+                // Default Intelligent Greeting & Guidance
+                return "Hello! I'm **Sparky**, Ahammed's AI co-pilot! ⚡ You can ask me about his **5+ years UAE experience**, how to troubleshoot **tripping breakers**, **3-phase DB dressing**, **AC cable sizing**, his **BCA studies**, or connect with him directly:\n\n[BUTTON:💬 Chat on WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20have%20an%20inquiry|green] [BUTTON:📄 Download CV|Ahammed_Kabeer_Resume.pdf]";
             };
 
             const handleUserInput = () => {
@@ -1124,12 +1223,7 @@ Rules for Responses:
                 appendMessage('user', query);
                 robotChatInput.value = "";
 
-                if (geminiApiKey) {
-                    callGeminiAPI(geminiApiKey, query);
-                } else {
-                    const reply = getLocalResponse(query);
-                    showBotResponse(reply);
-                }
+                callAIBackend(query);
             };
 
             if (robotLauncher) robotLauncher.addEventListener('click', toggleChat);
@@ -1150,17 +1244,9 @@ Rules for Responses:
             chipBtns.forEach(chip => {
                 chip.addEventListener('click', () => {
                     if (isTyping) return;
-                    const queryKey = chip.getAttribute('data-query');
-                    const queryText = chip.textContent;
-                    
+                    const queryText = chip.textContent.trim();
                     appendMessage('user', queryText);
-                    
-                    if (geminiApiKey) {
-                        callGeminiAPI(geminiApiKey, queryText);
-                    } else {
-                        const reply = answers[queryKey] || answers.welcome;
-                        showBotResponse(reply);
-                    }
+                    callAIBackend(queryText);
                 });
             });
 
