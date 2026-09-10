@@ -473,24 +473,59 @@
                 return `${uaeWhatsAppBase}?text=${encodeURIComponent(message)}`;
             };
 
+            const whatsappMessages = {
+                'tripping': "Hi Ahammed, my circuit breaker (ELCB/RCCB) is frequently tripping at my villa and I need an urgent fault diagnosis / Megger test.",
+                'overload': "Hi Ahammed, I am experiencing frequent electrical tripping due to circuit overloading and would like to inquire about dedicated circuit installation or phase balancing.",
+                'neutral': "🚨 URGENT: Hi Ahammed, my lights are flickering across multiple circuits and I suspect a dangerous loose neutral in my main DB. Please assist!",
+                'emergency': "🚨 EMERGENCY: Hi Ahammed, I noticed an urgent electrical hazard (burning smell / sparking wires) at my property and need an immediate callout.",
+                'outlet': "Hi Ahammed, I have damaged or dead wall sockets / outlets that need testing and safe replacement at my property.",
+                'circuit-dead': "Hi Ahammed, a sub-circuit / group of outlets went dead in my property. I need troubleshooting and line tracing assistance.",
+                'heater': "Hi Ahammed, my water heater stopped heating / keeps tripping the breaker. Could you inspect and repair the heating element or thermostat?",
+                'spd': "Hi Ahammed, I would like to inquire about installing a whole-house Surge Protection Device (SPD) in my villa distribution board.",
+                'inspection': "Hi Ahammed, I would like to schedule a comprehensive residential electrical safety inspection and earth pit resistance test.",
+                'switch': "Hi Ahammed, I have an electrical switch that is arcing / sparking and needs inspection and replacement.",
+                'db-dressing': "Hi Ahammed, I would like to get a quotation for 3-Phase Distribution Board (DB) dressing, ferrule tagging, and load balancing.",
+                'ac-wiring': "Hi Ahammed, I need electrical wiring, cable sizing, and isolator installation for an air conditioning (AC) unit.",
+                'pump': "Hi Ahammed, my water booster pump has an issue (pressure switch / continuous cycling) and needs service.",
+                'villa': "Hi Ahammed, I am looking for an experienced electrician for a villa construction / renovation wiring project.",
+                'maintenance': "Hi Ahammed, I need routine building electrical maintenance and repair services.",
+                'general': "Hi Ahammed, I visited your portfolio website and would like to inquire about your electrical and maintenance services."
+            };
+
             // Update main hire/contact links with pre-filled text
             const contactLinks = document.querySelectorAll('.whatsapp-dynamic');
             contactLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
-                    const serviceType = link.getAttribute('data-service');
-                    let message = "Hi Ahammed, I visited your website and would like to inquire about your electrical services.";
-                    
-                    if (serviceType === 'tripping') {
-                        message = "Hi Ahammed, my circuit breaker is frequently tripping and I need an urgent fault diagnosis at my villa.";
-                    } else if (serviceType === 'villa') {
-                        message = "Hi Ahammed, I am looking for an electrician to work on a new villa construction wiring project.";
-                    } else if (serviceType === 'maintenance') {
-                        message = "Hi Ahammed, I need routine building electrical maintenance and repairs.";
-                    }
-
-                    window.open(getPreFilledWhatsAppLink(message), '_blank');
+                    const serviceType = link.getAttribute('data-service') || 'general';
+                    const message = whatsappMessages[serviceType] || whatsappMessages['general'];
+                    window.open(getPreFilledWhatsAppLink(message), '_blank', 'noopener');
                 });
             });
+
+            // Direct WhatsApp dispatch from contact form
+            const btnSendWhatsApp = document.getElementById('btn-send-whatsapp');
+            if (btnSendWhatsApp) {
+                btnSendWhatsApp.addEventListener('click', () => {
+                    const name = document.getElementById('form-name')?.value.trim();
+                    const email = document.getElementById('form-email')?.value.trim();
+                    const subject = document.getElementById('form-subject')?.value.trim();
+                    const msgContent = document.getElementById('form-message')?.value.trim();
+
+                    let text = "Hi Ahammed! Inquiry from your portfolio website:\n\n";
+                    if (name) text += `👤 *Name:* ${name}\n`;
+                    if (email) text += `📧 *Email:* ${email}\n`;
+                    if (subject) text += `📌 *Subject:* ${subject}\n`;
+                    if (msgContent) text += `💬 *Message:* ${msgContent}\n`;
+
+                    if (!name && !msgContent) {
+                        text = "Hi Ahammed, I visited your portfolio website and would like to inquire about your electrical and maintenance services.";
+                    } else {
+                        text += `\nPlease let me know your availability.`;
+                    }
+
+                    window.open(getPreFilledWhatsAppLink(text), '_blank', 'noopener');
+                });
+            }
 
 
             /* ── AJAX FORM SUBMISSION (No Page Redirection) ── */
@@ -796,22 +831,22 @@
                 welcome: "Hi! I am Ahammed\u0027s AI Assistant. \u{1F916} Ask me anything! I know electrical wiring, plumbing leaks, and computer programming. Just don\u0027t ask me to fix a short circuit myself, I might crash! \u{26A1}",
                 name: "Ahammed Kabeer is a professional Residential Electrician & Plumbing Specialist based in Umm Al Quwain, UAE. He has " + (typeof yearsOfExp !== 'undefined' ? yearsOfExp : 5) + "+ years of UAE experience. He is basically the guy you call before your house turns into a swimming pool or a fireworks show! \u{1F386}",
                 experience: "Ahammed has " + (typeof yearsOfExp !== 'undefined' ? yearsOfExp : 5) + "+ years of experience in the UAE. He currently works at Blix Contracting and Building Maintenance LLC, and previously worked at Almur Realestate in Dubai. He has seen enough tripped breakers to write a book about it! \u{1F4D6}",
-                location: "He is based in Al Muqta 1, Umm Al Quwain (UAQ). He\u0027s ready to travel all over UAQ to tackle stubborn electrical faults and pipes! \u{1F697}",
-                license: "Yes! He holds an Electrical Wireman Certification from the Kerala State Electricity Licensing Board, India. This means he is legally authorized to handle voltages safely so you don't get shocked! \u{26A1}",
+                location: "He is based in Al Muqta 1, Umm Al Quwain (UAQ). He's ready to travel all over UAQ to tackle stubborn electrical faults and pipes! 🚙",
+                license: "Ahammed brings 5+ years of extensive hands-on experience in residential wiring, DB dressing, and electrical maintenance across UAE villas and buildings. ⚡",
                 bca: bcaInfo.graduated
-                    ? "Ahammed has completed his Bachelor of Computer Application (BCA) from Manipal University Jaipur, India! \u{1F393} He studied Data Communication & Protocols, Network Security, Wireless Communication, Cloud Computing, Machine Learning, and more. From copper wiring to code\u2014he\u0027s a fully certified tech hybrid now! \u{1F4A1}"
-                    : "He is currently in Semester " + bcaInfo.sem + " of his BCA at Manipal University Jaipur, India (started May 2025). \u{1F4DA} " + bcaInfo.examStatus + " Current subjects: " + bcaInfo.subjects + ". He\u0027s upgrading from copper wiring to programming code\u2014soon he\u0027ll be programming light bulbs to argue with you! \u{1F4A1}",
-                computer: "Yes, he knows IT! Between networking administration, Tally ERP, and his BCA studies, he is certified in both hardware wiring and software coding. A true tech hybrid! \u{1F4BB}",
-                plumbing: "Along with electrical work, he\u0027s certified in plumbing from Regional College of Engineering, Tirur (2017-2018). He fixes everything from leaking pipes to faulty water pumps. No leakage can escape him! \u{1F6B0}",
-                company: "He works for Blix Contracting and Building Maintenance LLC. Check them out at https://blixservices.ae. They keep Umm Al Quwain\u0027s buildings standing and fully powered! \u{1F3E2}",
-                contact: "You can email him at ahammedkabeer200@gmail.com, or use the WhatsApp buttons on this page. Send him a message before your breaker trips again! \u{26A1}",
-                services: "He specializes in distribution board (DB) dressing, villa layout conduits, insulation testing (Megger), fault diagnosis (tripping breakers), and plumbing repairs. Basically, all the home-maintenance superpowers! \u{1F9B8}",
-                charges: "Charges depend on the scope of work. Send details via the contact form or WhatsApp for a quote. Don\u0027t worry, his rates are very reasonable\u2014no shocking bills here! \u{1F4B8}",
-                tripping: "Tripping breakers are usually caused by ground leakages, moisture seeping, or circuit overloads. Try our interactive Diagnostic Guide on this page, or contact Ahammed to Megger-test it! \u{26A1}",
-                cv: "You can request his full CV PDF directly on WhatsApp (+971 52 639 3293) or by emailing ahammedkabeer200@gmail.com. It is packed with credentials and zero syntax errors! \u{1F4C4}",
+                    ? "Ahammed has completed his Bachelor of Computer Application (BCA) from Manipal University Jaipur, India! 🎓 He studied Data Communication & Protocols, Network Security, Wireless Communication, Cloud Computing, Machine Learning, and more. From copper wiring to code—he's a versatile tech hybrid now! 💡"
+                    : "He is currently in Semester " + bcaInfo.sem + " of his BCA at Manipal University Jaipur, India (started May 2025). 📚 " + bcaInfo.examStatus + " Current subjects: " + bcaInfo.subjects + ". He's upgrading from copper wiring to programming code—soon he'll be programming light bulbs to argue with you! 💡",
+                computer: "Yes, he knows IT! Between networking administration, Tally ERP, and his BCA studies, he brings expertise in both hardware wiring and software coding. A true tech hybrid! 💻",
+                plumbing: "Along with electrical work, he completed technical plumbing training from Regional College of Engineering, Tirur (2017-2018). He fixes everything from leaking pipes to faulty water pumps. No leakage can escape him! 🚰",
+                company: "He works for Blix Contracting and Building Maintenance LLC. Check them out at https://blixservices.ae. They keep Umm Al Quwain's buildings standing and fully powered! 🏢",
+                contact: "You can email him at ahammedkabeer200@gmail.com, or use the WhatsApp buttons on this page. Send him a message before your breaker trips again! ⚡",
+                services: "He specializes in distribution board (DB) dressing, villa layout conduits, insulation testing (Megger), fault diagnosis (tripping breakers), and plumbing repairs. Basically, all the home-maintenance superpowers! 🦸",
+                charges: "Charges depend on the scope of work. Send details via the contact form or WhatsApp for a quote. Don't worry, his rates are very reasonable—no shocking bills here! 💸",
+                tripping: "Tripping breakers are usually caused by ground leakages, moisture seeping, or circuit overloads. Try our interactive Diagnostic Guide on this page, or contact Ahammed to Megger-test it! ⚡",
+                cv: "You can request his full CV PDF directly on WhatsApp (+971 52 639 3293) or by emailing ahammedkabeer200@gmail.com. It is packed with credentials and zero syntax errors! 📄",
                 networking: bcaInfo.graduated
-                    ? "Ahammed has completed his BCA which covered Data Communication & Protocols, Network Security, Wireless Communication, and Cloud Computing! \u{1F310} Combined with his Network Administration training, he\u0027s fully ready for Network Administrator or IT Support roles. If he can troubleshoot a three-phase distribution board, a misbehaving router doesn\u0027t stand a chance! \u{1F4AA}"
-                    : "Ahammed is building his networking career through his BCA at Manipal University Jaipur! \u{1F310} Currently in Semester " + bcaInfo.sem + ", studying " + bcaInfo.networking + ". " + bcaInfo.examStatus + (bcaInfo.nextSem ? " Next up in Semester " + bcaInfo.nextSem + ": " + bcaInfo.nextNetworking + "." : "") + " Combined with his Network Administration training, he\u0027s targeting Network Administrator or IT Support roles\u2014because if he can troubleshoot a three-phase distribution board, a misbehaving router doesn\u0027t stand a chance! \u{1F4AA}"
+                    ? "Ahammed has completed his BCA which covered Data Communication & Protocols, Network Security, Wireless Communication, and Cloud Computing! 🌐 Combined with his Network Administration training, he's fully ready for Network Administrator or IT Support roles. If he can troubleshoot a three-phase distribution board, a misbehaving router doesn't stand a chance! 💪"
+                    : "Ahammed is building his networking career through his BCA at Manipal University Jaipur! 🌐 Currently in Semester " + bcaInfo.sem + ", studying " + bcaInfo.networking + ". " + bcaInfo.examStatus + (bcaInfo.nextSem ? " Next up in Semester " + bcaInfo.nextSem + ": " + bcaInfo.nextNetworking + "." : "") + " Combined with his Network Administration training, he's targeting Network Administrator or IT Support roles—because if he can troubleshoot a three-phase distribution board, a misbehaving router doesn't stand a chance! 💪"
             };
 
 
@@ -831,7 +866,7 @@ Here is Ahammed Kabeer's professional dossier with exact joining dates:
 - Total UAE Experience: He arrived and started working in the UAE on April 1, 2021.
 - Technical Education: Completed his Electrical Engineering & Plumbing technical course at Regional College of Engineering, Tirur, Kerala, India (Duration: June 2017 to May 2018).
 - BCA Degree: Currently pursuing a Bachelor of Computer Application (BCA) at Manipal University Jaipur, India (Online/Distance). He started in May 2025. ${bcaInfo.graduated ? 'He has completed all 6 semesters and graduated.' : 'He is currently in Semester ' + bcaInfo.sem + '. ' + bcaInfo.examStatus + ' Current subjects: ' + bcaInfo.subjects + '.'} Full BCA curriculum (from onlinemanipal.com): Sem 1 (Fundamentals of IT & Computing, Programming in C, Mathematics, PC Troubleshooting), Sem 2 (Operating Systems, Data Structure & Algorithms, OOP with C++, Digital Logic, Communication Skills), Sem 3 (Numerical Methods, DBMS, Computer Organisation, Basics of Data Communication), Sem 4 (Java Programming, System Software, Financial Accounting & Management, Computer Networking), Sem 5 (Web Design, Visual Programming, Software Engineering, Python Programming, Elective), Sem 6 (Major Project, Mobile App Development, Electives).
-- Certifications: Electrical Wireman Certification issued by Kerala State Electricity Licensing Board, Kerala, India.
+- Technical Background: Electrical Engineering & Plumbing from Regional College of Engineering, Tirur, Kerala, India.
 - Languages Spoken: English, Hindi, Tamil, Malayalam.
 - Core Specializations: Villa layout conduits, wiring layout executions, panel board/DB dressing, insulation resistance checks (Megger testing), troubleshooting tripping breaker faults, and plumbing repairs.
 - Career Goal: Ahammed is actively transitioning into the Networking / IT field through his BCA degree. His university curriculum covers Basics of Data Communication (Sem 3) and Computer Networking (Sem 4). He already holds a Network Administration training certificate. He is targeting roles such as Network Administrator, Network Engineer, or IT Support with a networking focus.
@@ -858,7 +893,10 @@ Rules for Responses:
 ### 4. Strict Privacy Rule Regarding Marital Status & Dating
 - **Zero Marital/Dating Discussion:** Never state, discuss, or joke about Ahammed's marital status, marriage, bride search, or dating life. If a visitor asks about marriage, weddings, dating, or marital status, politely state that Ahammed prefers to keep his personal life private and focuses purely on his professional electrical contracting, building maintenance, and IT networking work.
 
-### 5. Effortless Capability
+### 5. Strict Professional Credential Rule
+- **No Certified/Verified Electrician Claims:** Never call or describe Ahammed as a "certified electrician" or "verified electrician". Always refer to him accurately as an "experienced electrical specialist", "skilled maintenance technician", or "residential electrical specialist".
+
+### 6. Effortless Capability
 - Answer *every* question thrown your way. If the topic is complex or technical, explain it clearly with an entertaining, conversational spin so it never feels boring. 
 
 ### Core Instructions
@@ -1214,50 +1252,50 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
                 // 1. Language Detection: Arabic
                 if (/[\u0600-\u06FF]/.test(query)) {
                     if (lower.includes('سعر') || lower.includes('تكلفة') || lower.includes('بكم')) {
-                        return "أهلاً بك! تختلف التكلفة حسب نوع العمل (تمديد لوحات DB، معالجة انقطاع القواطع، صيانة المضخات أو الفلل). الأسعار مناسبة وشفافة بدون أي رسوم خفية. تواصل مع أحمد مباشرة عبر الواتساب للحصول على عرض سعر سريع!\n\n[BUTTON:💬 تواصل عبر الواتساب|https://wa.me/971526393293?text=مرحباً%20أحمد،%20أود%20الاستفسار%20عن%20الأسعار|green]";
+                        return "أهلاً بك! تختلف التكلفة حسب نوع العمل (تمديد لوحات DB، معالجة انقطاع القواطع، صيانة المضخات أو الفلل). الأسعار مناسبة وشفافة بدون أي رسوم خفية. تواصل مع أحمد مباشرة عبر الواتساب للحصول على عرض سعر سريع!\n\n[BUTTON:💬 تواصل عبر الواتساب|https://wa.me/971526393293?text=مرحباً%20أحمد،%20أود%20الاستفسار%20عن%20تفاصيل%20وأسعار%20الخدمات|green]";
                     }
                     if (lower.includes('قاطع') || lower.includes('يفصل') || lower.includes('كهرباء') || lower.includes('شورت')) {
-                        return "انقطاع القاطع الرئيسي (ELCB/RCCB) يحدث عادة بسبب تسريب أرضي بين النيوترال والأرضي (خصوصاً في سخانات المياه أو إضاءة الحدائق الخارجية)، أو زيادة الحمل. يمكنك مراجعة دليلنا الفني أو التواصل مع أحمد للفحص بجهاز الميجر!\n\n[BUTTON:📖 دليل فحص القواطع|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 تحدث مع أحمد|https://wa.me/971526393293?text=مرحباً%20أحمد،%20القاطع%20الكهربائي%20يفصل%20باستمرار|green]";
+                        return "انقطاع القاطع الرئيسي (ELCB/RCCB) يحدث عادة بسبب تسريب أرضي بين النيوترال والأرضي (خصوصاً في سخانات المياه أو إضاءة الحدائق الخارجية)، أو زيادة الحمل. يمكنك مراجعة دليلنا الفني أو التواصل مع أحمد للفحص بجهاز الميجر!\n\n[BUTTON:📖 دليل فحص القواطع|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 تحدث مع أحمد|https://wa.me/971526393293?text=مرحباً%20أحمد،%20القاطع%20الكهربائي%20يفصل%20باستمرار%20وأحتاج%20إلى%20فحص%20عاجل|green]";
                     }
-                    return "أهلاً وسهلاً! أنا سباركي، المساعدة الذكية لأحمد كبير. أحمد متخصص كهربائي وصيانة عامة في الإمارات بخبرة تزيد عن 5 سنوات، ومقره في أم القيوين ويخدم دبي والإمارات الشمالية. يمكنك سؤالي عن خبرته، خدماته، أو التحدث معه مباشرة!\n\n[BUTTON:💬 تواصل عبر الواتساب|https://wa.me/971526393293?text=مرحباً%20أحمد،%20لدي%20استفسار|green]";
+                    return "أهلاً وسهلاً! أنا سباركي، المساعدة الذكية لأحمد كبير. أحمد متخصص كهربائي وصيانة عامة في الإمارات بخبرة تزيد عن 5 سنوات، ومقره في أم القيوين ويخدم دبي والإمارات الشمالية. يمكنك سؤالي عن خبرته، خدماته، أو التحدث معه مباشرة!\n\n[BUTTON:💬 تواصل عبر الواتساب|https://wa.me/971526393293?text=مرحباً%20أحمد،%20تواصلت%20معك%20من%20خلال%20موقعك%20ولدي%20استفسار|green]";
                 }
 
                 // 2. Language Detection: Manglish / Malayalam
                 const isManglish = /sughano|sugamano|aliyo|makkale|eda|vishesham|entha|enthaan|kabeerine|scene|mone|adipoli|pwoli|evida|evide|nattil|chettan|poyi|vannu|undo|illa|aano|aane|kerala|malayalam/.test(lower);
                 if (isManglish) {
                     if (lower.includes('trip') || lower.includes('breaker') || lower.includes('current') || lower.includes('fuse')) {
-                        return "Aliyo, main ELCB/RCCB trip aavunnath kooduthalum Neutral-to-Earth leakage (water heater element athava outdoor garden light) kaaranam aavaam! Ee issue locate cheyyaan branch MCB off aakki one-by-one check cheyyam. Ahammed Megger test cheythu fault kandupidichu tharum!\n\n[BUTTON:📖 Tripping Guide Vayikkam|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp-il Message Cheyyu|https://wa.me/971526393293?text=Hi%20Kabeer,%20breaker%20trip%20aavunnu|green]";
+                        return "Aliyo, main ELCB/RCCB trip aavunnath kooduthalum Neutral-to-Earth leakage (water heater element athava outdoor garden light) kaaranam aavaam! Ee issue locate cheyyaan branch MCB off aakki one-by-one check cheyyam. Ahammed Megger test cheythu fault kandupidichu tharum!\n\n[BUTTON:📖 Tripping Guide Vayikkam|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp-il Message Cheyyu|https://wa.me/971526393293?text=Hi%20Ahammed,%20ente%20villa-yil%20breaker%20trip%20aavunnu.%20Oru%20fault%20inspection%20cheyyaan%20patto?|green]";
                     }
                     if (lower.includes('evide') || lower.includes('location') || lower.includes('place') || lower.includes('sthalath')) {
-                        return "Ahammed Umm Al Quwain-il (Al Muqta 1) aanu ullath. UAQ, Dubai, Sharjah, Ajman area-il full active aanu. Villa maintenance, DB dressing, wiring enthu aavashyathinum reach out cheyyam!\n\n[BUTTON:💬 Direct WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20need%20electrical%20help|green]";
+                        return "Ahammed Umm Al Quwain-il (Al Muqta 1) aanu ullath. UAQ, Dubai, Sharjah, Ajman area-il full active aanu. Villa maintenance, DB dressing, wiring enthu aavashyathinum reach out cheyyam!\n\n[BUTTON:💬 Direct WhatsApp|https://wa.me/971526393293?text=Hi%20Ahammed,%20portfolio%20kandittaanu%20message%20ayakkunnath.%20Oru%20electrical%20inquiry%20und|green]";
                     }
                     if (lower.includes('kalyanam') || lower.includes('marriage') || lower.includes('single') || lower.includes('pennu')) {
-                        return "Ahammed personal life private aayi maintain cheyyaanaanu thalparyappedunnath. Professional electrical contracting, maintenance, athava networking work-ine kurichulla inquiries-inu eppozhum reach out cheyyam!\n\n[BUTTON:💬 Direct WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20need%20electrical%20help|green]";
+                        return "Ahammed personal life private aayi maintain cheyyaanaanu thalparyappedunnath. Professional electrical contracting, maintenance, athava networking work-ine kurichulla inquiries-inu eppozhum reach out cheyyam!\n\n[BUTTON:💬 Direct WhatsApp|https://wa.me/971526393293?text=Hi%20Ahammed,%20portfolio%20kandittaanu%20message%20ayakkunnath.%20Oru%20electrical%20inquiry%20und|green]";
                     }
-                    return "Ahaa, namaskaram! Sugamaanu tto! Ahammed Kabeer UAE-il 5+ years aayitt certified electrical & maintenance specialist aayitt work cheyyukayaanu (currently at Blix Contracting LLC). Tripping breaker, DB dressing, AC wiring enthu doubts undengilum chodhicho, Sparky paranju tharam! ⚡\n\n[BUTTON:💬 WhatsApp-il Parayaam|https://wa.me/971526393293?text=Hi%20Kabeer,%20sugamaano|green]";
+                    return "Ahaa, namaskaram! Sugamaanu tto! Ahammed Kabeer UAE-il 5+ years aayitt experienced electrical & maintenance specialist aayitt work cheyyukayaanu (currently at Blix Contracting LLC). Tripping breaker, DB dressing, AC wiring enthu doubts undengilum chodhicho, Sparky paranju tharam! ⚡\n\n[BUTTON:💬 WhatsApp-il Parayaam|https://wa.me/971526393293?text=Hi%20Ahammed,%20sugamaano?%20Oru%20work%20inquiry%20undaayirunnu|green]";
                 }
 
                 // 3. Language Detection: Hinglish / Hindi
                 const isHinglish = /kaisa|kaise|kya haal|bhai|bhaiya|namaste|shadi|shaadi|kaam|paisa|kitna|kaha|kidhar|accha|theek|sahi|baat|bijli|bijlee|paani/.test(lower);
                 if (isHinglish) {
                     if (lower.includes('trip') || lower.includes('breaker') || lower.includes('light') || lower.includes('bijli')) {
-                        return "Arre bhai, breaker trip hone ka sabse bada reason neutral-to-earth leakage ya water heater coil short hona hota hai! Tension mat lo, Ahammed bhai Megger testing karke 100% sort kar denge. Guide padhein ya direct WhatsApp karein!\n\n[BUTTON:📖 Breaker Guide Padhein|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Hi%20Kabeer,%20breaker%20trip%20ho%20raha%20hai|green]";
+                        return "Arre bhai, breaker trip hone ka sabse bada reason neutral-to-earth leakage ya water heater coil short hona hota hai! Tension mat lo, Ahammed bhai Megger testing karke 100% sort kar denge. Guide padhein ya direct WhatsApp karein!\n\n[BUTTON:📖 Breaker Guide Padhein|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Hi%20Ahammed%20bhai,%20mere%20ghar%20par%20breaker%20trip%20ho%20raha%20hai.%20Fault%20diagnosis%20ke%20liye%20baat%20karni%20thi|green]";
                     }
                     if (lower.includes('shadi') || lower.includes('shaadi') || lower.includes('single') || lower.includes('girlfriend')) {
-                        return "Ahammed bhai apni personal life private rakhna pasand karte hain aur purely professional electrical contracting aur IT engineering kaam par focus karte hain! Kaam se related kisi bhi inquiry ke liye direct WhatsApp karein!\n\n[BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Hi%20Kabeer,%20inquiry|green]";
+                        return "Ahammed bhai apni personal life private rakhna pasand karte hain aur purely professional electrical contracting aur IT engineering kaam par focus karte hain! Kaam se related kisi bhi inquiry ke liye direct WhatsApp karein!\n\n[BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Hi%20Ahammed%20bhai,%20maine%20aapka%20portfolio%20dekha.%20Electrical%20kaam%20ke%20baare%20me%20baat%20karni%20thi|green]";
                     }
-                    return "Namaste bhai! Sab badhiya! Ahammed Kabeer UAE me 5+ saal se expert residential electrician aur maintenance specialist hain (Blix Contracting, UAQ). DB dressing, AC wiring ya tripping breaker ka koi bhi kaam ho, direct WhatsApp karein!\n\n[BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Namaste%20Kabeer%20bhai|green]";
+                    return "Namaste bhai! Sab badhiya! Ahammed Kabeer UAE me 5+ saal se expert residential electrician aur maintenance specialist hain (Blix Contracting, UAQ). DB dressing, AC wiring ya tripping breaker ka koi bhi kaam ho, direct WhatsApp karein!\n\n[BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Namaste%20Ahammed%20bhai,%20electrical%20work%20inquiry%20ke%20baare%20me%20baat%20karni%20thi|green]";
                 }
 
                 // 4. Technical Electrical Queries
                 // Tripping Breakers
                 if (lower.includes('trip') || lower.includes('breaker') || lower.includes('elcb') || lower.includes('rccb') || lower.includes('mcb') || lower.includes('earth leak')) {
-                    return "When an **ELCB/RCCB** trips in a UAE villa, it's typically due to **Neutral-to-Earth leakage** (commonly a degraded water heater coil or outdoor lighting moisture). To isolate it: switch off all branch MCBs, lift the main RCCB, then switch branch breakers ON one by one. The breaker that causes the immediate trip holds the faulty circuit! Check out Ahammed's full diagnostic guide or book an on-site Megger test.\n\n[BUTTON:📖 Read ELCB Diagnostic Guide|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp Ahammed|https://wa.me/971526393293?text=Hi%20Kabeer,%20my%20breaker%20keeps%20tripping|green]";
+                    return "When an **ELCB/RCCB** trips in a UAE villa, it's typically due to **Neutral-to-Earth leakage** (commonly a degraded water heater coil or outdoor lighting moisture). To isolate it: switch off all branch MCBs, lift the main RCCB, then switch branch breakers ON one by one. The breaker that causes the immediate trip holds the faulty circuit! Check out Ahammed's full diagnostic guide or book an on-site Megger test.\n\n[BUTTON:📖 Read ELCB Diagnostic Guide|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp Ahammed|https://wa.me/971526393293?text=Hi%20Ahammed,%20my%20circuit%20breaker%20keeps%20tripping%20and%20I%20would%20like%20to%20schedule%20a%20fault%20diagnosis%20/%20Megger%20test|green]";
                 }
 
                 // 3-Phase DB Dressing & Balancing
                 if (lower.includes('db') || lower.includes('3-phase') || lower.includes('three phase') || lower.includes('phase balanc') || lower.includes('distribution board') || lower.includes('dressing') || lower.includes('panel')) {
-                    return "In 400V/230V 3-Phase UAE villas (DEWA/FEWA), an unbalanced load across Red, Yellow, and Blue phases causes heavy return current to overheat the neutral busbar, risking thermal fires! Ahammed dresses panels with precision slotted trunking, numbered ferrule tags, calibrated 2.5–3.5 Nm terminal torque, and perfect R-Y-B phase balance.\n\n[BUTTON:📖 Read 3-Phase DB Guide|guides/three-phase-db-wiring-balancing.html] [BUTTON:💬 Inquire for DB Dressing|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20need%20DB%20dressing%20and%20balancing|green]";
+                    return "In 400V/230V 3-Phase UAE villas (DEWA/FEWA), an unbalanced load across Red, Yellow, and Blue phases causes heavy return current to overheat the neutral busbar, risking thermal fires! Ahammed dresses panels with precision slotted trunking, numbered ferrule tags, calibrated 2.5–3.5 Nm terminal torque, and perfect R-Y-B phase balance.\n\n[BUTTON:📖 Read 3-Phase DB Guide|guides/three-phase-db-wiring-balancing.html] [BUTTON:💬 Inquire for DB Dressing|https://wa.me/971526393293?text=Hi%20Ahammed,%20I%20would%20like%20to%20get%20a%20quotation%20for%203-Phase%20DB%20dressing%20and%20load%20balancing|green]";
                 }
 
                 // Air Conditioning / AC Circuit Sizing
@@ -1267,7 +1305,7 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
 
                 // Water Pumps & Plumbing
                 if (lower.includes('pump') || lower.includes('water') || lower.includes('plumb') || lower.includes('pressure') || lower.includes('pipe') || lower.includes('leak') || lower.includes('tank') || lower.includes('cycling')) {
-                    return "If your villa's booster pump is rapidly cycling on and off every few seconds ('hunting'), the **expansion tank rubber bladder is waterlogged or ruptured**! If the motor hums without spinning, the starting run capacitor has dried out. Ahammed handles pump control relay wiring, pressure switch calibration (2.0 cut-in / 3.5 cut-out), and plumbing repairs.\n\n[BUTTON:📖 Read Water Pump Guide|guides/water-pump-wiring-pressure-switch-repair.html] [BUTTON:💬 WhatsApp for Pump Help|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20have%20a%20water%20pump%20issue|green]";
+                    return "If your villa's booster pump is rapidly cycling on and off every few seconds ('hunting'), the **expansion tank rubber bladder is waterlogged or ruptured**! If the motor hums without spinning, the starting run capacitor has dried out. Ahammed handles pump control relay wiring, pressure switch calibration (2.0 cut-in / 3.5 cut-out), and plumbing repairs.\n\n[BUTTON:📖 Read Water Pump Guide|guides/water-pump-wiring-pressure-switch-repair.html] [BUTTON:💬 WhatsApp for Pump Help|https://wa.me/971526393293?text=Hi%20Ahammed,%20my%20villa%20water%20booster%20pump%20has%20an%20issue%20and%20needs%20service|green]";
                 }
 
                 // Safety Inspection & Earthing
@@ -1282,22 +1320,22 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
 
                 // 5. Experience & Career History
                 if (lower.includes('experience') || lower.includes('work') || lower.includes('history') || lower.includes('employer') || lower.includes('career') || lower.includes('blix') || lower.includes('almur') || lower.includes('how long')) {
-                    return `Ahammed has **${expDuration}** of hands-on UAE electrical and maintenance experience! He has been working at **Blix Contracting and Building Maintenance LLC** in Umm Al Quwain since November 1, 2024, and previously served as maintenance technician at **Almur Realestate** in Dubai from April 2021 to November 2024. He has resolved hundreds of villa electrical faults across Dubai, UAQ, and Sharjah!\n\n[BUTTON:💬 Connect on WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20tell%20me%20more%20about%20your%20experience|green]`;
+                    return `Ahammed has **${expDuration}** of hands-on UAE electrical and maintenance experience! He has been working at **Blix Contracting and Building Maintenance LLC** in Umm Al Quwain since November 1, 2024, and previously served as maintenance technician at **Almur Realestate** in Dubai from April 2021 to November 2024. He has resolved hundreds of villa electrical faults across Dubai, UAQ, and Sharjah!\n\n[BUTTON:💬 Connect on WhatsApp|https://wa.me/971526393293?text=Hi%20Ahammed,%20I%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20an%20electrical%20/%20maintenance%20opportunity|green]`;
                 }
 
                 // 6. BCA Studies & IT Transition
                 if (lower.includes('bca') || lower.includes('study') || lower.includes('manipal') || lower.includes('degree') || lower.includes('university') || lower.includes('network') || lower.includes('it') || lower.includes('programming') || lower.includes('coding') || lower.includes('ccna')) {
-                    return `Ahammed is currently pursuing his **Bachelor of Computer Application (BCA)** at Manipal University Jaipur (started May 2025). He is in **Semester ${bcaInfo.sem}** (${bcaInfo.examStatus}). His coursework covers Data Communication, Computer Networking, C++, Operating Systems, and DBMS. Combined with his Network Administration certification, he is targeting Network Administrator and IT Support engineering roles! 💻`;
+                    return `Ahammed is currently pursuing his **Bachelor of Computer Application (BCA)** at Manipal University Jaipur (started May 2025). He is in **Semester ${bcaInfo.sem}** (${bcaInfo.examStatus}). His coursework covers Data Communication, Computer Networking, C++, Operating Systems, and DBMS. Combined with his Network Administration credentials, he is targeting Network Administrator and IT Support engineering roles! 💻`;
                 }
 
                 // 7. Certifications & Qualifications
                 if (lower.includes('certif') || lower.includes('licen') || lower.includes('permit') || lower.includes('qualif') || lower.includes('diploma') || lower.includes('college')) {
-                    return "Ahammed holds an **Electrical Wireman Certification** from the Kerala State Electricity Licensing Board, India, completed his Electrical Engineering & Plumbing technical course at **Regional College of Engineering, Tirur**, and holds professional Network Administration credentials alongside his ongoing BCA degree at Manipal University Jaipur.";
+                    return "Ahammed completed his Electrical Engineering & Plumbing technical training at **Regional College of Engineering, Tirur**, and holds professional Network Administration credentials alongside his ongoing BCA degree at Manipal University Jaipur.";
                 }
 
                 // 8. Contact & Location
                 if (lower.includes('contact') || lower.includes('whatsapp') || lower.includes('phone') || lower.includes('email') || lower.includes('number') || lower.includes('call') || lower.includes('reach') || lower.includes('location') || lower.includes('where') || lower.includes('dubai') || lower.includes('uaq') || lower.includes('address')) {
-                    return "Ahammed is based in **Al Muqta 1, Umm Al Quwain, UAE**, and services villas and properties across **UAQ, Dubai, Sharjah, and Ajman**. You can reach him instantly on WhatsApp or send an email:\n\n[BUTTON:💬 WhatsApp (+971 52 639 3293)|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20have%20an%20electrical%20inquiry|green] [BUTTON:✉️ Email Ahammed|mailto:ahammedkabeer200@gmail.com]";
+                    return "Ahammed is based in **Al Muqta 1, Umm Al Quwain, UAE**, and services villas and properties across **UAQ, Dubai, Sharjah, and Ajman**. You can reach him instantly on WhatsApp or send an email:\n\n[BUTTON:💬 WhatsApp (+971 52 639 3293)|https://wa.me/971526393293?text=Hi%20Ahammed,%20I%20am%20contacting%20you%20from%20your%20portfolio%20regarding%20electrical%20services|green] [BUTTON:✉️ Email Ahammed|mailto:ahammedkabeer200@gmail.com]";
                 }
 
                 // 9. CV / Resume Download
@@ -1307,12 +1345,12 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
 
                 // 10. Pricing & Rates
                 if (lower.includes('price') || lower.includes('rate') || lower.includes('cost') || lower.includes('charge') || lower.includes('fee') || lower.includes('quote') || lower.includes('how much')) {
-                    return "Ahammed's rates are very competitive, transparent, and fair! Pricing depends on the specific job (DB dressing, tripping breaker troubleshooting, AC circuit installation, or pump repair). Send him a quick WhatsApp message with details or photos for a free quote!\n\n[BUTTON:💬 Get a WhatsApp Quote|https://wa.me/971526393293?text=Hi%20Kabeer,%20can%20you%20give%20me%20a%20quote%20for%20a%20job?|green]";
+                    return "Ahammed's rates are very competitive, transparent, and fair! Pricing depends on the specific job (DB dressing, tripping breaker troubleshooting, AC circuit installation, or pump repair). Send him a quick WhatsApp message with details or photos for a free quote!\n\n[BUTTON:💬 Get a WhatsApp Quote|https://wa.me/971526393293?text=Hi%20Ahammed,%20could%20you%20please%20provide%20a%20quotation%20for%20an%20electrical%20/%20maintenance%20job?|green]";
                 }
 
                 // 11. Personal & Marital Privacy
                 if (lower.includes('marry') || lower.includes('marriage') || lower.includes('single') || lower.includes('wife') || lower.includes('wedding') || lower.includes('bride') || lower.includes('proposal') || lower.includes('relationship') || lower.includes('girlfriend') || lower.includes('husband')) {
-                    return "Ahammed prefers to keep his personal life private and focus completely on his professional electrical contracting, building maintenance, and IT engineering work! If you have any technical inquiry or project, feel free to reach out directly:\n\n[BUTTON:💬 Contact on WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20have%20an%20electrical%20inquiry|green]";
+                    return "Ahammed prefers to keep his personal life private and focus completely on his professional electrical contracting, building maintenance, and IT engineering work! If you have any technical inquiry or project, feel free to reach out directly:\n\n[BUTTON:💬 Contact on WhatsApp|https://wa.me/971526393293?text=Hi%20Ahammed,%20I%20visited%20your%20portfolio%20and%20have%20an%20electrical%20inquiry|green]";
                 }
 
                 // 12. Sparky Persona & Humor
@@ -1321,7 +1359,7 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
                 }
 
                 // Default Intelligent Greeting & Guidance
-                return "Hello! I'm **Sparky**, Ahammed's AI co-pilot! ⚡ You can ask me about his **5+ years UAE experience**, how to troubleshoot **tripping breakers**, **3-phase DB dressing**, **AC cable sizing**, his **BCA studies**, or connect with him directly:\n\n[BUTTON:💬 Chat on WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20have%20an%20inquiry|green] [BUTTON:📄 Download CV|Ahammed_Kabeer_Resume.pdf]";
+                return "Hello! I'm **Sparky**, Ahammed's AI co-pilot! ⚡ You can ask me about his **5+ years UAE experience**, how to troubleshoot **tripping breakers**, **3-phase DB dressing**, **AC cable sizing**, his **BCA studies**, or connect with him directly:\n\n[BUTTON:💬 Chat on WhatsApp|https://wa.me/971526393293?text=Hi%20Ahammed,%20I%20visited%20your%20portfolio%20website%20and%20would%20like%20to%20inquire%20about%20your%20services|green] [BUTTON:📄 Download CV|Ahammed_Kabeer_Resume.pdf]";
             };
 
             const handleUserInput = () => {
@@ -1398,7 +1436,7 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
                     message += `Could you please provide a quotation and check availability for villa inspection / installation?`;
 
                     const whatsappUrl = `https://wa.me/971526393293?text=${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank');
+                    window.open(whatsappUrl, '_blank', 'noopener');
                 });
             }
 
