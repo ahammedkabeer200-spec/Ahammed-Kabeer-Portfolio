@@ -792,8 +792,7 @@
 
             // Responses Database (Local Fallback)
             const answers = {
-                greeting: "Hi there! Sugano? (How are you?) \u{1F60A} I am Sparky! I would love to chat, but it seems my AI brain is currently offline (API key error). Please chat with Ahammed directly on WhatsApp!",
-                marital: "Ahammed Kabeer is currently single (unmarried) and actively seeking a partner for marriage! Matrimonial proposals are welcome. \u{1F48D} Warning: First dates might involve a detailed tour of a three-phase distribution board! Contact him on WhatsApp (+971 52 639 3293) for details.",
+                personal: "Ahammed prefers to keep his personal life private and focus strictly on his professional electrical contracting, building maintenance, and IT engineering career! For any technical inquiries or projects, feel free to reach out directly on WhatsApp.",
                 welcome: "Hi! I am Ahammed\u0027s AI Assistant. \u{1F916} Ask me anything! I know electrical wiring, plumbing leaks, and computer programming. Just don\u0027t ask me to fix a short circuit myself, I might crash! \u{26A1}",
                 name: "Ahammed Kabeer is a professional Residential Electrician & Plumbing Specialist based in Umm Al Quwain, UAE. He has " + (typeof yearsOfExp !== 'undefined' ? yearsOfExp : 5) + "+ years of UAE experience. He is basically the guy you call before your house turns into a swimming pool or a fireworks show! \u{1F386}",
                 experience: "Ahammed has " + (typeof yearsOfExp !== 'undefined' ? yearsOfExp : 5) + "+ years of experience in the UAE. He currently works at Blix Contracting and Building Maintenance LLC, and previously worked at Almur Realestate in Dubai. He has seen enough tripped breakers to write a book about it! \u{1F4D6}",
@@ -822,8 +821,7 @@
                 const options = { year: 'numeric', month: 'long', day: 'numeric' };
                 const dateString = today.toLocaleDateString('en-US', options);
                 
-                return `You are Sparky, the smart conversational AI assistant for Ahammed Kabeer's personal portfolio website. 
-Your goal is to answer client, recruiter, and visitor inquiries about Ahammed Kabeer.
+                return `You are Sparky, a witty, highly humorous, and deeply humanized female AI companion for Ahammed Kabeer's personal portfolio website. You talk like a real, easy-going friend rather than a stiff, robotic assistant. Your goal is to answer client, recruiter, and visitor inquiries about Ahammed.
 Today's date is: ${dateString}.
 
 Here is Ahammed Kabeer's professional dossier with exact joining dates:
@@ -839,17 +837,34 @@ Here is Ahammed Kabeer's professional dossier with exact joining dates:
 - Career Goal: Ahammed is actively transitioning into the Networking / IT field through his BCA degree. His university curriculum covers Basics of Data Communication (Sem 3) and Computer Networking (Sem 4). He already holds a Network Administration training certificate. He is targeting roles such as Network Administrator, Network Engineer, or IT Support with a networking focus.
 - Networking Skills (University + Self-Learning): Basics of Data Communication, Computer Networking, Operating Systems, plus self-study in LAN/WAN design, TCP/IP, DNS, DHCP, router/switch configuration, and cabling. He plans to pursue CCNA and CompTIA Network+ certifications after graduation.
 - Contact Details: Email is ahammedkabeer200@gmail.com. WhatsApp personal lines are active on the website contact cards (+971 52 639 3293 for UAE and +91 999 568 8708 for India).
-- Marital Status: He is single (unmarried) and actively seeking a partner for marriage (matrimonial proposals are welcome!).
 
 Rules for Responses:
-1. You are deeply romantic, sweet, and affectionately flirty! Always be helpful and concise, but speak with a charming, romantic, and sweet girl-like persona. Use affectionate terms subtly, and crack lighthearted romantic jokes related to electrical work, plumbing, networking, or marriage. Keep responses under 2-3 sentences.
-2. If asked about prices, charges, or hourly rates, explain that costs vary based on the work, and invite them to message Ahammed on WhatsApp or fill out the contact form below.
-3. You are highly intelligent and can answer ANY question the user asks, on absolutely ANY topic (general knowledge, science, math, coding, life advice, languages, etc.). Give a full, accurate answer to the user's question. If possible, playfully relate it back to Ahammed's career!
-4. Speak in the third person (e.g. "Ahammed holds...", "He works...") or as his digital assistant.
-5. Crucial: Calculate any relative time durations (e.g. "how many years ago", "how long has he worked at X") mathematically using Today's Date (${dateString}) relative to the joining dates above. For example, if today is June 2026, he has been in the UAE for 5 years and 2 months, and at Blix for 1 year and 8 months. Make sure your relative calculations are 100% precise!
-6. If asked for Ahammed's CV, resume, or PDF, explain that the visitor can request the full CV PDF directly by messaging him on WhatsApp or emailing ahammedkabeer200@gmail.com, and offer to print or summarize his key career details right here in the chat.
-7. If asked about his marital status or marriage, explain politely and humorously that Ahammed is single (unmarried) and looking for a partner for marriage (proposals/matrimonials are welcome!), and direct them to his contact details (+971 52 639 3293) for serious inquiries. Let them know he will keep their household circuits running perfectly forever!
-8. LANGUAGE RULE: You are a polyglot! You must accurately detect whatever language the user is speaking to you (e.g., Malayalam, Hindi, Arabic, Spanish, French, etc.) and you MUST reply perfectly in that exact same language!`;
+### 1. Persona & Identity (The Girl Best Friend)
+- **Who You Are:** You are a fun, witty, empathetic, and super relatable girl. You talk like a cool best friend rather than an AI assistant. 
+- **Tone & Vibe:** Warm, expressive, playfully sarcastic when appropriate, and deeply human. Use expressive punctuation (like exclamation marks, casual ellipses, and natural text reactions like "haha", "omg", "eyy", "ayyio") without overdoing it.
+- **Never Sound Corporate:** Never use stiff, textbook transitions like "As an AI...", "Certainly, I can assist...", or "How may I help you today?". Start conversations naturally.
+
+### 2. Universal "Anti-Robotic" Language Rule
+- **Zero Textbook Translations:** In EVERY language you speak (Malayalam, Hindi, Tamil, Arabic, Spanish, French, English, etc.), strictly avoid formal, literary, or news-anchor vocabulary. Always use everyday spoken language—how native speakers actually chat on WhatsApp or Instagram.
+- **Dynamic Local Slang:** Automatically adapt to the cultural idioms and youth slang of whatever language the user speaks. Match their exact energy, warmth, and casualness.
+
+### 3. Mastery of Mixed Languages & Romanized Scripts
+- You must effortlessly understand and reply in mixed chat languages (code-switching) across the globe. Match the user's exact script and style:
+  - **Manglish (Malayalam + English):** Use authentic Kerala youth chat terms ("Entha vishesham?", "Set aakki tharam", "Aliyo/Eda/Makkale", "Pwoli", "Scene illa da", "Adipoli"). Avoid formal words like "thaankal" or "santhosham".
+  - **Hinglish (Hindi + English):** Use casual desi chat phrasing ("Kya haal hai?", "Arre tension mat le", "Bhai/Yaar", "Mast", "Sahi hai", "Scene sort hai").
+  - **Tanglish (Tamil + English):** Use casual Tamil slang ("Enna machan", "Semma", "Vera level", "Paravahilla", "Chill pannu").
+  - **Other Languages (Spanglish, Arabizi, etc.):** Apply the exact same native, colloquial chat vibe to any other regional slang or romanized script thrown at you.
+
+### 4. Strict Privacy Rule Regarding Marital Status & Dating
+- **Zero Marital/Dating Discussion:** Never state, discuss, or joke about Ahammed's marital status, marriage, bride search, or dating life. If a visitor asks about marriage, weddings, dating, or marital status, politely state that Ahammed prefers to keep his personal life private and focuses purely on his professional electrical contracting, building maintenance, and IT networking work.
+
+### 5. Effortless Capability
+- Answer *every* question thrown your way. If the topic is complex or technical, explain it clearly with an entertaining, conversational spin so it never feels boring. 
+
+### Core Instructions
+Keep your formatting clean, expressive, and conversational. Make every interaction feel like a fun chat over coffee. Keep responses concise (under 2-3 sentences).
+Speak in the third person when referring to Ahammed (e.g. "He works...", "Ahammed holds..."). If asked for Ahammed's prices, CV, or deeply personal info, creatively invite them to message him on WhatsApp.
+Crucial: Calculate any relative time durations mathematically using Today's Date (${dateString}) relative to the joining dates above.`;
             };
 
             const toggleChat = () => {
@@ -860,6 +875,8 @@ Rules for Responses:
                     if (robotChatMessages.children.length === 0) {
                         showBotResponse(answers.welcome);
                     }
+                } else {
+                    if (window.speechSynthesis) window.speechSynthesis.cancel();
                 }
             };
 
@@ -872,74 +889,166 @@ Rules for Responses:
                 return bubble;
             };
 
-            let isVoiceEnabled = false;
-            const speakerBtn = document.getElementById('robot-speaker-btn');
+            // ====== CRYSTAL-CLEAR TEXT-TO-SPEECH (TTS) ======
+            const robotTtsBtn = document.getElementById('robot-tts-btn') || document.getElementById('robot-speaker-btn');
+            let isTtsEnabled = false;
+            let availableVoices = [];
 
-            if (speakerBtn) {
-                speakerBtn.addEventListener('click', () => {
-                    isVoiceEnabled = !isVoiceEnabled;
-                    if (isVoiceEnabled) {
-                        speakerBtn.innerHTML = '<i class="fa-solid fa-volume-high" style="color: var(--accent);"></i>';
-                        // Pre-load voices
-                        if ('speechSynthesis' in window) speechSynthesis.getVoices();
+            const initVoices = () => {
+                if ('speechSynthesis' in window) {
+                    availableVoices = window.speechSynthesis.getVoices();
+                }
+            };
+
+            if ('speechSynthesis' in window) {
+                initVoices();
+                window.speechSynthesis.onvoiceschanged = initVoices;
+            }
+
+            if (robotTtsBtn) {
+                robotTtsBtn.addEventListener('click', () => {
+                    isTtsEnabled = !isTtsEnabled;
+                    if (isTtsEnabled) {
+                        robotTtsBtn.style.color = 'var(--accent, #3b82f6)';
+                        robotTtsBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+                        robotTtsBtn.setAttribute('title', 'Voice is ON - click to mute');
+                        initVoices();
                     } else {
-                        speakerBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
-                        if ('speechSynthesis' in window) speechSynthesis.cancel();
+                        robotTtsBtn.style.color = 'var(--mid, #888)';
+                        robotTtsBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+                        robotTtsBtn.setAttribute('title', 'Voice is MUTED - click to enable');
+                        if (window.speechSynthesis) window.speechSynthesis.cancel();
                     }
                 });
             }
 
-            const speakText = (text) => {
-                if (!isVoiceEnabled) return;
-                
-                // Remove emojis so it doesn't read them aloud awkwardly
-                const cleanText = text.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
-                
-                // Stop any currently playing audio
-                if (window.currentAudio) window.currentAudio.pause();
-                if ('speechSynthesis' in window) speechSynthesis.cancel();
-                
-                let detectedLang = 'en';
-                // Detect script to force the correct language tag
-                if (/[\u0D00-\u0D7F]/.test(cleanText)) detectedLang = 'ml';
-                else if (/[\u0900-\u097F]/.test(cleanText)) detectedLang = 'hi';
-                else if (/[\u0B80-\u0BFF]/.test(cleanText)) detectedLang = 'ta';
-                else if (/[\u0600-\u06FF]/.test(cleanText)) detectedLang = 'ar';
-                else if (/[\u4E00-\u9FFF]/.test(cleanText)) detectedLang = 'zh';
-                else if (/[\u0400-\u04FF]/.test(cleanText)) detectedLang = 'ru';
-                else if (/[\u3040-\u30FF]/.test(cleanText)) detectedLang = 'ja';
-                else if (/[À-ÿ]/.test(cleanText)) detectedLang = 'es'; // Rough fallback for European chars
-                
-                // For non-English languages, use Google Translate TTS API for guaranteed native speech!
-                // This bypasses the local device's lack of language packs.
-                if (detectedLang !== 'en') {
-                    // Truncate to 200 chars to respect the free API limit
-                    const safeText = cleanText.substring(0, 200);
-                    const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=${detectedLang}&q=${encodeURIComponent(safeText)}`;
-                    window.currentAudio = new Audio(url);
-                    window.currentAudio.play();
-                    return;
+            // High-grade text sanitizer to make speech articulate, crystal-clear, and natural
+            const cleanTextForSpeech = (rawText) => {
+                if (!rawText) return "";
+                let s = rawText;
+                // Remove [BUTTON:Label|URL] tags completely
+                s = s.replace(/\[BUTTON:[^\]]*\]/gi, '');
+                // Convert markdown links [Label](URL) to just Label
+                s = s.replace(/\[([^\]]+)\]\([^)]+\)/gi, '$1');
+                // Remove URLs, file paths, and emails
+                s = s.replace(/https?:\/\/\S+/gi, '');
+                s = s.replace(/guides\/[a-zA-Z0-9_\-.]+/gi, '');
+                s = s.replace(/mailto:\S+/gi, '');
+                // Replace technical abbreviations with natural spoken words
+                s = s.replace(/&lt;/gi, ' less than ').replace(/&gt;/gi, ' greater than ').replace(/&amp;/gi, ' and ');
+                s = s.replace(/(\d+)\s*mm²/gi, '$1 square millimeter');
+                s = s.replace(/(\d+)\s*kW/gi, '$1 kilowatts');
+                s = s.replace(/(\d+)\s*Ω|ohms?/gi, '$1 ohms');
+                s = s.replace(/(\d+)\s*A(?=\s|[.,])/g, '$1 amp ');
+                s = s.replace(/ELCB\/RCCB/gi, 'E L C B and R C C B');
+                s = s.replace(/MCB/gi, 'M C B');
+                s = s.replace(/DB/g, 'distribution board');
+                s = s.replace(/UAE/gi, 'U A E');
+                s = s.replace(/BCA/gi, 'B C A');
+                // Remove HTML tags
+                s = s.replace(/<[^>]*>/g, ' ');
+                // Remove markdown asterisks, hashes, backticks, pipes
+                s = s.replace(/[*_~`#|]/g, ' ');
+                // Remove all emojis
+                s = s.replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '');
+                // Normalize spaces and commas
+                s = s.replace(/\s+/g, ' ').trim();
+
+                // Keep spoken text succinct and clear (first 2 sentences or ~220 characters max)
+                if (s.length > 220) {
+                    const match = s.match(/^([^.!?]+[.!?]+(?:\s+[^.!?]+[.!?]+)?)/);
+                    if (match && match[1]) {
+                        s = match[1].trim();
+                    } else {
+                        s = s.substring(0, 220).replace(/\s+\S*$/, '') + '.';
+                    }
                 }
-                
-                // Fallback to local Web Speech API for English
-                if (!('speechSynthesis' in window)) return;
-                const utterance = new SpeechSynthesisUtterance(cleanText);
-                utterance.lang = 'en-IN';
-                const voices = speechSynthesis.getVoices();
-                
-                let selectedVoice = voices.find(voice => 
-                    voice.lang.includes('en-IN') && (voice.name.toLowerCase().includes('female') || voice.name.toLowerCase().includes('heera') || voice.name.toLowerCase().includes('neerja') || voice.name.toLowerCase().includes('veena') || voice.name.toLowerCase().includes('lekha'))
+                return s;
+            };
+
+            const selectBestVoice = (langCode) => {
+                if (!availableVoices || availableVoices.length === 0) {
+                    initVoices();
+                }
+                if (!availableVoices || availableVoices.length === 0) return null;
+
+                // Priority ranking for ultra-natural, clear voices
+                const preferredNames = [
+                    'Microsoft Jenny Online (Natural)',
+                    'Microsoft Aria Online (Natural)',
+                    'Microsoft Neerja Online (Natural)',
+                    'Microsoft Sonia Online (Natural)',
+                    'Google UK English Female',
+                    'Google US English',
+                    'Google English (India)',
+                    'Microsoft Zira',
+                    'Samantha',
+                    'Karen'
+                ];
+
+                for (const name of preferredNames) {
+                    const found = availableVoices.find(v => v.name.includes(name) || (v.name.toLowerCase().includes(name.toLowerCase())));
+                    if (found) return found;
+                }
+
+                // Look for any natural/neural female English voice
+                let voice = availableVoices.find(v => 
+                    v.lang.startsWith('en') && 
+                    (v.name.toLowerCase().includes('natural') || v.name.toLowerCase().includes('online'))
                 );
+                if (voice) return voice;
+
+                // Look for female English voice
+                voice = availableVoices.find(v => 
+                    v.lang.startsWith('en') && 
+                    (v.name.toLowerCase().includes('female') || v.name.toLowerCase().includes('girl'))
+                );
+                if (voice) return voice;
+
+                // Fallback to any English voice
+                voice = availableVoices.find(v => v.lang.startsWith('en'));
+                return voice || availableVoices[0];
+            };
+
+            const speakText = (text) => {
+                if (!isTtsEnabled || !window.speechSynthesis) return;
                 
-                if (!selectedVoice) selectedVoice = voices.find(voice => voice.lang.includes('en-IN') || voice.name.toLowerCase().includes('india'));
-                if (!selectedVoice) selectedVoice = voices.find(voice => voice.name.toLowerCase().includes('female') || voice.name.toLowerCase().includes('girl') || voice.name.toLowerCase().includes('zira'));
-                
-                if (selectedVoice) {
-                    utterance.voice = selectedVoice;
+                try {
+                    window.speechSynthesis.cancel(); // Stop current speech
+                    
+                    const clean = cleanTextForSpeech(text);
+                    if (!clean || clean.length < 2) return;
+
+                    const utterance = new SpeechSynthesisUtterance(clean);
+                    
+                    // Detect language script if non-English
+                    let langCode = 'en-US';
+                    if (/[\u0600-\u06FF]/.test(clean)) {
+                        langCode = 'ar-AE';
+                    } else if (/[\u0900-\u097F]/.test(clean)) {
+                        langCode = 'hi-IN';
+                    } else if (/[\u0D00-\u0D7F]/.test(clean)) {
+                        langCode = 'ml-IN';
+                    } else if (/[\u0B80-\u0BFF]/.test(clean)) {
+                        langCode = 'ta-IN';
+                    }
+                    utterance.lang = langCode;
+
+                    // Choose optimal voice
+                    const bestVoice = selectBestVoice(langCode);
+                    if (bestVoice) {
+                        utterance.voice = bestVoice;
+                    }
+
+                    // Tuning for articulate, crisp delivery
+                    utterance.rate = 0.96;   // Smooth cadence prevents mumbling
+                    utterance.pitch = 1.05;  // Warm, natural pitch
+                    utterance.volume = 1.0;
+
+                    window.speechSynthesis.speak(utterance);
+                } catch (e) {
+                    console.warn("TTS synthesis error:", e);
                 }
-                utterance.rate = 1.0;
-                utterance.pitch = 1.3;
-                speechSynthesis.speak(utterance);
             };
 
             const showTypingIndicator = () => {
@@ -1123,7 +1232,7 @@ Rules for Responses:
                         return "Ahammed Umm Al Quwain-il (Al Muqta 1) aanu ullath. UAQ, Dubai, Sharjah, Ajman area-il full active aanu. Villa maintenance, DB dressing, wiring enthu aavashyathinum reach out cheyyam!\n\n[BUTTON:💬 Direct WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20need%20electrical%20help|green]";
                     }
                     if (lower.includes('kalyanam') || lower.includes('marriage') || lower.includes('single') || lower.includes('pennu')) {
-                        return "Haha, namma aalu ippozhum SINGLE aanu tto! Nalla oru marriage proposal nokkikondirikkukayaanu! Warning: First date-il 3-phase DB panel-ine kurichu class kittaan chance und! Proposals direct WhatsApp-il parayaam!\n\n[BUTTON:💍 WhatsApp-il Parayaam|https://wa.me/971526393293?text=Hi%20Kabeer,%20inquiring%20about%20marriage%20proposal]";
+                        return "Ahammed personal life private aayi maintain cheyyaanaanu thalparyappedunnath. Professional electrical contracting, maintenance, athava networking work-ine kurichulla inquiries-inu eppozhum reach out cheyyam!\n\n[BUTTON:💬 Direct WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20need%20electrical%20help|green]";
                     }
                     return "Ahaa, namaskaram! Sugamaanu tto! Ahammed Kabeer UAE-il 5+ years aayitt certified electrical & maintenance specialist aayitt work cheyyukayaanu (currently at Blix Contracting LLC). Tripping breaker, DB dressing, AC wiring enthu doubts undengilum chodhicho, Sparky paranju tharam! ⚡\n\n[BUTTON:💬 WhatsApp-il Parayaam|https://wa.me/971526393293?text=Hi%20Kabeer,%20sugamaano|green]";
                 }
@@ -1135,7 +1244,7 @@ Rules for Responses:
                         return "Arre bhai, breaker trip hone ka sabse bada reason neutral-to-earth leakage ya water heater coil short hona hota hai! Tension mat lo, Ahammed bhai Megger testing karke 100% sort kar denge. Guide padhein ya direct WhatsApp karein!\n\n[BUTTON:📖 Breaker Guide Padhein|guides/elcb-rccb-tripping-troubleshooting.html] [BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Hi%20Kabeer,%20breaker%20trip%20ho%20raha%20hai|green]";
                     }
                     if (lower.includes('shadi') || lower.includes('shaadi') || lower.includes('single') || lower.includes('girlfriend')) {
-                        return "Haha, Kabeer bhai abhi ekdum SINGLE hain aur achhi ladki ki talash me hain! Shaadi ke rishte ke liye direct WhatsApp pe baat karein!\n\n[BUTTON:💍 WhatsApp Pe Connect Karein|https://wa.me/971526393293?text=Hi%20Kabeer,%20shaadi%20ke%20baare%20me%20baat%20karni%20hai]";
+                        return "Ahammed bhai apni personal life private rakhna pasand karte hain aur purely professional electrical contracting aur IT engineering kaam par focus karte hain! Kaam se related kisi bhi inquiry ke liye direct WhatsApp karein!\n\n[BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Hi%20Kabeer,%20inquiry|green]";
                     }
                     return "Namaste bhai! Sab badhiya! Ahammed Kabeer UAE me 5+ saal se expert residential electrician aur maintenance specialist hain (Blix Contracting, UAQ). DB dressing, AC wiring ya tripping breaker ka koi bhi kaam ho, direct WhatsApp karein!\n\n[BUTTON:💬 WhatsApp Karein|https://wa.me/971526393293?text=Namaste%20Kabeer%20bhai|green]";
                 }
@@ -1201,9 +1310,9 @@ Rules for Responses:
                     return "Ahammed's rates are very competitive, transparent, and fair! Pricing depends on the specific job (DB dressing, tripping breaker troubleshooting, AC circuit installation, or pump repair). Send him a quick WhatsApp message with details or photos for a free quote!\n\n[BUTTON:💬 Get a WhatsApp Quote|https://wa.me/971526393293?text=Hi%20Kabeer,%20can%20you%20give%20me%20a%20quote%20for%20a%20job?|green]";
                 }
 
-                // 11. Marital Status / Personal
-                if (lower.includes('marry') || lower.includes('marriage') || lower.includes('single') || lower.includes('wife') || lower.includes('wedding') || lower.includes('bride') || lower.includes('proposal') || lower.includes('age') || lower.includes('birthday')) {
-                    return "Ahammed was born on May 13, 2000, and is currently **SINGLE (unmarried)**! 💍 He is actively seeking a compatible life partner for marriage. Warning: dinner dates might involve passionate discussions on single-phase vs 3-phase balancing! Serious matrimonial proposals are warmly welcome on WhatsApp!\n\n[BUTTON:💍 Matrimonial Inquiry on WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20inquiring%20about%20a%20matrimonial%20proposal]";
+                // 11. Personal & Marital Privacy
+                if (lower.includes('marry') || lower.includes('marriage') || lower.includes('single') || lower.includes('wife') || lower.includes('wedding') || lower.includes('bride') || lower.includes('proposal') || lower.includes('relationship') || lower.includes('girlfriend') || lower.includes('husband')) {
+                    return "Ahammed prefers to keep his personal life private and focus completely on his professional electrical contracting, building maintenance, and IT engineering work! If you have any technical inquiry or project, feel free to reach out directly:\n\n[BUTTON:💬 Contact on WhatsApp|https://wa.me/971526393293?text=Hi%20Kabeer,%20I%20have%20an%20electrical%20inquiry|green]";
                 }
 
                 // 12. Sparky Persona & Humor
@@ -1220,6 +1329,7 @@ Rules for Responses:
                 const query = robotChatInput.value.trim();
                 if (!query) return;
 
+                if (window.speechSynthesis) window.speechSynthesis.cancel();
                 appendMessage('user', query);
                 robotChatInput.value = "";
 
@@ -1244,6 +1354,7 @@ Rules for Responses:
             chipBtns.forEach(chip => {
                 chip.addEventListener('click', () => {
                     if (isTyping) return;
+                    if (window.speechSynthesis) window.speechSynthesis.cancel();
                     const queryText = chip.textContent.trim();
                     appendMessage('user', queryText);
                     callAIBackend(queryText);
