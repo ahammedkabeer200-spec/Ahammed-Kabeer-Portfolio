@@ -466,7 +466,7 @@
 
 
             /* ── DYNAMIC WHATSAPP LINK PRE-FILL ── */
-            const uaeWhatsAppBase = "https://wa.me/971526393293";
+            const uaeWhatsAppBase = "https://wa.me/" + atob("OTcxNTI2MzkzMjkz");
             
             // Quick helper to format text and update links if necessary
             const getPreFilledWhatsAppLink = (message) => {
@@ -843,7 +843,7 @@
                 services: "He specializes in distribution board (DB) dressing, villa layout conduits, insulation testing (Megger), fault diagnosis (tripping breakers), and plumbing repairs. Basically, all the home-maintenance superpowers! 🦸",
                 charges: "Charges depend on the scope of work. Send details via the contact form or WhatsApp for a quote. Don't worry, his rates are very reasonable—no shocking bills here! 💸",
                 tripping: "Tripping breakers are usually caused by ground leakages, moisture seeping, or circuit overloads. Try our interactive Diagnostic Guide on this page, or contact Ahammed to Megger-test it! ⚡",
-                cv: "You can request his full CV PDF directly on WhatsApp (+971 52 639 3293) or by emailing ahammedkabeer200@gmail.com. It is packed with credentials and zero syntax errors! 📄",
+                cv: "You can request his full CV PDF directly on WhatsApp using the contact links below, or by emailing ahammedkabeer200@gmail.com. It is packed with credentials and zero syntax errors! 📄",
                 networking: bcaInfo.graduated
                     ? "Ahammed has completed his BCA which covered Data Communication & Protocols, Network Security, Wireless Communication, and Cloud Computing! 🌐 Combined with his Network Administration training, he's fully ready for Network Administrator or IT Support roles. If he can troubleshoot a three-phase distribution board, a misbehaving router doesn't stand a chance! 💪"
                     : "Ahammed is building his networking career through his BCA at Manipal University Jaipur! 🌐 Currently in Semester " + bcaInfo.sem + ", studying " + bcaInfo.networking + ". " + bcaInfo.examStatus + (bcaInfo.nextSem ? " Next up in Semester " + bcaInfo.nextSem + ": " + bcaInfo.nextNetworking + "." : "") + " Combined with his Network Administration training, he's targeting Network Administrator or IT Support roles—because if he can troubleshoot a three-phase distribution board, a misbehaving router doesn't stand a chance! 💪"
@@ -871,7 +871,8 @@ Here is Ahammed Kabeer's professional dossier with exact joining dates:
 - Core Specializations: Villa layout conduits, wiring layout executions, panel board/DB dressing, insulation resistance checks (Megger testing), troubleshooting tripping breaker faults, and plumbing repairs.
 - Career Goal: Ahammed is actively transitioning into the Networking / IT field through his BCA degree. His university curriculum covers Basics of Data Communication (Sem 3) and Computer Networking (Sem 4). He already holds a Network Administration training certificate. He is targeting roles such as Network Administrator, Network Engineer, or IT Support with a networking focus.
 - Networking Skills (University + Self-Learning): Basics of Data Communication, Computer Networking, Operating Systems, plus self-study in LAN/WAN design, TCP/IP, DNS, DHCP, router/switch configuration, and cabling. He plans to pursue CCNA and CompTIA Network+ certifications after graduation.
-- Contact Details: Email is ahammedkabeer200@gmail.com. WhatsApp personal lines are active on the website contact cards (+971 52 639 3293 for UAE and +91 999 568 8708 for India).
+- Data Structures & Algorithms: He is currently studying DSA in his BCA Semester 2.
+- Contact Details: Email is ahammedkabeer200@gmail.com. WhatsApp personal lines are active on the website contact cards (UAE and India).
 
 Rules for Responses:
 ### 1. Persona & Identity (The Girl Best Friend)
@@ -896,7 +897,10 @@ Rules for Responses:
 ### 5. Strict Professional Credential Rule
 - **No Certified/Verified Electrician Claims:** Never call or describe Ahammed as a "certified electrician" or "verified electrician". Always refer to him accurately as an "experienced electrical specialist", "skilled maintenance technician", or "residential electrical specialist".
 
-### 6. Effortless Capability
+### 6. Strict Contact Number Privacy Rule
+- **Never Disclose Phone Numbers:** Never display, output, or recite Ahammed's phone numbers in digits or text under any circumstances. Direct visitors to click the WhatsApp "Click to Chat" buttons on the website or reach out via email (ahammedkabeer200@gmail.com).
+
+### 7. Effortless Capability
 - Answer *every* question thrown your way. If the topic is complex or technical, explain it clearly with an entertaining, conversational spin so it never feels boring. 
 
 ### Core Instructions
@@ -1335,7 +1339,7 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
 
                 // 8. Contact & Location
                 if (lower.includes('contact') || lower.includes('whatsapp') || lower.includes('phone') || lower.includes('email') || lower.includes('number') || lower.includes('call') || lower.includes('reach') || lower.includes('location') || lower.includes('where') || lower.includes('dubai') || lower.includes('uaq') || lower.includes('address')) {
-                    return "Ahammed is based in **Al Muqta 1, Umm Al Quwain, UAE**, and services villas and properties across **UAQ, Dubai, Sharjah, and Ajman**. You can reach him instantly on WhatsApp or send an email:\n\n[BUTTON:💬 WhatsApp (+971 52 639 3293)|https://wa.me/971526393293?text=Hi%20Ahammed,%20I%20am%20contacting%20you%20from%20your%20portfolio%20regarding%20electrical%20services|green] [BUTTON:✉️ Email Ahammed|mailto:ahammedkabeer200@gmail.com]";
+                    return "Ahammed is based in **Al Muqta 1, Umm Al Quwain, UAE**, and services villas and properties across **UAQ, Dubai, Sharjah, and Ajman**. You can reach him instantly on WhatsApp or send an email:\n\n[BUTTON:💬 Chat on WhatsApp|https://wa.me/971526393293?text=Hi%20Ahammed,%20I%20am%20contacting%20you%20from%20your%20portfolio%20regarding%20electrical%20services|green] [BUTTON:✉️ Email Ahammed|mailto:ahammedkabeer200@gmail.com]";
                 }
 
                 // 9. CV / Resume Download

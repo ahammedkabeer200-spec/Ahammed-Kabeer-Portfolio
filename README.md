@@ -54,6 +54,6 @@ Interactive career portfolio and technical service hub for **Ahammed Kabeer** â€
 
 * **Specialist**: Ahammed Kabeer
 * **Location**: Umm Al Quwain / Dubai, United Arab Emirates
-* **Phone / WhatsApp**: +971 52 639 3293
+* **WhatsApp**: Available via Portfolio Contact Page
 * **Email**: [ahammedkabeer200@gmail.com](mailto:ahammedkabeer200@gmail.com)
 * **LinkedIn**: [linkedin.com/in/ahammed-kabeer-1b53b0250](https://www.linkedin.com/in/ahammed-kabeer-1b53b0250)
