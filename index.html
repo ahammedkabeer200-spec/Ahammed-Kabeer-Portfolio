@@ -1689,6 +1689,237 @@
             color: var(--hi);
         }
 
+        /* ── ELECTRICAL TOOLS & CALCULATORS HUB ── */
+        .tools-hub-container {
+            margin-top: 30px;
+        }
+
+        .tools-nav-wrapper {
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding: 4px 2px 10px 2px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .tools-nav {
+            display: flex;
+            gap: 10px;
+            min-width: max-content;
+            padding: 6px;
+            background: rgba(15, 17, 24, 0.85);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            backdrop-filter: blur(12px);
+        }
+
+        .tool-tab-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid transparent;
+            border-radius: var(--radius);
+            color: var(--mid);
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .tool-tab-btn:hover {
+            color: var(--hi);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tool-tab-btn.active {
+            background: rgba(245, 158, 11, 0.12);
+            border-color: rgba(245, 158, 11, 0.35);
+            color: var(--accent);
+            box-shadow: 0 4px 18px rgba(245, 158, 11, 0.15);
+        }
+
+        .tool-panel {
+            display: none;
+            animation: fadeInTool 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .tool-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeInTool {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tool-card-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+        }
+
+        @media (max-width: 991px) {
+            .tool-card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .calc-form-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .calc-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .calc-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--mid);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .calc-label span.val-badge {
+            color: var(--accent);
+            font-family: var(--heading);
+            font-size: 1.15rem;
+            letter-spacing: 0.5px;
+        }
+
+        .calc-select, .calc-input-field {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            color: var(--hi);
+            font-family: var(--sans);
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color 0.25s, background-color 0.25s;
+        }
+
+        .calc-select:focus, .calc-input-field:focus {
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .calc-select option {
+            background: #0f1118;
+            color: #f9fafb;
+        }
+
+        .calc-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+
+        .calc-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+            border: 2px solid #fff;
+        }
+
+        .meter-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .meter-fill {
+            height: 100%;
+            background: var(--green);
+            border-radius: 4px;
+            transition: width 0.35s ease, background-color 0.35s ease;
+        }
+
+        .meter-fill.warning {
+            background: var(--accent);
+        }
+
+        .meter-fill.danger {
+            background: #ef4444;
+        }
+
+        .calc-breakdown-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-top: 10px;
+        }
+
+        .calc-breakdown-table td {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--mid);
+        }
+
+        .calc-breakdown-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: var(--hi);
+        }
+
+        .calc-pill-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .calc-pill-btn {
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--mid);
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .calc-pill-btn:hover {
+            color: var(--hi);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .calc-pill-btn.active {
+            background: rgba(245, 158, 11, 0.15);
+            border-color: var(--accent);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
         /* ── CONTACT & HIRE ME SECTION ── */
         .contact-section {
             background: var(--surface);
@@ -3369,111 +3600,181 @@
     </section>
     <section id="estimator" class="interactive-section">
         <div class="container">
-            <span class="section-label">Interactive Corner</span>
-            <h2 class="section-title">Interactive Estimators & Diagnostics</h2>
-            <p class="section-desc">Try these quick interactive tools to calculate your home electrical load or troubleshoot basic issues on your own.</p>
+            <span class="section-label">UAE Engineering & Diagnostics Hub</span>
+            <h2 class="section-title">Interactive Calculators & Diagnostic Tools</h2>
+            <p class="section-desc">Free, professional-grade electrical calculators tailored to DEWA, FEWA, SEWA & BS 7671 standards. Estimate villa loads, calculate monthly AC running costs, size cables, adjust water booster pumps, or troubleshoot tripping breakers.</p>
             
-            <div class="interactive-grid">
-                <!-- Left Widget: Load Estimator -->
-                <div class="widget-wrapper reveal glow-card">
-                    <div class="widget-header">
-                        <h3><i class="fa-solid fa-calculator"></i> Load & Phase Calculator</h3>
-                        <p>Select your home appliances to calculate approximate load requirements and safety configuration.</p>
+            <div class="tools-hub-container">
+                <!-- Navigation Tabs -->
+                <div class="tools-nav-wrapper">
+                    <div class="tools-nav" role="tablist">
+                        <button class="tool-tab-btn active" data-tab="tab-load" role="tab" aria-selected="true">
+                            <i class="fa-solid fa-bolt-lightning"></i> <span>1. Villa Load & Phase</span>
+                        </button>
+                        <button class="tool-tab-btn" data-tab="tab-dewa" role="tab" aria-selected="false">
+                            <i class="fa-solid fa-file-invoice-dollar"></i> <span>2. DEWA / FEWA Bill & AC Cost</span>
+                        </button>
+                        <button class="tool-tab-btn" data-tab="tab-fault" role="tab" aria-selected="false">
+                            <i class="fa-solid fa-clipboard-question"></i> <span>3. Breaker Fault Finder</span>
+                        </button>
+                        <button class="tool-tab-btn" data-tab="tab-cable" role="tab" aria-selected="false">
+                            <i class="fa-solid fa-ruler-combined"></i> <span>4. Cable Sizing & Voltage Drop</span>
+                        </button>
+                        <button class="tool-tab-btn" data-tab="tab-pump" role="tab" aria-selected="false">
+                            <i class="fa-solid fa-faucet-drip"></i> <span>5. Water Pump & Pressure Tank</span>
+                        </button>
                     </div>
+                </div>
+
+                <!-- Panels Container -->
+                <div class="tools-panels-wrapper">
                     
-                    <div class="calc-container">
-                        <div class="calc-grid">
-                            <span class="calc-items-header">Appliance Checklist</span>
-                            
-                            <div class="calc-appliances-list">
-                                <!-- AC Row -->
-                                <div class="appliance-row">
-                                    <div class="appliance-info">
-                                        <span class="appliance-name">Air Conditioner (Split / Window)</span>
-                                        <span class="appliance-watts">~ 3000 Watts</span>
-                                    </div>
-                                    <div class="appliance-control">
-                                        <button class="qty-btn" data-appliance="ac" data-action="minus">-</button>
-                                        <input type="number" class="qty-val" id="qty-ac" value="0" min="0" max="999">
-                                        <button class="qty-btn" data-appliance="ac" data-action="plus">+</button>
-                                    </div>
+                    <!-- ── TAB 1: VILLA LOAD & PHASE BALANCING ── -->
+                    <div class="tool-panel active" id="tab-load" role="tabpanel">
+                        <div class="tool-card-grid">
+                            <!-- Left: Appliance Checklist -->
+                            <div class="calc-form-card reveal glow-card">
+                                <div class="widget-header" style="margin-bottom: 0;">
+                                    <h3 style="font-family: var(--heading); font-size: 1.35rem; color: var(--hi); display: flex; align-items: center; gap: 10px;">
+                                        <i class="fa-solid fa-calculator" style="color: var(--accent);"></i> Appliance Load Checklist
+                                    </h3>
+                                    <p style="font-size: 0.85rem; color: var(--mid);">Select appliances to calculate concurrent peak electrical demand and recommended phase supply.</p>
                                 </div>
-                                <!-- Water Heater Row -->
-                                <div class="appliance-row">
-                                    <div class="appliance-info">
-                                        <span class="appliance-name">Electric Water Heater</span>
-                                        <span class="appliance-watts">~ 1500 Watts</span>
+                                
+                                <div class="calc-appliances-list">
+                                    <!-- AC Row -->
+                                    <div class="appliance-row">
+                                        <div class="appliance-info">
+                                            <span class="appliance-name">Air Conditioner (Split / Window)</span>
+                                            <span class="appliance-watts">~ 3000 Watts</span>
+                                        </div>
+                                        <div class="appliance-control">
+                                            <button class="qty-btn" data-appliance="ac" data-action="minus">-</button>
+                                            <input type="number" class="qty-val" id="qty-ac" value="0" min="0" max="999">
+                                            <button class="qty-btn" data-appliance="ac" data-action="plus">+</button>
+                                        </div>
                                     </div>
-                                    <div class="appliance-control">
-                                        <button class="qty-btn" data-appliance="heater" data-action="minus">-</button>
-                                        <input type="number" class="qty-val" id="qty-heater" value="0" min="0" max="999">
-                                        <button class="qty-btn" data-appliance="heater" data-action="plus">+</button>
+                                    <!-- Water Heater Row -->
+                                    <div class="appliance-row">
+                                        <div class="appliance-info">
+                                            <span class="appliance-name">Electric Water Heater</span>
+                                            <span class="appliance-watts">~ 1500 Watts</span>
+                                        </div>
+                                        <div class="appliance-control">
+                                            <button class="qty-btn" data-appliance="heater" data-action="minus">-</button>
+                                            <input type="number" class="qty-val" id="qty-heater" value="0" min="0" max="999">
+                                            <button class="qty-btn" data-appliance="heater" data-action="plus">+</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Ceiling Fan Row -->
-                                <div class="appliance-row">
-                                    <div class="appliance-info">
-                                        <span class="appliance-name">Ceiling Fan</span>
-                                        <span class="appliance-watts">~ 75 Watts</span>
+                                    <!-- Ceiling Fan Row -->
+                                    <div class="appliance-row">
+                                        <div class="appliance-info">
+                                            <span class="appliance-name">Ceiling Fan</span>
+                                            <span class="appliance-watts">~ 75 Watts</span>
+                                        </div>
+                                        <div class="appliance-control">
+                                            <button class="qty-btn" data-appliance="fan" data-action="minus">-</button>
+                                            <input type="number" class="qty-val" id="qty-fan" value="0" min="0" max="999">
+                                            <button class="qty-btn" data-appliance="fan" data-action="plus">+</button>
+                                        </div>
                                     </div>
-                                    <div class="appliance-control">
-                                        <button class="qty-btn" data-appliance="fan" data-action="minus">-</button>
-                                        <input type="number" class="qty-val" id="qty-fan" value="0" min="0" max="999">
-                                        <button class="qty-btn" data-appliance="fan" data-action="plus">+</button>
+                                    <!-- LED Lighting Row -->
+                                    <div class="appliance-row">
+                                        <div class="appliance-info">
+                                            <span class="appliance-name">LED Lights (Per Room Circuit)</span>
+                                            <span class="appliance-watts">~ 50 Watts</span>
+                                        </div>
+                                        <div class="appliance-control">
+                                            <button class="qty-btn" data-appliance="light" data-action="minus">-</button>
+                                            <input type="number" class="qty-val" id="qty-light" value="0" min="0" max="999">
+                                            <button class="qty-btn" data-appliance="light" data-action="plus">+</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- LED Lighting Row -->
-                                <div class="appliance-row">
-                                    <div class="appliance-info">
-                                        <span class="appliance-name">LED Lights (Per Room Circuit)</span>
-                                        <span class="appliance-watts">~ 50 Watts</span>
+                                    <!-- Refrigerator Row -->
+                                    <div class="appliance-row">
+                                        <div class="appliance-info">
+                                            <span class="appliance-name">Refrigerator / Freezer</span>
+                                            <span class="appliance-watts">~ 400 Watts</span>
+                                        </div>
+                                        <div class="appliance-control">
+                                            <button class="qty-btn" data-appliance="fridge" data-action="minus">-</button>
+                                            <input type="number" class="qty-val" id="qty-fridge" value="0" min="0" max="999">
+                                            <button class="qty-btn" data-appliance="fridge" data-action="plus">+</button>
+                                        </div>
                                     </div>
-                                    <div class="appliance-control">
-                                        <button class="qty-btn" data-appliance="light" data-action="minus">-</button>
-                                        <input type="number" class="qty-val" id="qty-light" value="0" min="0" max="999">
-                                        <button class="qty-btn" data-appliance="light" data-action="plus">+</button>
+                                    <!-- Water Pump Row -->
+                                    <div class="appliance-row">
+                                        <div class="appliance-info">
+                                            <span class="appliance-name">Domestic Water Booster Pump</span>
+                                            <span class="appliance-watts">~ 750 Watts</span>
+                                        </div>
+                                        <div class="appliance-control">
+                                            <button class="qty-btn" data-appliance="pump" data-action="minus">-</button>
+                                            <input type="number" class="qty-val" id="qty-pump" value="0" min="0" max="999">
+                                            <button class="qty-btn" data-appliance="pump" data-action="plus">+</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Refrigerator Row -->
-                                <div class="appliance-row">
-                                    <div class="appliance-info">
-                                        <span class="appliance-name">Refrigerator / Freezer</span>
-                                        <span class="appliance-watts">~ 400 Watts</span>
+                                    <!-- Electric Cooking / Oven Row -->
+                                    <div class="appliance-row">
+                                        <div class="appliance-info">
+                                            <span class="appliance-name">Electric Range / Oven Cooktop</span>
+                                            <span class="appliance-watts">~ 3500 Watts</span>
+                                        </div>
+                                        <div class="appliance-control">
+                                            <button class="qty-btn" data-appliance="oven" data-action="minus">-</button>
+                                            <input type="number" class="qty-val" id="qty-oven" value="0" min="0" max="999">
+                                            <button class="qty-btn" data-appliance="oven" data-action="plus">+</button>
+                                        </div>
                                     </div>
-                                    <div class="appliance-control">
-                                        <button class="qty-btn" data-appliance="fridge" data-action="minus">-</button>
-                                        <input type="number" class="qty-val" id="qty-fridge" value="0" min="0" max="999">
-                                        <button class="qty-btn" data-appliance="fridge" data-action="plus">+</button>
+                                    <!-- Washing Machine / Dryer Row -->
+                                    <div class="appliance-row">
+                                        <div class="appliance-info">
+                                            <span class="appliance-name">Washing Machine / Dryer</span>
+                                            <span class="appliance-watts">~ 2000 Watts</span>
+                                        </div>
+                                        <div class="appliance-control">
+                                            <button class="qty-btn" data-appliance="washer" data-action="minus">-</button>
+                                            <input type="number" class="qty-val" id="qty-washer" value="0" min="0" max="999">
+                                            <button class="qty-btn" data-appliance="washer" data-action="plus">+</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- Water Pump Row -->
-                                <div class="appliance-row">
-                                    <div class="appliance-info">
-                                        <span class="appliance-name">Domestic Water Pump</span>
-                                        <span class="appliance-watts">~ 750 Watts</span>
-                                    </div>
-                                    <div class="appliance-control">
-                                        <button class="qty-btn" data-appliance="pump" data-action="minus">-</button>
-                                        <input type="number" class="qty-val" id="qty-pump" value="0" min="0" max="999">
-                                        <button class="qty-btn" data-appliance="pump" data-action="plus">+</button>
+                                    <!-- EV Charger Row -->
+                                    <div class="appliance-row">
+                                        <div class="appliance-info">
+                                            <span class="appliance-name">Electric Vehicle (EV) Home Charger</span>
+                                            <span class="appliance-watts">~ 7400 Watts</span>
+                                        </div>
+                                        <div class="appliance-control">
+                                            <button class="qty-btn" data-appliance="ev" data-action="minus">-</button>
+                                            <input type="number" class="qty-val" id="qty-ev" value="0" min="0" max="999">
+                                            <button class="qty-btn" data-appliance="ev" data-action="plus">+</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Results Card -->
-                            <div class="calc-results-card">
-                                <div class="calc-res-item">
-                                    <span class="calc-res-label">Total Load</span>
-                                    <div class="calc-res-val"><span id="total-load">0.00</span> <span>kW</span></div>
+                            <!-- Right: Results Card -->
+                            <div class="calc-form-card reveal glow-card" style="border-color: rgba(245, 158, 11, 0.2);">
+                                <div class="widget-header" style="margin-bottom: 0;">
+                                    <h3 style="font-family: var(--heading); font-size: 1.35rem; color: var(--accent);">
+                                        <i class="fa-solid fa-gauge"></i> Load Sizing Results
+                                    </h3>
                                 </div>
-                                <div class="calc-res-item">
-                                    <span class="calc-res-label">Recommended Phase</span>
-                                    <div class="calc-res-val" id="recommended-phase" style="font-size: 1.15rem; font-family: var(--sans); font-weight: 700; margin-top: 8px;">—</div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                                    <div class="calc-res-item" style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-align: center;">
+                                        <span class="calc-res-label">Total Connected</span>
+                                        <div class="calc-res-val"><span id="total-load">0.00</span> <span>kW</span></div>
+                                    </div>
+                                    <div class="calc-res-item" style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-align: center;">
+                                        <span class="calc-res-label">Recommended Supply</span>
+                                        <div class="calc-res-val" id="recommended-phase" style="font-size: 1.1rem; font-family: var(--sans); font-weight: 700; margin-top: 8px;">—</div>
+                                    </div>
                                 </div>
+                                
                                 <div class="calc-res-full">
-                                    <span class="calc-res-label">Expert Recommendations</span>
+                                    <span class="calc-res-label">Technical Recommendations</span>
                                     <div class="calc-verdict-box" id="verdict-box">
-                                        Select appliances above to get started.
+                                        Select appliances on the left to calculate concurrent peak load.
                                     </div>
                                     <button type="button" id="btn-export-load-whatsapp" class="btn-primary" style="margin-top: 15px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
                                         <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Send Calculation & Get Quote on WhatsApp
@@ -3482,342 +3783,655 @@
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Right Widget: Diagnostic Guide -->
-                <div class="widget-wrapper reveal glow-card" style="transition-delay: 0.15s">
-                    <div class="widget-header">
-                        <h3><i class="fa-solid fa-clipboard-question"></i> Electrical Fault Diagnostic Guide</h3>
-                        <p>Answer questions step-by-step to identify common faults and learn safety solutions.</p>
+                    <!-- ── TAB 2: DEWA / FEWA BILL & AC COST ── -->
+                    <div class="tool-panel" id="tab-dewa" role="tabpanel">
+                        <div class="tool-card-grid">
+                            <!-- Left: Controls -->
+                            <div class="calc-form-card reveal glow-card">
+                                <div class="widget-header" style="margin-bottom: 0;">
+                                    <h3 style="font-family: var(--heading); font-size: 1.35rem; color: var(--hi); display: flex; align-items: center; gap: 10px;">
+                                        <i class="fa-solid fa-file-invoice-dollar" style="color: var(--accent);"></i> DEWA / FEWA AC Cost Estimator
+                                    </h3>
+                                    <p style="font-size: 0.85rem; color: var(--mid);">Estimate residential electricity tariffs, summer AC power consumption, and monthly bills in AED.</p>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="dewa-utility">Electricity Provider & Emirate</label>
+                                    <select id="dewa-utility" class="calc-select">
+                                        <option value="dewa" selected>Dubai Electricity & Water Authority (DEWA)</option>
+                                        <option value="fewa">Etihad Water & Electricity / FEWA (UAQ, Ajman, RAK, Fujairah)</option>
+                                        <option value="sewa">Sharjah Electricity, Water and Gas (SEWA)</option>
+                                    </select>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="dewa-ac-count">
+                                        <span>Active Air Conditioning Units</span>
+                                        <span class="val-badge" id="dewa-ac-count-badge">3 Units</span>
+                                    </label>
+                                    <input type="range" id="dewa-ac-count" class="calc-slider" min="1" max="12" value="3" step="1">
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="dewa-ac-ton">Average AC Capacity (Tonnage)</label>
+                                    <select id="dewa-ac-ton" class="calc-select">
+                                        <option value="1.5">1.5 Ton (~1,800 Watts - Bedrooms)</option>
+                                        <option value="2.0" selected>2.0 Ton (~2,400 Watts - Living / Master)</option>
+                                        <option value="2.5">2.5 Ton (~3,000 Watts - Large Halls)</option>
+                                        <option value="3.0">3.0 Ton (~3,600 Watts - Ducted / Villa)</option>
+                                    </select>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label">AC Compressor Technology</label>
+                                    <div class="calc-pill-group">
+                                        <button type="button" class="calc-pill-btn active" data-inverter="no">Standard (Fixed Speed)</button>
+                                        <button type="button" class="calc-pill-btn" data-inverter="yes">Inverter (Eco Energy-Saver ~30% off)</button>
+                                    </div>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="dewa-ac-hours">
+                                        <span>Average Daily Running Hours</span>
+                                        <span class="val-badge" id="dewa-ac-hours-badge">12 Hours / Day</span>
+                                    </label>
+                                    <input type="range" id="dewa-ac-hours" class="calc-slider" min="4" max="24" value="12" step="1">
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="dewa-base-load">
+                                        <span>Other Monthly Appliances (Fridge, Pumps, Lighting)</span>
+                                        <span class="val-badge" id="dewa-base-load-badge">600 kWh</span>
+                                    </label>
+                                    <input type="range" id="dewa-base-load" class="calc-slider" min="200" max="2500" value="600" step="50">
+                                </div>
+                            </div>
+
+                            <!-- Right: Results Card -->
+                            <div class="calc-form-card reveal glow-card" style="border-color: rgba(245, 158, 11, 0.2);">
+                                <div class="widget-header" style="margin-bottom: 0;">
+                                    <h3 style="font-family: var(--heading); font-size: 1.35rem; color: var(--accent);">
+                                        <i class="fa-solid fa-chart-pie"></i> Estimated Monthly Bill
+                                    </h3>
+                                </div>
+
+                                <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--radius); padding: 20px; text-align: center;">
+                                    <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mid);">Total Monthly Electricity Cost</span>
+                                    <div style="font-family: var(--heading); font-size: 3rem; font-weight: 900; color: var(--accent); margin: 6px 0; line-height: 1;">
+                                        <span id="dewa-res-cost">0</span> <span style="font-size: 1.3rem; font-weight: 600; color: var(--hi);">AED</span>
+                                    </div>
+                                    <div style="font-size: 0.88rem; color: var(--mid);">
+                                        Estimated Daily Cost: ~<strong id="dewa-res-daily" style="color: var(--hi);">0</strong> AED / day
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="calc-items-header" style="display: block; margin-bottom: 8px;">Consumption & Tariff Breakdown</span>
+                                    <table class="calc-breakdown-table">
+                                        <tr>
+                                            <td>Total Monthly Electricity</td>
+                                            <td id="dewa-res-kwh">0 kWh</td>
+                                        </tr>
+                                        <tr>
+                                            <td>AC Power Share</td>
+                                            <td><span id="dewa-res-ac-kwh">0 kWh</span> (<span id="dewa-res-ac-pct">0%</span>)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Base Tariff Slabs</td>
+                                            <td id="dewa-res-slab-cost">0 AED</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fuel Surcharge (FSC)</td>
+                                            <td id="dewa-res-fsc">0 AED</td>
+                                        </tr>
+                                        <tr>
+                                            <td>VAT (5%)</td>
+                                            <td id="dewa-res-vat">0 AED</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="calc-verdict-box" id="dewa-res-verdict">
+                                    Calculating energy analysis...
+                                </div>
+
+                                <button type="button" id="btn-export-dewa-whatsapp" class="btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Consult Ahammed for Energy & AC Tune-up
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="trouble-container">
-                        <!-- Step 1 -->
-                        <div class="trouble-step active" id="step-1">
-                            <p class="trouble-question">Q1: Which specific issue are you experiencing?</p>
-                            <div class="trouble-options">
-                                <button class="trouble-btn" data-next="step-tripping">Breaker or circuit keeps tripping <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="step-flicker">Flickering lights in the building <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="step-socket">Wall outlet is not working <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="step-heater">Water heater is not heating <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="step-surges">High electricity bill / Power surges <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="step-sparks">Sparking or burning smell <i class="fa-solid fa-angle-right"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Step 2: Tripping Breaker -->
-                        <div class="trouble-step" id="step-tripping">
-                            <p class="trouble-question">Q2: When does the breaker trip?</p>
-                            <div class="trouble-options">
-                                <button class="trouble-btn" data-next="res-appliance-fault">Immediately when I plug in a specific appliance <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="res-leakage">At random times with no specific appliance running <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="res-overload">When multiple heavy loads (AC + pump) run at once <i class="fa-solid fa-angle-right"></i></button>
+                    <!-- ── TAB 3: BREAKER FAULT FINDER WIZARD ── -->
+                    <div class="tool-panel" id="tab-fault" role="tabpanel">
+                        <div class="calc-form-card reveal glow-card" style="max-width: 900px; margin: 0 auto;">
+                            <div class="widget-header" style="margin-bottom: 10px;">
+                                <h3 style="font-family: var(--heading); font-size: 1.35rem; color: var(--hi); display: flex; align-items: center; gap: 10px;">
+                                    <i class="fa-solid fa-clipboard-question" style="color: var(--accent);"></i> Electrical Fault Diagnostic Guide
+                                </h3>
+                                <p style="font-size: 0.85rem; color: var(--mid);">Answer questions step-by-step to isolate short circuits, neutral leakages, and tripping breakers.</p>
                             </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                            </div>
-                        </div>
 
-                        <!-- Step 3: Flickering -->
-                        <div class="trouble-step" id="step-flicker">
-                            <p class="trouble-question">Q2: Where is the flickering happening?</p>
-                            <div class="trouble-options">
-                                <button class="trouble-btn" data-next="res-single-bulb">Only on a single light bulb or light fixture <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="res-neutral-loose">Across multiple rooms or the entire floor <i class="fa-solid fa-angle-right"></i></button>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                            </div>
-                        </div>
-
-                        <!-- Step 4: Outlets -->
-                        <div class="trouble-step" id="step-socket">
-                            <p class="trouble-question">Q2: Are other outlets in the room working?</p>
-                            <div class="trouble-options">
-                                <button class="trouble-btn" data-next="res-socket-damaged">Yes, only this specific outlet is dead <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="res-circuit-dead">No, multiple outlets are dead in the room <i class="fa-solid fa-angle-right"></i></button>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                            </div>
-                        </div>
-
-                        <!-- Step 5: Heater -->
-                        <div class="trouble-step" id="step-heater">
-                            <p class="trouble-question">Q2: Is the indicator light of the double-pole switch ON?</p>
-                            <div class="trouble-options">
-                                <button class="trouble-btn" data-next="res-element-burnt">Yes, the switch light is on but water remains cold <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="res-power-lost">No, the switch light is off and water is cold <i class="fa-solid fa-angle-right"></i></button>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                            </div>
-                        </div>
-
-                        <!-- Results -->
-                        <!-- Appliance Fault Result -->
-                        <div class="trouble-step" id="res-appliance-fault">
-                            <div class="trouble-result warning">
-                                <div class="result-title"><i class="fa-solid fa-triangle-exclamation"></i> Faulty Appliance / Local Short</div>
-                                <div class="result-text">
-                                    The appliance you are turning on likely has a internal short circuit or ground leakage. 
-                                    <ul>
-                                        <li><strong>Action:</strong> Unplug the appliance immediately.</li>
-                                        <li>Reset the tripped breaker switch in your main distribution board.</li>
-                                        <li>If the breaker stays ON, the fault is isolated to the appliance. Avoid plugging it back in.</li>
-                                    </ul>
+                            <div class="trouble-container">
+                                <!-- Step 1 -->
+                                <div class="trouble-step active" id="step-1">
+                                    <p class="trouble-question">Q1: Which specific issue are you experiencing?</p>
+                                    <div class="trouble-options">
+                                        <button class="trouble-btn" data-next="step-tripping">Breaker or circuit keeps tripping <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="step-flicker">Flickering lights in the building <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="step-socket">Wall outlet is not working <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="step-heater">Water heater is not heating <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="step-surges">High electricity bill / Power surges <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="step-sparks">Sparking or burning smell <i class="fa-solid fa-angle-right"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                            </div>
-                        </div>
 
-                        <!-- Earth Leakage Result -->
-                        <div class="trouble-step" id="res-leakage">
-                            <div class="trouble-result danger">
-                                <div class="result-title"><i class="fa-solid fa-circle-radiation"></i> Potential Earth Leakage / Cable Fault</div>
-                                <div class="result-text">
-                                    This random tripping is commonly caused by moisture seepages, rodent-damaged cables, or a failing ELCB (Earth Leakage Circuit Breaker).
-                                    <ul>
-                                        <li><strong>Warning:</strong> Earth leakages pose a high risk of electric shock and cable fires.</li>
-                                        <li>A Megger insulation resistance test is required to locate the weak point.</li>
-                                        <li>Contact Ahammed immediately to test your DB and wiring safely.</li>
-                                    </ul>
+                                <!-- Step 2: Tripping Breaker -->
+                                <div class="trouble-step" id="step-tripping">
+                                    <p class="trouble-question">Q2: When does the breaker trip?</p>
+                                    <div class="trouble-options">
+                                        <button class="trouble-btn" data-next="res-appliance-fault">Immediately when I plug in a specific appliance <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="res-leakage">At random times with no specific appliance running <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="res-overload">When multiple heavy loads (AC + pump) run at once <i class="fa-solid fa-angle-right"></i></button>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="tripping">Contact Ahammed <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Overload Result -->
-                        <div class="trouble-step" id="res-overload">
-                            <div class="trouble-result warning">
-                                <div class="result-title"><i class="fa-solid fa-plug-circle-exclamation"></i> Sub-Circuit Overloading</div>
-                                <div class="result-text">
-                                    Your breaker is tripping because the combined current of multiple active heavy appliances exceeds the circuit breaker rating (typically 16A or 20A for household sockets).
-                                    <ul>
-                                        <li><strong>Action:</strong> Turn off one of the high-power appliances (e.g. run AC first, then heater).</li>
-                                        <li>Have an electrician balance the circuits in the panel, or lay down a dedicated circuit line for the heavy appliances.</li>
-                                    </ul>
+                                <!-- Step 3: Flickering -->
+                                <div class="trouble-step" id="step-flicker">
+                                    <p class="trouble-question">Q2: Where is the flickering happening?</p>
+                                    <div class="trouble-options">
+                                        <button class="trouble-btn" data-next="res-single-bulb">Only on a single light bulb or light fixture <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="res-neutral-loose">Across multiple rooms or the entire floor <i class="fa-solid fa-angle-right"></i></button>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="overload">Inquire Balancing <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Single Bulb Result -->
-                        <div class="trouble-step" id="res-single-bulb">
-                            <div class="trouble-result info">
-                                <div class="result-title"><i class="fa-solid fa-lightbulb"></i> Fixture / Lamp Failure</div>
-                                <div class="result-text">
-                                    Flickering on a single fixture typically indicates a dying LED driver, loose bulb contacts inside the holder, or a faulty dimmer switch.
-                                    <ul>
-                                        <li><strong>Action:</strong> Turn off the power switch, wait for bulb to cool down, and check if it is screwed in tight.</li>
-                                        <li>Try replacing the bulb with a new one to verify.</li>
-                                    </ul>
+                                <!-- Step 4: Outlets -->
+                                <div class="trouble-step" id="step-socket">
+                                    <p class="trouble-question">Q2: Are other outlets in the room working?</p>
+                                    <div class="trouble-options">
+                                        <button class="trouble-btn" data-next="res-socket-damaged">Yes, only this specific outlet is dead <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="res-circuit-dead">No, multiple outlets are dead in the room <i class="fa-solid fa-angle-right"></i></button>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                            </div>
-                        </div>
 
-                        <!-- Neutral Loose Result -->
-                        <div class="trouble-step" id="res-neutral-loose">
-                            <div class="trouble-result danger">
-                                <div class="result-title"><i class="fa-solid fa-fire-flame-curved"></i> Severe Loose Neutral Warning</div>
-                                <div class="result-text">
-                                    Flickering across multiple circuits is an emergency indicator of a loose neutral connection in your main distribution board. This can cause severe voltage spikes up to 400V, frying home electronics and starting panel fires.
-                                    <ul>
-                                        <li><strong>Warning:</strong> Turn off your main breaker immediately if lights are flashing intensely.</li>
-                                        <li>Do not attempt to tighten distribution board connections yourself.</li>
-                                        <li>Contact Ahammed immediately to check neutral terminations.</li>
-                                    </ul>
+                                <!-- Step 5: Heater -->
+                                <div class="trouble-step" id="step-heater">
+                                    <p class="trouble-question">Q2: Is the indicator light of the double-pole switch ON?</p>
+                                    <div class="trouble-options">
+                                        <button class="trouble-btn" data-next="res-element-burnt">Yes, the switch light is on but water remains cold <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="res-power-lost">No, the switch light is off and water is cold <i class="fa-solid fa-angle-right"></i></button>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="neutral">Call Specialist <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Socket Damaged Result -->
-                        <div class="trouble-step" id="res-socket-damaged">
-                            <div class="trouble-result warning">
-                                <div class="result-title"><i class="fa-solid fa-plug"></i> Damaged Outlet Outlet / loose contact</div>
-                                <div class="result-text">
-                                    A single dead outlet is usually caused by terminal screws loosening behind the plate, or local heat damage (overheating from heavy load).
-                                    <ul>
-                                        <li><strong>Warning:</strong> Loose wires inside the wall box can spark and create electrical fires.</li>
-                                        <li>Avoid using this outlet entirely.</li>
-                                        <li>Contact Ahammed to safely uninstall the outlet, check wire integrity, and mount a replacement faceplate.</li>
-                                    </ul>
+                                <!-- Step 6: Surges & Bills -->
+                                <div class="trouble-step" id="step-surges">
+                                    <p class="trouble-question">Q2: Which symptom is most noticeable?</p>
+                                    <div class="trouble-options">
+                                        <button class="trouble-btn" data-next="res-surge-protection">Frequent surges that dim or bright lights temporarily <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="res-bill-vampire">Excessive bill spike with normal usage patterns <i class="fa-solid fa-angle-right"></i></button>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="outlet">Fix Outlet <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Circuit Dead Result -->
-                        <div class="trouble-step" id="res-circuit-dead">
-                            <div class="trouble-result warning">
-                                <div class="result-title"><i class="fa-solid fa-network-wired"></i> Tripped Sub-Circuit or Broken Line</div>
-                                <div class="result-text">
-                                    When multiple outlets go dead together, they are likely on the same radial or ring circuit which has either tripped at the DB panel or suffered a cable break.
-                                    <ul>
-                                        <li>Check your distribution board. Reset any switch that is in the OFF/tripped position.</li>
-                                        <li>If the breaker trips back down immediately, do not force it. Contact Ahammed to trace the line short.</li>
-                                    </ul>
+                                <!-- Step 7: Sparking & Burning -->
+                                <div class="trouble-step" id="step-sparks">
+                                    <p class="trouble-question">Q2: When or where do you notice the sparks/smell?</p>
+                                    <div class="trouble-options">
+                                        <button class="trouble-btn" data-next="res-switch-arcing">Sparks inside a switch when flipping it on/off <i class="fa-solid fa-angle-right"></i></button>
+                                        <button class="trouble-btn" data-next="res-wire-melting">Burning smell or smoke near outlets or panel board <i class="fa-solid fa-angle-right"></i></button>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="circuit-dead">Trace Circuit <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Heating Element Result -->
-                        <div class="trouble-step" id="res-element-burnt">
-                            <div class="trouble-result warning">
-                                <div class="result-title"><i class="fa-solid fa-temperature-arrow-down"></i> Burned Element or Faulty Thermostat</div>
-                                <div class="result-text">
-                                    Since power is reaching the water heater (switch indicator is ON) but water is cold, the heating element inside the tank has likely burned out or the thermostat safety cut-off has triggered.
-                                    <ul>
-                                        <li><strong>Action:</strong> Keep the heater switch OFF to save energy and protect the tank.</li>
-                                        <li>Contact Ahammed to drain the heater, test the element continuity, and replace the thermostat/heating coil.</li>
-                                    </ul>
+                                <!-- Results -->
+                                <div class="trouble-step" id="res-appliance-fault">
+                                    <div class="trouble-result warning">
+                                        <div class="result-title"><i class="fa-solid fa-triangle-exclamation"></i> Faulty Appliance / Local Short</div>
+                                        <div class="result-text">
+                                            The appliance you are turning on likely has an internal short circuit or ground leakage. 
+                                            <ul>
+                                                <li><strong>Action:</strong> Unplug the appliance immediately.</li>
+                                                <li>Reset the tripped breaker switch in your main distribution board.</li>
+                                                <li>If the breaker stays ON, the fault is isolated to the appliance. Avoid plugging it back in.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="heater">Fix Heater <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Power Lost Result -->
-                        <div class="trouble-step" id="res-power-lost">
-                            <div class="trouble-result warning">
-                                <div class="result-title"><i class="fa-solid fa-power-off"></i> Power Delivery Failure</div>
-                                <div class="result-text">
-                                    No power is reaching the heater unit. The double-pole switch neon light is off, pointing to a tripped breaker in the distribution board or burned contacts inside the double-pole isolator switch.
-                                    <ul>
-                                        <li>Check the dedicated heater breaker switch in the main board.</li>
-                                        <li>If the board breaker is ON but the switch light is OFF, the switch unit itself needs testing/replacement.</li>
-                                    </ul>
+                                <div class="trouble-step" id="res-leakage">
+                                    <div class="trouble-result danger">
+                                        <div class="result-title"><i class="fa-solid fa-circle-radiation"></i> Potential Earth Leakage / Cable Fault</div>
+                                        <div class="result-text">
+                                            This random tripping is commonly caused by moisture seepages, rodent-damaged cables, or a failing ELCB (Earth Leakage Circuit Breaker).
+                                            <ul>
+                                                <li><strong>Warning:</strong> Earth leakages pose a high risk of electric shock and cable fires.</li>
+                                                <li>A Megger insulation resistance test is required to locate the weak point.</li>
+                                                <li>Contact Ahammed immediately to test your DB and wiring safely.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                        <button class="btn-primary whatsapp-dynamic" data-service="tripping">Contact Ahammed <i class="fab fa-whatsapp"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="heater">Inspect Power <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Step 6: Surges & Bills -->
-                        <div class="trouble-step" id="step-surges">
-                            <p class="trouble-question">Q2: Which symptom is most noticeable?</p>
-                            <div class="trouble-options">
-                                <button class="trouble-btn" data-next="res-surge-protection">Frequent surges that dim or bright lights temporarily <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="res-bill-vampire">Excessive bill spike with normal usage patterns <i class="fa-solid fa-angle-right"></i></button>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                            </div>
-                        </div>
-
-                        <!-- Step 7: Sparking & Burning -->
-                        <div class="trouble-step" id="step-sparks">
-                            <p class="trouble-question">Q2: When or where do you notice the sparks/smell?</p>
-                            <div class="trouble-options">
-                                <button class="trouble-btn" data-next="res-switch-arcing">Sparks inside a switch when flipping it on/off <i class="fa-solid fa-angle-right"></i></button>
-                                <button class="trouble-btn" data-next="res-wire-melting">Burning smell or smoke near outlets or panel board <i class="fa-solid fa-angle-right"></i></button>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-back"><i class="fa-solid fa-arrow-left"></i> Back</button>
-                            </div>
-                        </div>
-
-                        <!-- Surge Protection Result -->
-                        <div class="trouble-step" id="res-surge-protection">
-                            <div class="trouble-result info">
-                                <div class="result-title"><i class="fa-solid fa-bolt"></i> Voltage Fluctuations / Surges</div>
-                                <div class="result-text">
-                                    Frequent voltage surges can damage expensive electronics (AC compressors, TVs, fridges). This can be caused by external grid fluctuations or heavy motors turning on inside the house.
-                                    <ul>
-                                        <li><strong>Action:</strong> Unplug sensitive electronic devices during severe fluctuations.</li>
-                                        <li>Contact Ahammed to install a whole-house Surge Protection Device (SPD) in your distribution board to shield your home!</li>
-                                    </ul>
+                                <div class="trouble-step" id="res-overload">
+                                    <div class="trouble-result warning">
+                                        <div class="result-title"><i class="fa-solid fa-plug-circle-exclamation"></i> Sub-Circuit Overloading</div>
+                                        <div class="result-text">
+                                            Your breaker is tripping because the combined current of multiple active heavy appliances exceeds the circuit breaker rating (typically 16A or 20A for household sockets).
+                                            <ul>
+                                                <li><strong>Action:</strong> Turn off one of the high-power appliances (e.g. run AC first, then heater).</li>
+                                                <li>Have an electrician balance the circuits in the panel, or lay down a dedicated circuit line for the heavy appliances.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                        <button class="btn-primary whatsapp-dynamic" data-service="overload">Inquire Balancing <i class="fab fa-whatsapp"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="spd">Inquire SPD <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Bill Vampire Result -->
-                        <div class="trouble-step" id="res-bill-vampire">
-                            <div class="trouble-result warning">
-                                <div class="result-title"><i class="fa-solid fa-file-invoice-dollar"></i> Current Leakage or Inefficient Loads</div>
-                                <div class="result-text">
-                                    Sudden electricity bill increases are often caused by resistive leakages to earth (current slowly draining to ground through wet walls or damaged insulation) or aging AC compressors pulling excessive current.
-                                    <ul>
-                                        <li><strong>Action:</strong> Turn off all breakers; if the main meter continues spinning rapidly, you have a line leakage.</li>
-                                        <li>Contact Ahammed to run a comprehensive insulation resistance check (Megger test) to identify and isolate current leaks.</li>
-                                    </ul>
+                                <div class="trouble-step" id="res-single-bulb">
+                                    <div class="trouble-result info">
+                                        <div class="result-title"><i class="fa-solid fa-lightbulb"></i> Fixture / Lamp Failure</div>
+                                        <div class="result-text">
+                                            Flickering on a single fixture typically indicates a dying LED driver, loose bulb contacts inside the holder, or a faulty dimmer switch.
+                                            <ul>
+                                                <li><strong>Action:</strong> Turn off the power switch, wait for bulb to cool down, and check if it is screwed in tight.</li>
+                                                <li>Try replacing the bulb with a new one to verify.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="inspection">Book Inspection <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Switch Arcing Result -->
-                        <div class="trouble-step" id="res-switch-arcing">
-                            <div class="trouble-result warning">
-                                <div class="result-title"><i class="fa-solid fa-toggle-on"></i> Switch Arcing / Loose Terminals</div>
-                                <div class="result-text">
-                                    Sparks seen inside a switch casing indicate that the contacts are loose or eroded, creating a mini electric arc when bridging the connection.
-                                     <ul>
-                                         <li><strong>Warning:</strong> Continuous arcing generates heat that eventually melts the switch plastic and creates a fire risk.</li>
-                                         <li>Stop using the switch. Keep it in the OFF position.</li>
-                                         <li>Have Ahammed replace the switch unit with a quality replacement.</li>
-                                     </ul>
+                                <div class="trouble-step" id="res-neutral-loose">
+                                    <div class="trouble-result danger">
+                                        <div class="result-title"><i class="fa-solid fa-fire-flame-curved"></i> Severe Loose Neutral Warning</div>
+                                        <div class="result-text">
+                                            Flickering across multiple circuits is an emergency indicator of a loose neutral connection in your main distribution board. This can cause severe voltage spikes up to 400V, frying home electronics and starting panel fires.
+                                            <ul>
+                                                <li><strong>Warning:</strong> Turn off your main breaker immediately if lights are flashing intensely.</li>
+                                                <li>Do not attempt to tighten distribution board connections yourself.</li>
+                                                <li>Contact Ahammed immediately to check neutral terminations.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                        <button class="btn-primary whatsapp-dynamic" data-service="neutral">Call Specialist <i class="fab fa-whatsapp"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="switch">Replace Switch <i class="fab fa-whatsapp"></i></button>
-                            </div>
-                        </div>
 
-                        <!-- Wire Melting Result -->
-                        <div class="trouble-step" id="res-wire-melting">
-                            <div class="trouble-result danger">
-                                <div class="result-title"><i class="fa-solid fa-fire"></i> EMERGENCY: Overloaded / Melting Cables</div>
-                                <div class="result-text">
-                                    A burning plastic smell is a critical warning sign that wire insulation is melting due to high resistance loose connections or extreme circuit overloading.
-                                     <ul>
-                                         <li><strong>Warning:</strong> This is a major fire hazard! Switch OFF the main breaker for that circuit immediately.</li>
-                                         <li>Do not touch hot outlets or wires.</li>
-                                         <li>Contact Ahammed immediately to trace the melting wires and replace damaged conductors.</li>
-                                     </ul>
+                                <div class="trouble-step" id="res-socket-damaged">
+                                    <div class="trouble-result warning">
+                                        <div class="result-title"><i class="fa-solid fa-plug"></i> Damaged Socket Mechanism</div>
+                                        <div class="result-text">
+                                            If other sockets on the same loop work fine, this specific socket has loose internal spring contacts or loose terminal screws behind the faceplate.
+                                            <ul>
+                                                <li><strong>Action:</strong> Do not force plugs in. Switch off the socket circuit before inspection.</li>
+                                                <li>Have Ahammed replace the socket with an approved BS 1363 UK standard socket.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="trouble-actions">
-                                <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
-                                <button class="btn-primary whatsapp-dynamic" data-service="emergency">EMERGENCY CALL <i class="fab fa-whatsapp"></i></button>
+
+                                <div class="trouble-step" id="res-circuit-dead">
+                                    <div class="trouble-result warning">
+                                        <div class="result-title"><i class="fa-solid fa-plug-circle-xmark"></i> Dead Circuit / Tripped MCB</div>
+                                        <div class="result-text">
+                                            Multiple dead outlets indicate that the dedicated sub-circuit breaker (MCB) in the distribution panel has tripped, or there is a break in the radial/ring loop.
+                                            <ul>
+                                                <li><strong>Action:</strong> Check the distribution board for any switch pointing down.</li>
+                                                <li>Push the switch fully down first, then lift it firmly back up to reset.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                    </div>
+                                </div>
+
+                                <div class="trouble-step" id="res-element-burnt">
+                                    <div class="trouble-result warning">
+                                        <div class="result-title"><i class="fa-solid fa-shower"></i> Burnt Water Heater Element or Thermostat</div>
+                                        <div class="result-text">
+                                            Power is reaching the isolator switch, but the immersion heating element has burnt open or the safety thermostat has tripped.
+                                            <ul>
+                                                <li><strong>Action:</strong> Switch off the double-pole isolator switch.</li>
+                                                <li>Contact Ahammed to test continuity and replace the heating element / thermostat safely.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                        <button class="btn-primary whatsapp-dynamic" data-service="heater">Fix Heater <i class="fab fa-whatsapp"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="trouble-step" id="res-power-lost">
+                                    <div class="trouble-result warning">
+                                        <div class="result-title"><i class="fa-solid fa-power-off"></i> No Power to Heater Isolator Switch</div>
+                                        <div class="result-text">
+                                            The dedicated water heater breaker in the DB panel has tripped, or the double-pole DP switch contacts have melted due to continuous heavy current.
+                                            <ul>
+                                                <li><strong>Action:</strong> Check your distribution board for a tripped heater breaker.</li>
+                                                <li>If the breaker will not reset, the wiring or switch has a direct short.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                    </div>
+                                </div>
+
+                                <div class="trouble-step" id="res-surge-protection">
+                                    <div class="trouble-result info">
+                                        <div class="result-title"><i class="fa-solid fa-bolt"></i> Voltage Fluctuations / Surges</div>
+                                        <div class="result-text">
+                                            Frequent voltage surges can damage expensive electronics (AC compressors, TVs, fridges). This can be caused by external grid fluctuations or heavy motors turning on inside the house.
+                                            <ul>
+                                                <li><strong>Action:</strong> Unplug sensitive electronic devices during severe fluctuations.</li>
+                                                <li>Contact Ahammed to install a whole-house Surge Protection Device (SPD) in your distribution board to shield your home!</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                        <button class="btn-primary whatsapp-dynamic" data-service="spd">Inquire SPD <i class="fab fa-whatsapp"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="trouble-step" id="res-bill-vampire">
+                                    <div class="trouble-result warning">
+                                        <div class="result-title"><i class="fa-solid fa-file-invoice-dollar"></i> Current Leakage or Inefficient Loads</div>
+                                        <div class="result-text">
+                                            Sudden electricity bill increases are often caused by resistive leakages to earth (current slowly draining to ground through wet walls or damaged insulation) or aging AC compressors pulling excessive current.
+                                            <ul>
+                                                <li><strong>Action:</strong> Turn off all breakers; if the main meter continues spinning rapidly, you have a line leakage.</li>
+                                                <li>Contact Ahammed to run a comprehensive insulation resistance check (Megger test) to identify and isolate current leaks.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                        <button class="btn-primary whatsapp-dynamic" data-service="inspection">Book Inspection <i class="fab fa-whatsapp"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="trouble-step" id="res-switch-arcing">
+                                    <div class="trouble-result warning">
+                                        <div class="result-title"><i class="fa-solid fa-toggle-on"></i> Switch Arcing / Loose Terminals</div>
+                                        <div class="result-text">
+                                            Sparks seen inside a switch casing indicate that the contacts are loose or eroded, creating a mini electric arc when bridging the connection.
+                                             <ul>
+                                                 <li><strong>Warning:</strong> Continuous arcing generates heat that eventually melts the switch plastic and creates a fire risk.</li>
+                                                 <li>Stop using the switch. Keep it in the OFF position.</li>
+                                                 <li>Have Ahammed replace the switch unit with a quality replacement.</li>
+                                             </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                        <button class="btn-primary whatsapp-dynamic" data-service="switch">Replace Switch <i class="fab fa-whatsapp"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="trouble-step" id="res-wire-melting">
+                                    <div class="trouble-result danger">
+                                        <div class="result-title"><i class="fa-solid fa-fire"></i> EMERGENCY: Overloaded / Melting Cables</div>
+                                        <div class="result-text">
+                                            A burning plastic smell is a critical warning sign that wire insulation is melting due to high resistance loose connections or extreme circuit overloading.
+                                             <ul>
+                                                 <li><strong>Warning:</strong> This is a major fire hazard! Switch OFF the main breaker for that circuit immediately.</li>
+                                                 <li>Do not touch hot outlets or wires.</li>
+                                                 <li>Contact Ahammed immediately to trace the melting wires and replace damaged conductors.</li>
+                                             </ul>
+                                        </div>
+                                    </div>
+                                    <div class="trouble-actions">
+                                        <button class="btn-secondary btn-restart"><i class="fa-solid fa-rotate-left"></i> Restart</button>
+                                        <button class="btn-primary whatsapp-dynamic" data-service="emergency">EMERGENCY CALL <i class="fab fa-whatsapp"></i></button>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-
                     </div>
+
+                    <!-- ── TAB 4: CABLE SIZING & VOLTAGE DROP ── -->
+                    <div class="tool-panel" id="tab-cable" role="tabpanel">
+                        <div class="tool-card-grid">
+                            <!-- Left: Form inputs -->
+                            <div class="calc-form-card reveal glow-card">
+                                <div class="widget-header" style="margin-bottom: 0;">
+                                    <h3 style="font-family: var(--heading); font-size: 1.35rem; color: var(--hi); display: flex; align-items: center; gap: 10px;">
+                                        <i class="fa-solid fa-ruler-combined" style="color: var(--accent);"></i> Cable Sizing & Voltage Drop
+                                    </h3>
+                                    <p style="font-size: 0.85rem; color: var(--mid);">Calculate recommended cable cross-section (mm²) and voltage drop compliant with BS 7671 & DEWA/FEWA regulations.</p>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label">Supply Phase Configuration</label>
+                                    <div class="calc-pill-group">
+                                        <button type="button" class="calc-pill-btn active" data-phase-type="1">Single Phase (230V)</button>
+                                        <button type="button" class="calc-pill-btn" data-phase-type="3">Three Phase (400V)</button>
+                                    </div>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="cable-load">
+                                        <span>Connected Load (Power)</span>
+                                        <span class="val-badge" id="cable-load-badge">7.5 kW (~36.9 A)</span>
+                                    </label>
+                                    <input type="range" id="cable-load" class="calc-slider" min="1.0" max="45.0" value="7.5" step="0.5">
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="cable-length">
+                                        <span>Cable Route Length</span>
+                                        <span class="val-badge" id="cable-length-badge">30 Meters</span>
+                                    </label>
+                                    <input type="range" id="cable-length" class="calc-slider" min="5" max="150" value="30" step="5">
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="cable-insulation">Conductor & Insulation Material</label>
+                                    <select id="cable-insulation" class="calc-select">
+                                        <option value="xlpe" selected>Copper XLPE / SWA Armored (90°C Rated - UAE Standard)</option>
+                                        <option value="pvc">Copper PVC / Single Core in Conduit (70°C Rated)</option>
+                                    </select>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="cable-ambient">Ambient Operating Temperature</label>
+                                    <select id="cable-ambient" class="calc-select">
+                                        <option value="50" selected>50°C (UAE Outdoor Roof / Plant Room / High Derating)</option>
+                                        <option value="40">40°C (Standard Indoor Air-conditioned conduit)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Right: Output Card -->
+                            <div class="calc-form-card reveal glow-card" style="border-color: rgba(245, 158, 11, 0.2);">
+                                <div class="widget-header" style="margin-bottom: 0;">
+                                    <h3 style="font-family: var(--heading); font-size: 1.35rem; color: var(--accent);">
+                                        <i class="fa-solid fa-microchip"></i> Engineering Specifications
+                                    </h3>
+                                </div>
+
+                                <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: var(--radius); padding: 20px; text-align: center;">
+                                    <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--mid);">Recommended Minimum Cable Size</span>
+                                    <div style="font-family: var(--heading); font-size: 3rem; font-weight: 900; color: var(--accent); margin: 6px 0; line-height: 1;">
+                                        <span id="cable-res-size">6.0</span> <span style="font-size: 1.4rem; font-weight: 600; color: var(--hi);">mm² Cu</span>
+                                    </div>
+                                    <div style="font-size: 0.88rem; color: var(--mid);">
+                                        Current Capacity (Derated): <strong id="cable-res-capacity" style="color: var(--hi);">44.3 A</strong>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="calc-items-header" style="display: block; margin-bottom: 8px;">Voltage Drop & Safety Compliance</span>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; margin-bottom: 4px;">
+                                        <span style="color: var(--mid);">Calculated Voltage Drop:</span>
+                                        <strong><span id="cable-res-vd-volts">0.0</span> V (<span id="cable-res-vd-pct">0.0%</span>)</strong>
+                                    </div>
+                                    <div class="meter-bar">
+                                        <div id="cable-meter-fill" class="meter-fill" style="width: 25%;"></div>
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--lo);">
+                                        <span>0% (Ideal)</span>
+                                        <span>Max Permitted: 4.0% (DEWA)</span>
+                                    </div>
+
+                                    <table class="calc-breakdown-table" style="margin-top: 14px;">
+                                        <tr>
+                                            <td>Circuit Full Load Current</td>
+                                            <td id="cable-res-current">0.0 A</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Recommended Breaker (MCB)</td>
+                                            <td id="cable-res-mcb">40A Type C</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Max Run Before &gt; 4% Drop</td>
+                                            <td id="cable-res-max-len">65 Meters</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                                <div class="calc-verdict-box" id="cable-res-verdict">
+                                    Calculating cable compliance...
+                                </div>
+
+                                <button type="button" id="btn-export-cable-whatsapp" class="btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Request Cable Sizing & DB Dressing Quote
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ── TAB 5: WATER PUMP & PRESSURE TANK ── -->
+                    <div class="tool-panel" id="tab-pump" role="tabpanel">
+                        <div class="tool-card-grid">
+                            <!-- Left: Form inputs -->
+                            <div class="calc-form-card reveal glow-card">
+                                <div class="widget-header" style="margin-bottom: 0;">
+                                    <h3 style="font-family: var(--heading); font-size: 1.35rem; color: var(--hi); display: flex; align-items: center; gap: 10px;">
+                                        <i class="fa-solid fa-faucet-drip" style="color: var(--accent);"></i> Booster Pump & Pressure Tank Calculator
+                                    </h3>
+                                    <p style="font-size: 0.85rem; color: var(--mid);">Calibrate pressure switch cut-in/cut-out and expansion tank air pressure to eliminate rapid pump cycling and low shower pressure.</p>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="pump-floors">Villa Height & Elevation</label>
+                                    <select id="pump-floors" class="calc-select">
+                                        <option value="1">Ground Floor Villa only (~3m Elevation Head)</option>
+                                        <option value="2" selected>G + 1 Two-Storey Villa (~6m Elevation Head)</option>
+                                        <option value="3">G + 2 Three-Storey Villa / Rooftop (~9m Elevation Head)</option>
+                                    </select>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="pump-baths">
+                                        <span>Number of Bathrooms & Outlets</span>
+                                        <span class="val-badge" id="pump-baths-badge">4 Bathrooms</span>
+                                    </label>
+                                    <input type="range" id="pump-baths" class="calc-slider" min="2" max="12" value="4" step="1">
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="pump-hp">Installed Pump Horsepower (HP)</label>
+                                    <select id="pump-hp" class="calc-select">
+                                        <option value="0.5">0.5 HP (~370W - Small 2-3 Bath)</option>
+                                        <option value="0.75" selected>0.75 HP (~550W - Standard 4-6 Bath)</option>
+                                        <option value="1.0">1.0 HP (~750W - Large Villa 6-8 Bath)</option>
+                                        <option value="1.5">1.5 HP (~1100W - Multi-Family / Twin Pump)</option>
+                                    </select>
+                                </div>
+
+                                <div class="calc-input-group">
+                                    <label class="calc-label" for="pump-tank-size">Expansion Tank Capacity</label>
+                                    <select id="pump-tank-size" class="calc-select">
+                                        <option value="24" selected>24 Liters (Standard Residential Bladder)</option>
+                                        <option value="50">50 Liters (High Flow / Luxury Villa)</option>
+                                        <option value="100">100 Liters (Commercial / Large Compound)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Right: Output Card -->
+                            <div class="calc-form-card reveal glow-card" style="border-color: rgba(245, 158, 11, 0.2);">
+                                <div class="widget-header" style="margin-bottom: 0;">
+                                    <h3 style="font-family: var(--heading); font-size: 1.35rem; color: var(--accent);">
+                                        <i class="fa-solid fa-gauge-high"></i> Pressure Calibration Profile
+                                    </h3>
+                                </div>
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-align: center;">
+                                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--mid);">Cut-In (Start)</span>
+                                        <div style="font-family: var(--heading); font-size: 2rem; font-weight: 800; color: var(--green); margin-top: 4px;">
+                                            <span id="pump-res-cutin">2.0</span> <span style="font-size: 1rem; color: var(--hi);">bar</span>
+                                        </div>
+                                        <small style="color: var(--lo);" id="pump-res-cutin-psi">(29 PSI)</small>
+                                    </div>
+
+                                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; text-align: center;">
+                                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--mid);">Cut-Out (Stop)</span>
+                                        <div style="font-family: var(--heading); font-size: 2rem; font-weight: 800; color: var(--accent); margin-top: 4px;">
+                                            <span id="pump-res-cutout">3.5</span> <span style="font-size: 1rem; color: var(--hi);">bar</span>
+                                        </div>
+                                        <small style="color: var(--lo);" id="pump-res-cutout-psi">(51 PSI)</small>
+                                    </div>
+                                </div>
+
+                                <div style="background: rgba(245, 158, 11, 0.05); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: var(--radius); padding: 16px; text-align: center;">
+                                    <span style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--mid);">Mandatory Expansion Tank Air Pre-Charge</span>
+                                    <div style="font-family: var(--heading); font-size: 1.85rem; font-weight: 900; color: var(--hi); margin: 4px 0;">
+                                        <span id="pump-res-precharge">1.8</span> bar <span style="font-size: 1rem; color: var(--accent);">(26 PSI)</span>
+                                    </div>
+                                    <small style="font-size: 0.78rem; color: var(--mid);">Set air pressure exactly 0.2 bar below cut-in while water pressure is zero.</small>
+                                </div>
+
+                                <div class="calc-verdict-box" id="pump-res-verdict">
+                                    Optimal settings for continuous water pressure without hunting.
+                                </div>
+
+                                <button type="button" id="btn-export-pump-whatsapp" class="btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                                    <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Book Booster Pump & Pressure Calibration
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -4357,7 +4971,31 @@
             });
 
 
-            /* ── ELECTRICAL LOAD ESTIMATOR ── */
+            /* ── TOOLS HUB TAB SWITCHER ── */
+            const toolTabBtns = document.querySelectorAll('.tool-tab-btn');
+            const toolPanels = document.querySelectorAll('.tool-panel');
+
+            toolTabBtns.forEach(tabBtn => {
+                tabBtn.addEventListener('click', () => {
+                    const targetTabId = tabBtn.getAttribute('data-tab');
+                    if (!targetTabId) return;
+
+                    toolTabBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    toolPanels.forEach(p => p.classList.remove('active'));
+
+                    tabBtn.classList.add('active');
+                    tabBtn.setAttribute('aria-selected', 'true');
+                    const activePanel = document.getElementById(targetTabId);
+                    if (activePanel) {
+                        activePanel.classList.add('active');
+                    }
+                });
+            });
+
+            /* ── TAB 1: ELECTRICAL LOAD ESTIMATOR ── */
             const appliances = {
                 ac: { watts: 3000, qty: 0 },
                 heater: { watts: 1500, qty: 0 },
@@ -4366,7 +5004,10 @@
                 fridge: { watts: 400, qty: 0 },
                 wm: { watts: 1000, qty: 0 },
                 microwave: { watts: 1200, qty: 0 },
-                pump: { watts: 750, qty: 0 }
+                pump: { watts: 750, qty: 0 },
+                oven: { watts: 3500, qty: 0 },
+                washer: { watts: 2000, qty: 0 },
+                ev: { watts: 7400, qty: 0 }
             };
 
             const totalLoadEl = document.getElementById('total-load');
@@ -4382,7 +5023,7 @@
                 }
 
                 const kw = (totalWatts / 1000).toFixed(2);
-                totalLoadEl.textContent = kw;
+                if (totalLoadEl) totalLoadEl.textContent = kw;
 
                 // Phase recommendation
                 let phase = "Single Phase (220V)";
@@ -4390,14 +5031,14 @@
                 
                 if (totalWatts > 10000) {
                     phase = "Three Phase (400V)";
-                    verdict = "High load detected! It is highly recommended to use a <strong>Three-Phase Distribution Board</strong> to balance the load evenly across all three phases (R, Y, B) to prevent frequent neutral wire overheating and circuit breakers tripping.";
+                    verdict = "High load detected (" + kw + " kW)! It is highly recommended to use a <strong>Three-Phase Distribution Board</strong> to balance the load evenly across all three phases (R, Y, B) to prevent neutral wire overheating and main incomer tripping.";
                 } else if (totalWatts === 0) {
                     phase = "—";
                     verdict = "Select household appliances above to calculate your estimated electrical load and receive a custom recommendation.";
                 }
 
-                recommendedPhaseEl.textContent = phase;
-                verdictBoxEl.innerHTML = verdict;
+                if (recommendedPhaseEl) recommendedPhaseEl.textContent = phase;
+                if (verdictBoxEl) verdictBoxEl.innerHTML = verdict;
             };
 
             // Plus/Minus Button Event Listeners
@@ -4407,13 +5048,15 @@
                     const action = button.getAttribute('data-action');
                     const qtyValEl = document.getElementById(`qty-${key}`);
 
+                    if (!appliances[key]) return;
+
                     if (action === 'plus') {
                         appliances[key].qty++;
                     } else if (action === 'minus' && appliances[key].qty > 0) {
                         appliances[key].qty--;
                     }
 
-                    qtyValEl.value = appliances[key].qty;
+                    if (qtyValEl) qtyValEl.value = appliances[key].qty;
                     updateCalculator();
                 });
             });
@@ -4422,6 +5065,7 @@
             document.querySelectorAll('.qty-val').forEach(input => {
                 input.addEventListener('input', () => {
                     const key = input.id.replace('qty-', '');
+                    if (!appliances[key]) return;
                     let val = parseInt(input.value, 10);
                     if (isNaN(val) || val < 0) {
                         val = 0;
@@ -4436,14 +5080,482 @@
                     if (input.value === '') {
                         input.value = '0';
                         const key = input.id.replace('qty-', '');
-                        appliances[key].qty = 0;
+                        if (appliances[key]) appliances[key].qty = 0;
                         updateCalculator();
                     }
                 });
             });
 
-            // Initialize Calculator
+            // Tab 1 WhatsApp Export
+            const btnExportLoadWhatsApp = document.getElementById('btn-export-load-whatsapp');
+            if (btnExportLoadWhatsApp) {
+                btnExportLoadWhatsApp.addEventListener('click', () => {
+                    const kw = totalLoadEl ? totalLoadEl.textContent : '0';
+                    const phase = recommendedPhaseEl ? recommendedPhaseEl.textContent : 'Single Phase';
+                    let loadItems = [];
+                    for (const k in appliances) {
+                        if (appliances[k].qty > 0) {
+                            loadItems.push(`${k.toUpperCase()}: ${appliances[k].qty} unit(s)`);
+                        }
+                    }
+                    const summary = loadItems.length > 0 ? loadItems.join(', ') : 'No items selected';
+                    const text = `Hi Ahammed, I used your Villa Load Calculator on your website:\n\n⚡ *Total Estimated Load:* ${kw} kW\n🔌 *Recommended Supply:* ${phase}\n📋 *Appliance Breakdown:* ${summary}\n\nCould you please advise on 3-Phase DB dressing / load balancing and quotation for my villa?`;
+                    window.open(`https://wa.me/${atob("OTcxNTI2MzkzMjkz")}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+                });
+            }
+
+            // Initialize Load Calculator
             updateCalculator();
+
+
+            /* ── TAB 2: DEWA / FEWA / SEWA BILL & AC COST ESTIMATOR ── */
+            let isDewaInverter = false;
+            const dewaUtility = document.getElementById('dewa-utility');
+            const dewaAcCount = document.getElementById('dewa-ac-count');
+            const dewaAcCountBadge = document.getElementById('dewa-ac-count-badge');
+            const dewaAcTon = document.getElementById('dewa-ac-ton');
+            const dewaAcHours = document.getElementById('dewa-ac-hours');
+            const dewaAcHoursBadge = document.getElementById('dewa-ac-hours-badge');
+            const dewaBaseLoad = document.getElementById('dewa-base-load');
+            const dewaBaseLoadBadge = document.getElementById('dewa-base-load-badge');
+            const dewaPillBtns = document.querySelectorAll('[data-inverter]');
+
+            const dewaResCost = document.getElementById('dewa-res-cost');
+            const dewaResDaily = document.getElementById('dewa-res-daily');
+            const dewaResKwh = document.getElementById('dewa-res-kwh');
+            const dewaResAcKwh = document.getElementById('dewa-res-ac-kwh');
+            const dewaResAcPct = document.getElementById('dewa-res-ac-pct');
+            const dewaResSlabCost = document.getElementById('dewa-res-slab-cost');
+            const dewaResFsc = document.getElementById('dewa-res-fsc');
+            const dewaResVat = document.getElementById('dewa-res-vat');
+            const dewaResVerdict = document.getElementById('dewa-res-verdict');
+
+            dewaPillBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    dewaPillBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    isDewaInverter = btn.getAttribute('data-inverter') === 'yes';
+                    updateDewaFewaCalc();
+                });
+            });
+
+            const updateDewaFewaCalc = () => {
+                if (!dewaUtility || !dewaAcCount || !dewaAcTon || !dewaAcHours || !dewaBaseLoad) return;
+
+                const utility = dewaUtility.value;
+                const acCount = parseInt(dewaAcCount.value, 10) || 1;
+                const acTon = parseFloat(dewaAcTon.value) || 2.0;
+                const acHours = parseInt(dewaAcHours.value, 10) || 12;
+                const baseLoad = parseInt(dewaBaseLoad.value, 10) || 600;
+
+                if (dewaAcCountBadge) dewaAcCountBadge.textContent = `${acCount} Unit${acCount > 1 ? 's' : ''}`;
+                if (dewaAcHoursBadge) dewaAcHoursBadge.textContent = `${acHours} Hours / Day`;
+                if (dewaBaseLoadBadge) dewaBaseLoadBadge.textContent = `${baseLoad} kWh`;
+
+                // Calculate AC kW draw (approx 1.2 kW per ton standard, 30% reduction if inverter)
+                let kwPerAc = acTon * 1.2;
+                if (isDewaInverter) kwPerAc *= 0.70;
+
+                // Monthly kWh for AC (duty cycle ~0.80 due to thermostat cycling)
+                const monthlyAcKwh = Math.round(acCount * kwPerAc * acHours * 0.80 * 30);
+                const totalKwh = monthlyAcKwh + baseLoad;
+                const acPct = totalKwh > 0 ? Math.round((monthlyAcKwh / totalKwh) * 100) : 0;
+
+                // Slab Tariff Calculation
+                let slabCost = 0;
+                let fscRate = 0.055; // default 5.5 fils
+
+                if (utility === 'dewa') {
+                    // DEWA Residential Slabs (Expat / General)
+                    // Slab 1: 0 - 2000 @ 23 fils (0.23 AED)
+                    // Slab 2: 2001 - 4000 @ 28 fils (0.28 AED)
+                    // Slab 3: 4001 - 6000 @ 32 fils (0.32 AED)
+                    // Slab 4: > 6000 @ 38 fils (0.38 AED)
+                    // FSC: 5.5 fils (0.055 AED / kWh)
+                    fscRate = 0.055;
+                    let rem = totalKwh;
+                    if (rem > 0) {
+                        const s1 = Math.min(rem, 2000);
+                        slabCost += s1 * 0.23;
+                        rem -= s1;
+                    }
+                    if (rem > 0) {
+                        const s2 = Math.min(rem, 2000);
+                        slabCost += s2 * 0.28;
+                        rem -= s2;
+                    }
+                    if (rem > 0) {
+                        const s3 = Math.min(rem, 2000);
+                        slabCost += s3 * 0.32;
+                        rem -= s3;
+                    }
+                    if (rem > 0) {
+                        slabCost += rem * 0.38;
+                    }
+                } else if (utility === 'fewa') {
+                    // FEWA / Etihad WE Residential Slabs
+                    // Slab 1: 0 - 2000 @ 28 fils (0.28 AED)
+                    // Slab 2: 2001 - 4000 @ 33 fils (0.33 AED)
+                    // Slab 3: 4001 - 6000 @ 37 fils (0.37 AED)
+                    // Slab 4: > 6000 @ 43 fils (0.43 AED)
+                    // FSC: 5.0 fils (0.05 AED / kWh)
+                    fscRate = 0.050;
+                    let rem = totalKwh;
+                    if (rem > 0) {
+                        const s1 = Math.min(rem, 2000);
+                        slabCost += s1 * 0.28;
+                        rem -= s1;
+                    }
+                    if (rem > 0) {
+                        const s2 = Math.min(rem, 2000);
+                        slabCost += s2 * 0.33;
+                        rem -= s2;
+                    }
+                    if (rem > 0) {
+                        const s3 = Math.min(rem, 2000);
+                        slabCost += s3 * 0.37;
+                        rem -= s3;
+                    }
+                    if (rem > 0) {
+                        slabCost += rem * 0.43;
+                    }
+                } else {
+                    // SEWA Slabs
+                    fscRate = 0.045;
+                    let rem = totalKwh;
+                    if (rem > 0) {
+                        const s1 = Math.min(rem, 2000);
+                        slabCost += s1 * 0.25;
+                        rem -= s1;
+                    }
+                    if (rem > 0) {
+                        const s2 = Math.min(rem, 4000);
+                        slabCost += s2 * 0.30;
+                        rem -= s2;
+                    }
+                    if (rem > 0) {
+                        slabCost += rem * 0.38;
+                    }
+                }
+
+                const fscCost = totalKwh * fscRate;
+                const subtotal = slabCost + fscCost;
+                const vatCost = subtotal * 0.05; // 5% VAT
+                const totalCost = Math.round(subtotal + vatCost);
+                const dailyCost = (totalCost / 30).toFixed(1);
+
+                if (dewaResCost) dewaResCost.textContent = totalCost.toLocaleString();
+                if (dewaResDaily) dewaResDaily.textContent = dailyCost;
+                if (dewaResKwh) dewaResKwh.textContent = `${totalKwh.toLocaleString()} kWh`;
+                if (dewaResAcKwh) dewaResAcKwh.textContent = `${monthlyAcKwh.toLocaleString()} kWh`;
+                if (dewaResAcPct) dewaResAcPct.textContent = `${acPct}%`;
+                if (dewaResSlabCost) dewaResSlabCost.textContent = `${slabCost.toFixed(2)} AED`;
+                if (dewaResFsc) dewaResFsc.textContent = `${fscCost.toFixed(2)} AED`;
+                if (dewaResVat) dewaResVat.textContent = `${vatCost.toFixed(2)} AED`;
+
+                // Technical Verdict
+                let verdict = "";
+                if (acPct >= 70) {
+                    verdict = `❄️ <strong>AC heavy load:</strong> AC units account for <strong>${acPct}%</strong> of your monthly bill. Recommended actions: Clean evaporator/condenser coils monthly, install smart digital thermostats at 24°C, and ensure dedicated isolator circuits to cut up to 25% energy waste.`;
+                } else if (totalKwh > 6000) {
+                    verdict = `⚠️ <strong>Red Slab Alert:</strong> Your consumption reaches Slab 4 (highest tariff rate). Upgrading regular compressors to Inverter units and balancing DB phases will lower your overall power tier.`;
+                } else {
+                    verdict = `✅ <strong>Balanced Consumption:</strong> Your electricity consumption stays within standard mid-tier slabs. Routine coil cleaning and preventative DB checkups will maintain peak energy efficiency.`;
+                }
+                if (dewaResVerdict) dewaResVerdict.innerHTML = verdict;
+            };
+
+            // Event Listeners for Tab 2
+            if (dewaUtility) dewaUtility.addEventListener('change', updateDewaFewaCalc);
+            if (dewaAcCount) dewaAcCount.addEventListener('input', updateDewaFewaCalc);
+            if (dewaAcTon) dewaAcTon.addEventListener('change', updateDewaFewaCalc);
+            if (dewaAcHours) dewaAcHours.addEventListener('input', updateDewaFewaCalc);
+            if (dewaBaseLoad) dewaBaseLoad.addEventListener('input', updateDewaFewaCalc);
+
+            // Tab 2 WhatsApp Export
+            const btnExportDewaWhatsApp = document.getElementById('btn-export-dewa-whatsapp');
+            if (btnExportDewaWhatsApp) {
+                btnExportDewaWhatsApp.addEventListener('click', () => {
+                    const cost = dewaResCost ? dewaResCost.textContent : '0';
+                    const kwh = dewaResKwh ? dewaResKwh.textContent : '0';
+                    const acPct = dewaResAcPct ? dewaResAcPct.textContent : '0%';
+                    const util = dewaUtility ? dewaUtility.options[dewaUtility.selectedIndex].text : 'DEWA/FEWA';
+                    const text = `Hi Ahammed, I calculated my estimated monthly electricity bill on your website:\n\n⚡ *Provider:* ${util}\n💰 *Estimated Monthly Cost:* ${cost} AED\n📊 *Monthly Consumption:* ${kwh}\n❄️ *AC Power Share:* ${acPct}\n\nCan I consult you for an electrical inspection and AC energy-saving tune-up at my property?`;
+                    window.open(`https://wa.me/${atob("OTcxNTI2MzkzMjkz")}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+                });
+            }
+
+            // Initialize Tab 2
+            updateDewaFewaCalc();
+
+
+            /* ── TAB 4: UAE CABLE SIZING & VOLTAGE DROP CALCULATOR ── */
+            let cablePhase = 1; // 1 = Single Phase (230V), 3 = Three Phase (400V)
+            const cablePillBtns = document.querySelectorAll('[data-phase-type]');
+            const cableLoad = document.getElementById('cable-load');
+            const cableLoadBadge = document.getElementById('cable-load-badge');
+            const cableLength = document.getElementById('cable-length');
+            const cableLengthBadge = document.getElementById('cable-length-badge');
+            const cableInsulation = document.getElementById('cable-insulation');
+            const cableAmbient = document.getElementById('cable-ambient');
+
+            const cableResSize = document.getElementById('cable-res-size');
+            const cableResCapacity = document.getElementById('cable-res-capacity');
+            const cableResVdVolts = document.getElementById('cable-res-vd-volts');
+            const cableResVdPct = document.getElementById('cable-res-vd-pct');
+            const cableMeterFill = document.getElementById('cable-meter-fill');
+            const cableResCurrent = document.getElementById('cable-res-current');
+            const cableResMcb = document.getElementById('cable-res-mcb');
+            const cableResMaxLen = document.getElementById('cable-res-max-len');
+            const cableResVerdict = document.getElementById('cable-res-verdict');
+
+            // Standard Copper Cable Data (BS 7671 / DEWA)
+            // size (mm²), capacity XLPE 90C (A), capacity PVC 70C (A), mV/A/m single-phase, mV/A/m three-phase
+            const cableTable = [
+                { size: 1.5,  xlpe: 23,  pvc: 17.5, mvSingle: 29.0,  mvThree: 25.0,  mcb: "10A Type B/C" },
+                { size: 2.5,  xlpe: 31,  pvc: 24,   mvSingle: 18.0,  mvThree: 15.0,  mcb: "16A or 20A Type C" },
+                { size: 4.0,  xlpe: 42,  pvc: 32,   mvSingle: 11.0,  mvThree: 9.5,   mcb: "25A or 32A Type C" },
+                { size: 6.0,  xlpe: 54,  pvc: 41,   mvSingle: 7.3,   mvThree: 6.4,   mcb: "40A Type C" },
+                { size: 10.0, xlpe: 75,  pvc: 57,   mvSingle: 4.4,   mvThree: 3.8,   mcb: "50A or 63A Type C" },
+                { size: 16.0, xlpe: 100, pvc: 76,   mvSingle: 2.8,   mvThree: 2.4,   mcb: "80A Type C" },
+                { size: 25.0, xlpe: 135, pvc: 101,  mvSingle: 1.75,  mvThree: 1.5,   mcb: "100A MCCB" },
+                { size: 35.0, xlpe: 169, pvc: 125,  mvSingle: 1.25,  mvThree: 1.1,   mcb: "125A MCCB" },
+                { size: 50.0, xlpe: 207, pvc: 151,  mvSingle: 0.93,  mvThree: 0.81,  mcb: "160A MCCB" }
+            ];
+
+            cablePillBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    cablePillBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    cablePhase = parseInt(btn.getAttribute('data-phase-type'), 10) || 1;
+                    updateCableCalc();
+                });
+            });
+
+            const updateCableCalc = () => {
+                if (!cableLoad || !cableLength || !cableInsulation || !cableAmbient) return;
+
+                const kw = parseFloat(cableLoad.value) || 7.5;
+                const length = parseFloat(cableLength.value) || 30;
+                const insulation = cableInsulation.value; // 'xlpe' or 'pvc'
+                const ambient = parseInt(cableAmbient.value, 10) || 50;
+
+                // Ambient Temperature Derating Factor (Ca)
+                // 50°C UAE derating: XLPE 0.82, PVC 0.71; 40°C: XLPE 0.91, PVC 0.87
+                let ca = 0.82;
+                if (ambient === 50) {
+                    ca = insulation === 'xlpe' ? 0.82 : 0.71;
+                } else {
+                    ca = insulation === 'xlpe' ? 0.91 : 0.87;
+                }
+
+                // Calculate Full Load Current
+                let Ib = 0;
+                let voltage = 230;
+                const pf = 0.88; // standard assumed power factor
+
+                if (cablePhase === 1) {
+                    voltage = 230;
+                    Ib = (kw * 1000) / (voltage * pf);
+                } else {
+                    voltage = 400;
+                    Ib = (kw * 1000) / (Math.sqrt(3) * voltage * pf);
+                }
+
+                if (cableLoadBadge) {
+                    cableLoadBadge.textContent = `${kw.toFixed(1)} kW (~${Ib.toFixed(1)} A)`;
+                }
+                if (cableLengthBadge) {
+                    cableLengthBadge.textContent = `${Math.round(length)} Meters`;
+                }
+
+                // Minimum required Iz after derating: Iz >= Ib / Ca
+                const requiredIz = Ib / ca;
+
+                // Find candidate cable that meets both thermal rating and voltage drop <= 4.0%
+                let chosenCable = null;
+                let calculatedVdVolts = 0;
+                let calculatedVdPct = 0;
+
+                for (let i = 0; i < cableTable.length; i++) {
+                    const row = cableTable[i];
+                    const baseCapacity = insulation === 'xlpe' ? row.xlpe : row.pvc;
+                    const deratedCapacity = baseCapacity * ca;
+
+                    if (baseCapacity >= requiredIz) {
+                        const mvRate = cablePhase === 1 ? row.mvSingle : row.mvThree;
+                        const vdVolts = (mvRate * Ib * length) / 1000;
+                        const vdParmPct = (vdVolts / voltage) * 100;
+
+                        if (vdParmPct <= 4.0 || i === cableTable.length - 1) {
+                            chosenCable = row;
+                            calculatedVdVolts = vdVolts;
+                            calculatedVdPct = vdParmPct;
+                            break;
+                        }
+                    }
+                }
+
+                if (!chosenCable) {
+                    chosenCable = cableTable[cableTable.length - 1];
+                    const mvRate = cablePhase === 1 ? chosenCable.mvSingle : chosenCable.mvThree;
+                    calculatedVdVolts = (mvRate * Ib * length) / 1000;
+                    calculatedVdPct = (calculatedVdVolts / voltage) * 100;
+                }
+
+                const baseCap = insulation === 'xlpe' ? chosenCable.xlpe : chosenCable.pvc;
+                const deratedCap = baseCap * ca;
+
+                // Calculate max length before exceeding 4% drop
+                const mvRate = cablePhase === 1 ? chosenCable.mvSingle : chosenCable.mvThree;
+                const maxPermissibleVd = voltage * 0.04;
+                const maxRun = Ib > 0 && mvRate > 0 ? Math.round((maxPermissibleVd * 1000) / (mvRate * Ib)) : 100;
+
+                // Update UI elements
+                if (cableResSize) cableResSize.textContent = chosenCable.size.toFixed(1);
+                if (cableResCapacity) cableResCapacity.textContent = `${deratedCap.toFixed(1)} A`;
+                if (cableResCurrent) cableResCurrent.textContent = `${Ib.toFixed(1)} A`;
+                if (cableResVdVolts) cableResVdVolts.textContent = calculatedVdVolts.toFixed(1);
+                if (cableResVdPct) cableResVdPct.textContent = `${calculatedVdPct.toFixed(2)}%`;
+                if (cableResMcb) cableResMcb.textContent = chosenCable.mcb;
+                if (cableResMaxLen) cableResMaxLen.textContent = `${maxRun} Meters`;
+
+                // Voltage Drop Meter Bar (clamped to max 100% width, 4% is danger point)
+                if (cableMeterFill) {
+                    const meterWidth = Math.min(Math.max((calculatedVdPct / 5.0) * 100, 5), 100);
+                    cableMeterFill.style.width = `${meterWidth}%`;
+                    if (calculatedVdPct <= 2.5) {
+                        cableMeterFill.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+                    } else if (calculatedVdPct <= 4.0) {
+                        cableMeterFill.style.background = 'linear-gradient(90deg, #f59e0b, #d97706)';
+                    } else {
+                        cableMeterFill.style.background = 'linear-gradient(90deg, #ef4444, #b91c1c)';
+                    }
+                }
+
+                // Technical Verdict
+                let verdict = "";
+                if (calculatedVdPct <= 2.5) {
+                    verdict = `✅ <strong>Optimal DEWA Compliance:</strong> The selected <strong>${chosenCable.size} mm²</strong> cable provides superior conductivity with a minimal ${calculatedVdPct.toFixed(2)}% voltage drop at 50°C ambient, preventing equipment overheating.`;
+                } else if (calculatedVdPct <= 4.0) {
+                    verdict = `⚠️ <strong>Acceptable Range (Marginal):</strong> Voltage drop is ${calculatedVdPct.toFixed(2)}% (DEWA/FEWA ceiling is 4.0%). If future loads or additional AC compressors might be added, consider upsizing one step.`;
+                } else {
+                    verdict = `🚨 <strong>NON-COMPLIANT DROP (${calculatedVdPct.toFixed(2)}%):</strong> Voltage drop exceeds the 4.0% DEWA/FEWA safety threshold! Upsize the cable conductor immediately to avoid motor burnouts and tripping.`;
+                }
+                if (cableResVerdict) cableResVerdict.innerHTML = verdict;
+            };
+
+            // Event listeners for Tab 4
+            if (cableLoad) cableLoad.addEventListener('input', updateCableCalc);
+            if (cableLength) cableLength.addEventListener('input', updateCableCalc);
+            if (cableInsulation) cableInsulation.addEventListener('change', updateCableCalc);
+            if (cableAmbient) cableAmbient.addEventListener('change', updateCableCalc);
+
+            // Tab 4 WhatsApp Export
+            const btnExportCableWhatsApp = document.getElementById('btn-export-cable-whatsapp');
+            if (btnExportCableWhatsApp) {
+                btnExportCableWhatsApp.addEventListener('click', () => {
+                    const size = cableResSize ? cableResSize.textContent : '6.0';
+                    const kw = cableLoad ? cableLoad.value : '7.5';
+                    const len = cableLength ? cableLength.value : '30';
+                    const vd = cableResVdPct ? cableResVdPct.textContent : '2.0%';
+                    const phaseStr = cablePhase === 1 ? 'Single Phase (230V)' : 'Three Phase (400V)';
+                    const text = `Hi Ahammed, I used your UAE Cable Sizing & Voltage Drop Calculator:\n\n⚡ *Load:* ${kw} kW (${phaseStr})\n📏 *Distance:* ${len} Meters\n🔬 *Recommended Cable:* ${size} mm² Cu\n📉 *Calculated Voltage Drop:* ${vd}\n\nCould you assist with procurement, circuit pull-in, and professional DB dressing?`;
+                    window.open(`https://wa.me/${atob("OTcxNTI2MzkzMjkz")}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+                });
+            }
+
+            // Initialize Tab 4
+            updateCableCalc();
+
+
+            /* ── TAB 5: WATER BOOSTER PUMP & PRESSURE TANK CALIBRATION ── */
+            const pumpFloors = document.getElementById('pump-floors');
+            const pumpBaths = document.getElementById('pump-baths');
+            const pumpBathsBadge = document.getElementById('pump-baths-badge');
+            const pumpHp = document.getElementById('pump-hp');
+            const pumpTankSize = document.getElementById('pump-tank-size');
+
+            const pumpResCutin = document.getElementById('pump-res-cutin');
+            const pumpResCutinPsi = document.getElementById('pump-res-cutin-psi');
+            const pumpResCutout = document.getElementById('pump-res-cutout');
+            const pumpResCutoutPsi = document.getElementById('pump-res-cutout-psi');
+            const pumpResPrecharge = document.getElementById('pump-res-precharge');
+            const pumpResVerdict = document.getElementById('pump-res-verdict');
+
+            const updatePumpCalc = () => {
+                if (!pumpFloors || !pumpBaths || !pumpHp || !pumpTankSize) return;
+
+                const floors = parseInt(pumpFloors.value, 10) || 2;
+                const baths = parseInt(pumpBaths.value, 10) || 4;
+                const hp = parseFloat(pumpHp.value) || 0.75;
+                const tankSize = parseInt(pumpTankSize.value, 10) || 24;
+
+                if (pumpBathsBadge) pumpBathsBadge.textContent = `${baths} Bathroom${baths > 1 ? 's' : ''}`;
+
+                // Static Head Elevation Calculation:
+                // Floor 1 (G): ~3m (0.3 bar), Floor 2 (G+1): ~6m (0.6 bar), Floor 3 (G+2): ~9m (0.9 bar)
+                const elevationHeadBar = floors * 0.3;
+
+                // Required residual pressure at the highest shower: minimum 1.5 - 1.8 bar
+                let baseResidual = 1.6;
+                if (baths >= 6) baseResidual = 1.8;
+
+                // Recommended Cut-In (Start Pressure)
+                let cutIn = parseFloat((elevationHeadBar + baseResidual).toFixed(1));
+                if (cutIn < 1.8) cutIn = 1.8;
+                if (cutIn > 2.8) cutIn = 2.8;
+
+                // Recommended Cut-Out (Stop Pressure): Typically Cut-In + 1.2 to 1.5 bar differential
+                let cutOut = parseFloat((cutIn + 1.4).toFixed(1));
+                if (hp >= 1.0) cutOut = parseFloat((cutIn + 1.6).toFixed(1));
+
+                // Mandatory Air Pre-Charge Pressure for Expansion Tank
+                // Golden rule: Exactly 0.2 bar (3 PSI) below Cut-In with ZERO water pressure
+                const precharge = parseFloat((cutIn - 0.2).toFixed(1));
+
+                // Convert bar to PSI (1 bar ≈ 14.5038 PSI)
+                const cutInPsi = Math.round(cutIn * 14.5038);
+                const cutOutPsi = Math.round(cutOut * 14.5038);
+                const prechargePsi = Math.round(precharge * 14.5038);
+
+                if (pumpResCutin) pumpResCutin.textContent = cutIn.toFixed(1);
+                if (pumpResCutinPsi) pumpResCutinPsi.textContent = `(${cutInPsi} PSI)`;
+                if (pumpResCutout) pumpResCutout.textContent = cutOut.toFixed(1);
+                if (pumpResCutoutPsi) pumpResCutoutPsi.textContent = `(${cutOutPsi} PSI)`;
+                if (pumpResPrecharge) pumpResPrecharge.textContent = precharge.toFixed(1);
+
+                // Anti-hunting diagnostic verdict
+                let verdict = "";
+                if (tankSize === 24 && baths > 5) {
+                    verdict = `⚠️ <strong>Tank Size Advisory:</strong> With ${baths} bathrooms, a 24L tank may cause frequent pump short-cycling during peak shower hours. Upgrading to a 50L pressure vessel will extend pump motor lifespan. Pre-charge air MUST be calibrated to <strong>${precharge} bar (${prechargePsi} PSI)</strong>.`;
+                } else {
+                    verdict = `✅ <strong>Optimal Calibration:</strong> Set your pressure switch cut-in to <strong>${cutIn} bar</strong>, cut-out to <strong>${cutOut} bar</strong>, and pre-charge the empty bladder tank to <strong>${precharge} bar (${prechargePsi} PSI)</strong>. This guarantees constant water flow with zero pump hunting.`;
+                }
+                if (pumpResVerdict) pumpResVerdict.innerHTML = verdict;
+            };
+
+            // Event Listeners for Tab 5
+            if (pumpFloors) pumpFloors.addEventListener('change', updatePumpCalc);
+            if (pumpBaths) pumpBaths.addEventListener('input', updatePumpCalc);
+            if (pumpHp) pumpHp.addEventListener('change', updatePumpCalc);
+            if (pumpTankSize) pumpTankSize.addEventListener('change', updatePumpCalc);
+
+            // Tab 5 WhatsApp Export
+            const btnExportPumpWhatsApp = document.getElementById('btn-export-pump-whatsapp');
+            if (btnExportPumpWhatsApp) {
+                btnExportPumpWhatsApp.addEventListener('click', () => {
+                    const cutin = pumpResCutin ? pumpResCutin.textContent : '2.0';
+                    const cutout = pumpResCutout ? pumpResCutout.textContent : '3.5';
+                    const precharge = pumpResPrecharge ? pumpResPrecharge.textContent : '1.8';
+                    const hp = pumpHp ? pumpHp.options[pumpHp.selectedIndex].text : '0.75 HP';
+                    const text = `Hi Ahammed, I checked my water booster pump settings with your calculator:\n\n🚰 *Pump:* ${hp}\n🎯 *Recommended Cut-In:* ${cutin} bar\n🛑 *Recommended Cut-Out:* ${cutout} bar\n💨 *Tank Air Pre-charge:* ${precharge} bar\n\nMy pump is experiencing pressure fluctuation / cycling. Could you come inspect and calibrate the pressure switch and expansion vessel?`;
+                    window.open(`https://wa.me/${atob("OTcxNTI2MzkzMjkz")}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+                });
+            }
+
+            // Initialize Tab 5
+            updatePumpCalc();
 
 
             /* ── DYNAMIC WHATSAPP LINK PRE-FILL ── */
@@ -5042,20 +6154,21 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
 
             const renderFormattedText = (container, text) => {
                 const escapeHtml = (str) => str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                const resolveWaUrl = (url) => url.replace(/https:\/\/wa\.me\/\d+/g, 'https://wa.me/' + atob("OTcxNTI2MzkzMjkz"));
                 let formatted = escapeHtml(text)
                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                     .replace(/\*(.*?)\*/g, '<em>$1</em>')
                     .replace(/\[BUTTON:(.*?)\|(.*?)\|(.*?)\]/g, (match, label, url, cls) => {
                         const targetAttr = url.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
-                        return `<a href="${url}"${targetAttr} class="sparky-action-btn ${cls}">${label}</a>`;
+                        return `<a href="${resolveWaUrl(url)}"${targetAttr} class="sparky-action-btn ${cls}">${label}</a>`;
                     })
                     .replace(/\[BUTTON:(.*?)\|(.*?)\]/g, (match, label, url) => {
                         const targetAttr = url.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
-                        return `<a href="${url}"${targetAttr} class="sparky-action-btn">${label}</a>`;
+                        return `<a href="${resolveWaUrl(url)}"${targetAttr} class="sparky-action-btn">${label}</a>`;
                     })
                     .replace(/\[(.*?)\]\((.*?)\)/g, (match, label, url) => {
                         const targetAttr = url.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
-                        return `<a href="${url}"${targetAttr} style="color:var(--accent);text-decoration:underline;">${label}</a>`;
+                        return `<a href="${resolveWaUrl(url)}"${targetAttr} style="color:var(--accent);text-decoration:underline;">${label}</a>`;
                     })
                     .replace(/\n\n/g, '<br><br>')
                     .replace(/\n/g, '<br>');
@@ -5337,44 +6450,7 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
 
 
 
-            /* ── WHATSAPP ESTIMATE EXPORTER ── */
-            const exportEstimateBtn = document.getElementById('btn-export-load-whatsapp');
-            if (exportEstimateBtn) {
-                exportEstimateBtn.addEventListener('click', () => {
-                    const totalKw = document.getElementById('total-load')?.textContent || '0.00';
-                    const phase = document.getElementById('recommended-phase')?.textContent || 'Single Phase';
-                    
-                    const applianceNames = {
-                        ac: 'Air Conditioner',
-                        heater: 'Water Heater',
-                        fan: 'Ceiling Fan',
-                        light: 'Lighting Circuits',
-                        fridge: 'Refrigerator',
-                        wm: 'Washing Machine',
-                        microwave: 'Microwave',
-                        pump: 'Water Pump'
-                    };
 
-                    let selectedList = [];
-                    for (const key in appliances) {
-                        if (appliances[key].qty > 0) {
-                            selectedList.push(`• ${appliances[key].qty}x ${applianceNames[key] || key} (${appliances[key].watts * appliances[key].qty}W)`);
-                        }
-                    }
-
-                    let message = `Hi Ahammed! I used your website Electrical Load Calculator:\n\n` +
-                                  `⚡ Total Calculated Load: *${totalKw} kW*\n` +
-                                  `🔌 Recommended Supply: *${phase}*\n\n`;
-
-                    if (selectedList.length > 0) {
-                        message += `📋 Appliances Selected:\n${selectedList.join('\n')}\n\n`;
-                    }
-                    message += `Could you please provide a quotation and check availability for villa inspection / installation?`;
-
-                    const whatsappUrl = `https://wa.me/971526393293?text=${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank', 'noopener');
-                });
-            }
 
             /* ── REGISTER PWA SERVICE WORKER ── */
             if ('serviceWorker' in navigator) {

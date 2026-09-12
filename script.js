@@ -376,7 +376,31 @@
             });
 
 
-            /* ── ELECTRICAL LOAD ESTIMATOR ── */
+            /* ── TOOLS HUB TAB SWITCHER ── */
+            const toolTabBtns = document.querySelectorAll('.tool-tab-btn');
+            const toolPanels = document.querySelectorAll('.tool-panel');
+
+            toolTabBtns.forEach(tabBtn => {
+                tabBtn.addEventListener('click', () => {
+                    const targetTabId = tabBtn.getAttribute('data-tab');
+                    if (!targetTabId) return;
+
+                    toolTabBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    toolPanels.forEach(p => p.classList.remove('active'));
+
+                    tabBtn.classList.add('active');
+                    tabBtn.setAttribute('aria-selected', 'true');
+                    const activePanel = document.getElementById(targetTabId);
+                    if (activePanel) {
+                        activePanel.classList.add('active');
+                    }
+                });
+            });
+
+            /* ── TAB 1: ELECTRICAL LOAD ESTIMATOR ── */
             const appliances = {
                 ac: { watts: 3000, qty: 0 },
                 heater: { watts: 1500, qty: 0 },
@@ -385,7 +409,10 @@
                 fridge: { watts: 400, qty: 0 },
                 wm: { watts: 1000, qty: 0 },
                 microwave: { watts: 1200, qty: 0 },
-                pump: { watts: 750, qty: 0 }
+                pump: { watts: 750, qty: 0 },
+                oven: { watts: 3500, qty: 0 },
+                washer: { watts: 2000, qty: 0 },
+                ev: { watts: 7400, qty: 0 }
             };
 
             const totalLoadEl = document.getElementById('total-load');
@@ -401,7 +428,7 @@
                 }
 
                 const kw = (totalWatts / 1000).toFixed(2);
-                totalLoadEl.textContent = kw;
+                if (totalLoadEl) totalLoadEl.textContent = kw;
 
                 // Phase recommendation
                 let phase = "Single Phase (220V)";
@@ -409,14 +436,14 @@
                 
                 if (totalWatts > 10000) {
                     phase = "Three Phase (400V)";
-                    verdict = "High load detected! It is highly recommended to use a <strong>Three-Phase Distribution Board</strong> to balance the load evenly across all three phases (R, Y, B) to prevent frequent neutral wire overheating and circuit breakers tripping.";
+                    verdict = "High load detected (" + kw + " kW)! It is highly recommended to use a <strong>Three-Phase Distribution Board</strong> to balance the load evenly across all three phases (R, Y, B) to prevent neutral wire overheating and main incomer tripping.";
                 } else if (totalWatts === 0) {
                     phase = "—";
                     verdict = "Select household appliances above to calculate your estimated electrical load and receive a custom recommendation.";
                 }
 
-                recommendedPhaseEl.textContent = phase;
-                verdictBoxEl.innerHTML = verdict;
+                if (recommendedPhaseEl) recommendedPhaseEl.textContent = phase;
+                if (verdictBoxEl) verdictBoxEl.innerHTML = verdict;
             };
 
             // Plus/Minus Button Event Listeners
@@ -426,13 +453,15 @@
                     const action = button.getAttribute('data-action');
                     const qtyValEl = document.getElementById(`qty-${key}`);
 
+                    if (!appliances[key]) return;
+
                     if (action === 'plus') {
                         appliances[key].qty++;
                     } else if (action === 'minus' && appliances[key].qty > 0) {
                         appliances[key].qty--;
                     }
 
-                    qtyValEl.value = appliances[key].qty;
+                    if (qtyValEl) qtyValEl.value = appliances[key].qty;
                     updateCalculator();
                 });
             });
@@ -441,6 +470,7 @@
             document.querySelectorAll('.qty-val').forEach(input => {
                 input.addEventListener('input', () => {
                     const key = input.id.replace('qty-', '');
+                    if (!appliances[key]) return;
                     let val = parseInt(input.value, 10);
                     if (isNaN(val) || val < 0) {
                         val = 0;
@@ -455,14 +485,467 @@
                     if (input.value === '') {
                         input.value = '0';
                         const key = input.id.replace('qty-', '');
-                        appliances[key].qty = 0;
+                        if (appliances[key]) appliances[key].qty = 0;
                         updateCalculator();
                     }
                 });
             });
 
-            // Initialize Calculator
+            // Tab 1 WhatsApp Export
+            const btnExportLoadWhatsApp = document.getElementById('btn-export-load-whatsapp');
+            if (btnExportLoadWhatsApp) {
+                btnExportLoadWhatsApp.addEventListener('click', () => {
+                    const kw = totalLoadEl ? totalLoadEl.textContent : '0';
+                    const phase = recommendedPhaseEl ? recommendedPhaseEl.textContent : 'Single Phase';
+                    let loadItems = [];
+                    for (const k in appliances) {
+                        if (appliances[k].qty > 0) {
+                            loadItems.push(`${k.toUpperCase()}: ${appliances[k].qty} unit(s)`);
+                        }
+                    }
+                    const summary = loadItems.length > 0 ? loadItems.join(', ') : 'No items selected';
+                    const text = `Hi Ahammed, I used your Villa Load Calculator on your website:\n\n⚡ *Total Estimated Load:* ${kw} kW\n🔌 *Recommended Supply:* ${phase}\n📋 *Appliance Breakdown:* ${summary}\n\nCould you please advise on 3-Phase DB dressing / load balancing and quotation for my villa?`;
+                    window.open(`https://wa.me/${atob("OTcxNTI2MzkzMjkz")}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+                });
+            }
+
+            // Initialize Load Calculator
             updateCalculator();
+
+
+            /* ── TAB 2: DEWA / FEWA / SEWA BILL & AC COST ESTIMATOR ── */
+            let isDewaInverter = false;
+            const dewaUtility = document.getElementById('dewa-utility');
+            const dewaAcCount = document.getElementById('dewa-ac-count');
+            const dewaAcCountBadge = document.getElementById('dewa-ac-count-badge');
+            const dewaAcTon = document.getElementById('dewa-ac-ton');
+            const dewaAcHours = document.getElementById('dewa-ac-hours');
+            const dewaAcHoursBadge = document.getElementById('dewa-ac-hours-badge');
+            const dewaBaseLoad = document.getElementById('dewa-base-load');
+            const dewaBaseLoadBadge = document.getElementById('dewa-base-load-badge');
+            const dewaPillBtns = document.querySelectorAll('[data-inverter]');
+
+            const dewaResCost = document.getElementById('dewa-res-cost');
+            const dewaResDaily = document.getElementById('dewa-res-daily');
+            const dewaResKwh = document.getElementById('dewa-res-kwh');
+            const dewaResAcKwh = document.getElementById('dewa-res-ac-kwh');
+            const dewaResAcPct = document.getElementById('dewa-res-ac-pct');
+            const dewaResSlabCost = document.getElementById('dewa-res-slab-cost');
+            const dewaResFsc = document.getElementById('dewa-res-fsc');
+            const dewaResVat = document.getElementById('dewa-res-vat');
+            const dewaResVerdict = document.getElementById('dewa-res-verdict');
+
+            dewaPillBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    dewaPillBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    isDewaInverter = btn.getAttribute('data-inverter') === 'yes';
+                    updateDewaFewaCalc();
+                });
+            });
+
+            const updateDewaFewaCalc = () => {
+                if (!dewaUtility || !dewaAcCount || !dewaAcTon || !dewaAcHours || !dewaBaseLoad) return;
+
+                const utility = dewaUtility.value;
+                const acCount = parseInt(dewaAcCount.value, 10) || 1;
+                const acTon = parseFloat(dewaAcTon.value) || 2.0;
+                const acHours = parseInt(dewaAcHours.value, 10) || 12;
+                const baseLoad = parseInt(dewaBaseLoad.value, 10) || 600;
+
+                if (dewaAcCountBadge) dewaAcCountBadge.textContent = `${acCount} Unit${acCount > 1 ? 's' : ''}`;
+                if (dewaAcHoursBadge) dewaAcHoursBadge.textContent = `${acHours} Hours / Day`;
+                if (dewaBaseLoadBadge) dewaBaseLoadBadge.textContent = `${baseLoad} kWh`;
+
+                // Calculate AC kW draw (approx 1.2 kW per ton standard, 30% reduction if inverter)
+                let kwPerAc = acTon * 1.2;
+                if (isDewaInverter) kwPerAc *= 0.70;
+
+                // Monthly kWh for AC (duty cycle ~0.80 due to thermostat cycling)
+                const monthlyAcKwh = Math.round(acCount * kwPerAc * acHours * 0.80 * 30);
+                const totalKwh = monthlyAcKwh + baseLoad;
+                const acPct = totalKwh > 0 ? Math.round((monthlyAcKwh / totalKwh) * 100) : 0;
+
+                // Slab Tariff Calculation
+                let slabCost = 0;
+                let fscRate = 0.055; // default 5.5 fils
+
+                if (utility === 'dewa') {
+                    // DEWA Residential Slabs (Expat / General)
+                    fscRate = 0.055;
+                    let rem = totalKwh;
+                    if (rem > 0) {
+                        const s1 = Math.min(rem, 2000);
+                        slabCost += s1 * 0.23;
+                        rem -= s1;
+                    }
+                    if (rem > 0) {
+                        const s2 = Math.min(rem, 2000);
+                        slabCost += s2 * 0.28;
+                        rem -= s2;
+                    }
+                    if (rem > 0) {
+                        const s3 = Math.min(rem, 2000);
+                        slabCost += s3 * 0.32;
+                        rem -= s3;
+                    }
+                    if (rem > 0) {
+                        slabCost += rem * 0.38;
+                    }
+                } else if (utility === 'fewa') {
+                    // FEWA / Etihad WE Residential Slabs
+                    fscRate = 0.050;
+                    let rem = totalKwh;
+                    if (rem > 0) {
+                        const s1 = Math.min(rem, 2000);
+                        slabCost += s1 * 0.28;
+                        rem -= s1;
+                    }
+                    if (rem > 0) {
+                        const s2 = Math.min(rem, 2000);
+                        slabCost += s2 * 0.33;
+                        rem -= s2;
+                    }
+                    if (rem > 0) {
+                        const s3 = Math.min(rem, 2000);
+                        slabCost += s3 * 0.37;
+                        rem -= s3;
+                    }
+                    if (rem > 0) {
+                        slabCost += rem * 0.43;
+                    }
+                } else {
+                    // SEWA Slabs
+                    fscRate = 0.045;
+                    let rem = totalKwh;
+                    if (rem > 0) {
+                        const s1 = Math.min(rem, 2000);
+                        slabCost += s1 * 0.25;
+                        rem -= s1;
+                    }
+                    if (rem > 0) {
+                        const s2 = Math.min(rem, 4000);
+                        slabCost += s2 * 0.30;
+                        rem -= s2;
+                    }
+                    if (rem > 0) {
+                        slabCost += rem * 0.38;
+                    }
+                }
+
+                const fscCost = totalKwh * fscRate;
+                const subtotal = slabCost + fscCost;
+                const vatCost = subtotal * 0.05; // 5% VAT
+                const totalCost = Math.round(subtotal + vatCost);
+                const dailyCost = (totalCost / 30).toFixed(1);
+
+                if (dewaResCost) dewaResCost.textContent = totalCost.toLocaleString();
+                if (dewaResDaily) dewaResDaily.textContent = dailyCost;
+                if (dewaResKwh) dewaResKwh.textContent = `${totalKwh.toLocaleString()} kWh`;
+                if (dewaResAcKwh) dewaResAcKwh.textContent = `${monthlyAcKwh.toLocaleString()} kWh`;
+                if (dewaResAcPct) dewaResAcPct.textContent = `${acPct}%`;
+                if (dewaResSlabCost) dewaResSlabCost.textContent = `${slabCost.toFixed(2)} AED`;
+                if (dewaResFsc) dewaResFsc.textContent = `${fscCost.toFixed(2)} AED`;
+                if (dewaResVat) dewaResVat.textContent = `${vatCost.toFixed(2)} AED`;
+
+                // Technical Verdict
+                let verdict = "";
+                if (acPct >= 70) {
+                    verdict = `❄️ <strong>AC heavy load:</strong> AC units account for <strong>${acPct}%</strong> of your monthly bill. Recommended actions: Clean evaporator/condenser coils monthly, install smart digital thermostats at 24°C, and ensure dedicated isolator circuits to cut up to 25% energy waste.`;
+                } else if (totalKwh > 6000) {
+                    verdict = `⚠️ <strong>Red Slab Alert:</strong> Your consumption reaches Slab 4 (highest tariff rate). Upgrading regular compressors to Inverter units and balancing DB phases will lower your overall power tier.`;
+                } else {
+                    verdict = `✅ <strong>Balanced Consumption:</strong> Your electricity consumption stays within standard mid-tier slabs. Routine coil cleaning and preventative DB checkups will maintain peak energy efficiency.`;
+                }
+                if (dewaResVerdict) dewaResVerdict.innerHTML = verdict;
+            };
+
+            // Event Listeners for Tab 2
+            if (dewaUtility) dewaUtility.addEventListener('change', updateDewaFewaCalc);
+            if (dewaAcCount) dewaAcCount.addEventListener('input', updateDewaFewaCalc);
+            if (dewaAcTon) dewaAcTon.addEventListener('change', updateDewaFewaCalc);
+            if (dewaAcHours) dewaAcHours.addEventListener('input', updateDewaFewaCalc);
+            if (dewaBaseLoad) dewaBaseLoad.addEventListener('input', updateDewaFewaCalc);
+
+            // Tab 2 WhatsApp Export
+            const btnExportDewaWhatsApp = document.getElementById('btn-export-dewa-whatsapp');
+            if (btnExportDewaWhatsApp) {
+                btnExportDewaWhatsApp.addEventListener('click', () => {
+                    const cost = dewaResCost ? dewaResCost.textContent : '0';
+                    const kwh = dewaResKwh ? dewaResKwh.textContent : '0';
+                    const acPct = dewaResAcPct ? dewaResAcPct.textContent : '0%';
+                    const util = dewaUtility ? dewaUtility.options[dewaUtility.selectedIndex].text : 'DEWA/FEWA';
+                    const text = `Hi Ahammed, I calculated my estimated monthly electricity bill on your website:\n\n⚡ *Provider:* ${util}\n💰 *Estimated Monthly Cost:* ${cost} AED\n📊 *Monthly Consumption:* ${kwh}\n❄️ *AC Power Share:* ${acPct}\n\nCan I consult you for an electrical inspection and AC energy-saving tune-up at my property?`;
+                    window.open(`https://wa.me/${atob("OTcxNTI2MzkzMjkz")}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+                });
+            }
+
+            // Initialize Tab 2
+            updateDewaFewaCalc();
+
+
+            /* ── TAB 4: UAE CABLE SIZING & VOLTAGE DROP CALCULATOR ── */
+            let cablePhase = 1; // 1 = Single Phase (230V), 3 = Three Phase (400V)
+            const cablePillBtns = document.querySelectorAll('[data-phase-type]');
+            const cableLoad = document.getElementById('cable-load');
+            const cableLoadBadge = document.getElementById('cable-load-badge');
+            const cableLength = document.getElementById('cable-length');
+            const cableLengthBadge = document.getElementById('cable-length-badge');
+            const cableInsulation = document.getElementById('cable-insulation');
+            const cableAmbient = document.getElementById('cable-ambient');
+
+            const cableResSize = document.getElementById('cable-res-size');
+            const cableResCapacity = document.getElementById('cable-res-capacity');
+            const cableResVdVolts = document.getElementById('cable-res-vd-volts');
+            const cableResVdPct = document.getElementById('cable-res-vd-pct');
+            const cableMeterFill = document.getElementById('cable-meter-fill');
+            const cableResCurrent = document.getElementById('cable-res-current');
+            const cableResMcb = document.getElementById('cable-res-mcb');
+            const cableResMaxLen = document.getElementById('cable-res-max-len');
+            const cableResVerdict = document.getElementById('cable-res-verdict');
+
+            // Standard Copper Cable Data (BS 7671 / DEWA)
+            const cableTable = [
+                { size: 1.5,  xlpe: 23,  pvc: 17.5, mvSingle: 29.0,  mvThree: 25.0,  mcb: "10A Type B/C" },
+                { size: 2.5,  xlpe: 31,  pvc: 24,   mvSingle: 18.0,  mvThree: 15.0,  mcb: "16A or 20A Type C" },
+                { size: 4.0,  xlpe: 42,  pvc: 32,   mvSingle: 11.0,  mvThree: 9.5,   mcb: "25A or 32A Type C" },
+                { size: 6.0,  xlpe: 54,  pvc: 41,   mvSingle: 7.3,   mvThree: 6.4,   mcb: "40A Type C" },
+                { size: 10.0, xlpe: 75,  pvc: 57,   mvSingle: 4.4,   mvThree: 3.8,   mcb: "50A or 63A Type C" },
+                { size: 16.0, xlpe: 100, pvc: 76,   mvSingle: 2.8,   mvThree: 2.4,   mcb: "80A Type C" },
+                { size: 25.0, xlpe: 135, pvc: 101,  mvSingle: 1.75,  mvThree: 1.5,   mcb: "100A MCCB" },
+                { size: 35.0, xlpe: 169, pvc: 125,  mvSingle: 1.25,  mvThree: 1.1,   mcb: "125A MCCB" },
+                { size: 50.0, xlpe: 207, pvc: 151,  mvSingle: 0.93,  mvThree: 0.81,  mcb: "160A MCCB" }
+            ];
+
+            cablePillBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    cablePillBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    cablePhase = parseInt(btn.getAttribute('data-phase-type'), 10) || 1;
+                    updateCableCalc();
+                });
+            });
+
+            const updateCableCalc = () => {
+                if (!cableLoad || !cableLength || !cableInsulation || !cableAmbient) return;
+
+                const kw = parseFloat(cableLoad.value) || 7.5;
+                const length = parseFloat(cableLength.value) || 30;
+                const insulation = cableInsulation.value; // 'xlpe' or 'pvc'
+                const ambient = parseInt(cableAmbient.value, 10) || 50;
+
+                // Ambient Temperature Derating Factor (Ca)
+                let ca = 0.82;
+                if (ambient === 50) {
+                    ca = insulation === 'xlpe' ? 0.82 : 0.71;
+                } else {
+                    ca = insulation === 'xlpe' ? 0.91 : 0.87;
+                }
+
+                // Calculate Full Load Current
+                let Ib = 0;
+                let voltage = 230;
+                const pf = 0.88;
+
+                if (cablePhase === 1) {
+                    voltage = 230;
+                    Ib = (kw * 1000) / (voltage * pf);
+                } else {
+                    voltage = 400;
+                    Ib = (kw * 1000) / (Math.sqrt(3) * voltage * pf);
+                }
+
+                if (cableLoadBadge) {
+                    cableLoadBadge.textContent = `${kw.toFixed(1)} kW (~${Ib.toFixed(1)} A)`;
+                }
+                if (cableLengthBadge) {
+                    cableLengthBadge.textContent = `${Math.round(length)} Meters`;
+                }
+
+                const requiredIz = Ib / ca;
+
+                // Find candidate cable that meets both thermal rating and voltage drop <= 4.0%
+                let chosenCable = null;
+                let calculatedVdVolts = 0;
+                let calculatedVdPct = 0;
+
+                for (let i = 0; i < cableTable.length; i++) {
+                    const row = cableTable[i];
+                    const baseCapacity = insulation === 'xlpe' ? row.xlpe : row.pvc;
+                    const deratedCapacity = baseCapacity * ca;
+
+                    if (baseCapacity >= requiredIz) {
+                        const mvRate = cablePhase === 1 ? row.mvSingle : row.mvThree;
+                        const vdVolts = (mvRate * Ib * length) / 1000;
+                        const vdParmPct = (vdVolts / voltage) * 100;
+
+                        if (vdParmPct <= 4.0 || i === cableTable.length - 1) {
+                            chosenCable = row;
+                            calculatedVdVolts = vdVolts;
+                            calculatedVdPct = vdParmPct;
+                            break;
+                        }
+                    }
+                }
+
+                if (!chosenCable) {
+                    chosenCable = cableTable[cableTable.length - 1];
+                    const mvRate = cablePhase === 1 ? chosenCable.mvSingle : chosenCable.mvThree;
+                    calculatedVdVolts = (mvRate * Ib * length) / 1000;
+                    calculatedVdPct = (calculatedVdVolts / voltage) * 100;
+                }
+
+                const baseCap = insulation === 'xlpe' ? chosenCable.xlpe : chosenCable.pvc;
+                const deratedCap = baseCap * ca;
+
+                // Calculate max length before exceeding 4% drop
+                const mvRate = cablePhase === 1 ? chosenCable.mvSingle : chosenCable.mvThree;
+                const maxPermissibleVd = voltage * 0.04;
+                const maxRun = Ib > 0 && mvRate > 0 ? Math.round((maxPermissibleVd * 1000) / (mvRate * Ib)) : 100;
+
+                // Update UI elements
+                if (cableResSize) cableResSize.textContent = chosenCable.size.toFixed(1);
+                if (cableResCapacity) cableResCapacity.textContent = `${deratedCap.toFixed(1)} A`;
+                if (cableResCurrent) cableResCurrent.textContent = `${Ib.toFixed(1)} A`;
+                if (cableResVdVolts) cableResVdVolts.textContent = calculatedVdVolts.toFixed(1);
+                if (cableResVdPct) cableResVdPct.textContent = `${calculatedVdPct.toFixed(2)}%`;
+                if (cableResMcb) cableResMcb.textContent = chosenCable.mcb;
+                if (cableResMaxLen) cableResMaxLen.textContent = `${maxRun} Meters`;
+
+                // Voltage Drop Meter Bar
+                if (cableMeterFill) {
+                    const meterWidth = Math.min(Math.max((calculatedVdPct / 5.0) * 100, 5), 100);
+                    cableMeterFill.style.width = `${meterWidth}%`;
+                    if (calculatedVdPct <= 2.5) {
+                        cableMeterFill.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+                    } else if (calculatedVdPct <= 4.0) {
+                        cableMeterFill.style.background = 'linear-gradient(90deg, #f59e0b, #d97706)';
+                    } else {
+                        cableMeterFill.style.background = 'linear-gradient(90deg, #ef4444, #b91c1c)';
+                    }
+                }
+
+                // Technical Verdict
+                let verdict = "";
+                if (calculatedVdPct <= 2.5) {
+                    verdict = `✅ <strong>Optimal DEWA Compliance:</strong> The selected <strong>${chosenCable.size} mm²</strong> cable provides superior conductivity with a minimal ${calculatedVdPct.toFixed(2)}% voltage drop at 50°C ambient, preventing equipment overheating.`;
+                } else if (calculatedVdPct <= 4.0) {
+                    verdict = `⚠️ <strong>Acceptable Range (Marginal):</strong> Voltage drop is ${calculatedVdPct.toFixed(2)}% (DEWA/FEWA ceiling is 4.0%). If future loads or additional AC compressors might be added, consider upsizing one step.`;
+                } else {
+                    verdict = `🚨 <strong>NON-COMPLIANT DROP (${calculatedVdPct.toFixed(2)}%):</strong> Voltage drop exceeds the 4.0% DEWA/FEWA safety threshold! Upsize the cable conductor immediately to avoid motor burnouts and tripping.`;
+                }
+                if (cableResVerdict) cableResVerdict.innerHTML = verdict;
+            };
+
+            // Event listeners for Tab 4
+            if (cableLoad) cableLoad.addEventListener('input', updateCableCalc);
+            if (cableLength) cableLength.addEventListener('input', updateCableCalc);
+            if (cableInsulation) cableInsulation.addEventListener('change', updateCableCalc);
+            if (cableAmbient) cableAmbient.addEventListener('change', updateCableCalc);
+
+            // Tab 4 WhatsApp Export
+            const btnExportCableWhatsApp = document.getElementById('btn-export-cable-whatsapp');
+            if (btnExportCableWhatsApp) {
+                btnExportCableWhatsApp.addEventListener('click', () => {
+                    const size = cableResSize ? cableResSize.textContent : '6.0';
+                    const kw = cableLoad ? cableLoad.value : '7.5';
+                    const len = cableLength ? cableLength.value : '30';
+                    const vd = cableResVdPct ? cableResVdPct.textContent : '2.0%';
+                    const phaseStr = cablePhase === 1 ? 'Single Phase (230V)' : 'Three Phase (400V)';
+                    const text = `Hi Ahammed, I used your UAE Cable Sizing & Voltage Drop Calculator:\n\n⚡ *Load:* ${kw} kW (${phaseStr})\n📏 *Distance:* ${len} Meters\n🔬 *Recommended Cable:* ${size} mm² Cu\n📉 *Calculated Voltage Drop:* ${vd}\n\nCould you assist with procurement, circuit pull-in, and professional DB dressing?`;
+                    window.open(`https://wa.me/${atob("OTcxNTI2MzkzMjkz")}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+                });
+            }
+
+            // Initialize Tab 4
+            updateCableCalc();
+
+
+            /* ── TAB 5: WATER BOOSTER PUMP & PRESSURE TANK CALIBRATION ── */
+            const pumpFloors = document.getElementById('pump-floors');
+            const pumpBaths = document.getElementById('pump-baths');
+            const pumpBathsBadge = document.getElementById('pump-baths-badge');
+            const pumpHp = document.getElementById('pump-hp');
+            const pumpTankSize = document.getElementById('pump-tank-size');
+
+            const pumpResCutin = document.getElementById('pump-res-cutin');
+            const pumpResCutinPsi = document.getElementById('pump-res-cutin-psi');
+            const pumpResCutout = document.getElementById('pump-res-cutout');
+            const pumpResCutoutPsi = document.getElementById('pump-res-cutout-psi');
+            const pumpResPrecharge = document.getElementById('pump-res-precharge');
+            const pumpResVerdict = document.getElementById('pump-res-verdict');
+
+            const updatePumpCalc = () => {
+                if (!pumpFloors || !pumpBaths || !pumpHp || !pumpTankSize) return;
+
+                const floors = parseInt(pumpFloors.value, 10) || 2;
+                const baths = parseInt(pumpBaths.value, 10) || 4;
+                const hp = parseFloat(pumpHp.value) || 0.75;
+                const tankSize = parseInt(pumpTankSize.value, 10) || 24;
+
+                if (pumpBathsBadge) pumpBathsBadge.textContent = `${baths} Bathroom${baths > 1 ? 's' : ''}`;
+
+                // Static Head Elevation:
+                // Floor 1 (G): ~3m (0.3 bar), Floor 2 (G+1): ~6m (0.6 bar), Floor 3 (G+2): ~9m (0.9 bar)
+                const elevationHeadBar = floors * 0.3;
+
+                // Required residual pressure at the highest shower: minimum 1.5 - 1.8 bar
+                let baseResidual = 1.6;
+                if (baths >= 6) baseResidual = 1.8;
+
+                // Recommended Cut-In (Start Pressure)
+                let cutIn = parseFloat((elevationHeadBar + baseResidual).toFixed(1));
+                if (cutIn < 1.8) cutIn = 1.8;
+                if (cutIn > 2.8) cutIn = 2.8;
+
+                // Recommended Cut-Out (Stop Pressure): Typically Cut-In + 1.2 to 1.5 bar differential
+                let cutOut = parseFloat((cutIn + 1.4).toFixed(1));
+                if (hp >= 1.0) cutOut = parseFloat((cutIn + 1.6).toFixed(1));
+
+                // Mandatory Air Pre-Charge Pressure for Expansion Tank
+                const precharge = parseFloat((cutIn - 0.2).toFixed(1));
+
+                const cutInPsi = Math.round(cutIn * 14.5038);
+                const cutOutPsi = Math.round(cutOut * 14.5038);
+                const prechargePsi = Math.round(precharge * 14.5038);
+
+                if (pumpResCutin) pumpResCutin.textContent = cutIn.toFixed(1);
+                if (pumpResCutinPsi) pumpResCutinPsi.textContent = `(${cutInPsi} PSI)`;
+                if (pumpResCutout) pumpResCutout.textContent = cutOut.toFixed(1);
+                if (pumpResCutoutPsi) pumpResCutoutPsi.textContent = `(${cutOutPsi} PSI)`;
+                if (pumpResPrecharge) pumpResPrecharge.textContent = precharge.toFixed(1);
+
+                // Anti-hunting diagnostic verdict
+                let verdict = "";
+                if (tankSize === 24 && baths > 5) {
+                    verdict = `⚠️ <strong>Tank Size Advisory:</strong> With ${baths} bathrooms, a 24L tank may cause frequent pump short-cycling during peak shower hours. Upgrading to a 50L pressure vessel will extend pump motor lifespan. Pre-charge air MUST be calibrated to <strong>${precharge} bar (${prechargePsi} PSI)</strong>.`;
+                } else {
+                    verdict = `✅ <strong>Optimal Calibration:</strong> Set your pressure switch cut-in to <strong>${cutIn} bar</strong>, cut-out to <strong>${cutOut} bar</strong>, and pre-charge the empty bladder tank to <strong>${precharge} bar (${prechargePsi} PSI)</strong>. This guarantees constant water flow with zero pump hunting.`;
+                }
+                if (pumpResVerdict) pumpResVerdict.innerHTML = verdict;
+            };
+
+            // Event Listeners for Tab 5
+            if (pumpFloors) pumpFloors.addEventListener('change', updatePumpCalc);
+            if (pumpBaths) pumpBaths.addEventListener('input', updatePumpCalc);
+            if (pumpHp) pumpHp.addEventListener('change', updatePumpCalc);
+            if (pumpTankSize) pumpTankSize.addEventListener('change', updatePumpCalc);
+
+            // Tab 5 WhatsApp Export
+            const btnExportPumpWhatsApp = document.getElementById('btn-export-pump-whatsapp');
+            if (btnExportPumpWhatsApp) {
+                btnExportPumpWhatsApp.addEventListener('click', () => {
+                    const cutin = pumpResCutin ? pumpResCutin.textContent : '2.0';
+                    const cutout = pumpResCutout ? pumpResCutout.textContent : '3.5';
+                    const precharge = pumpResPrecharge ? pumpResPrecharge.textContent : '1.8';
+                    const hp = pumpHp ? pumpHp.options[pumpHp.selectedIndex].text : '0.75 HP';
+                    const text = `Hi Ahammed, I checked my water booster pump settings with your calculator:\n\n🚰 *Pump:* ${hp}\n🎯 *Recommended Cut-In:* ${cutin} bar\n🛑 *Recommended Cut-Out:* ${cutout} bar\n💨 *Tank Air Pre-charge:* ${precharge} bar\n\nMy pump is experiencing pressure fluctuation / cycling. Could you come inspect and calibrate the pressure switch and expansion vessel?`;
+                    window.open(`https://wa.me/${atob("OTcxNTI2MzkzMjkz")}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
+                });
+            }
+
+            // Initialize Tab 5
+            updatePumpCalc();
 
 
             /* ── DYNAMIC WHATSAPP LINK PRE-FILL ── */
@@ -1110,20 +1593,21 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
 
             const renderFormattedText = (container, text) => {
                 const escapeHtml = (str) => str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                const resolveWaUrl = (url) => url.replace(/https:\/\/wa\.me\/\d+/g, 'https://wa.me/' + atob("OTcxNTI2MzkzMjkz"));
                 let formatted = escapeHtml(text)
                     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                     .replace(/\*(.*?)\*/g, '<em>$1</em>')
                     .replace(/\[BUTTON:(.*?)\|(.*?)\|(.*?)\]/g, (match, label, url, cls) => {
                         const targetAttr = url.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
-                        return `<a href="${url}"${targetAttr} class="sparky-action-btn ${cls}">${label}</a>`;
+                        return `<a href="${resolveWaUrl(url)}"${targetAttr} class="sparky-action-btn ${cls}">${label}</a>`;
                     })
                     .replace(/\[BUTTON:(.*?)\|(.*?)\]/g, (match, label, url) => {
                         const targetAttr = url.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
-                        return `<a href="${url}"${targetAttr} class="sparky-action-btn">${label}</a>`;
+                        return `<a href="${resolveWaUrl(url)}"${targetAttr} class="sparky-action-btn">${label}</a>`;
                     })
                     .replace(/\[(.*?)\]\((.*?)\)/g, (match, label, url) => {
                         const targetAttr = url.startsWith('#') ? '' : ' target="_blank" rel="noopener"';
-                        return `<a href="${url}"${targetAttr} style="color:var(--accent);text-decoration:underline;">${label}</a>`;
+                        return `<a href="${resolveWaUrl(url)}"${targetAttr} style="color:var(--accent);text-decoration:underline;">${label}</a>`;
                     })
                     .replace(/\n\n/g, '<br><br>')
                     .replace(/\n/g, '<br>');
@@ -1405,44 +1889,7 @@ Crucial: Calculate any relative time durations mathematically using Today's Date
 
 
 
-            /* ── WHATSAPP ESTIMATE EXPORTER ── */
-            const exportEstimateBtn = document.getElementById('btn-export-load-whatsapp');
-            if (exportEstimateBtn) {
-                exportEstimateBtn.addEventListener('click', () => {
-                    const totalKw = document.getElementById('total-load')?.textContent || '0.00';
-                    const phase = document.getElementById('recommended-phase')?.textContent || 'Single Phase';
-                    
-                    const applianceNames = {
-                        ac: 'Air Conditioner',
-                        heater: 'Water Heater',
-                        fan: 'Ceiling Fan',
-                        light: 'Lighting Circuits',
-                        fridge: 'Refrigerator',
-                        wm: 'Washing Machine',
-                        microwave: 'Microwave',
-                        pump: 'Water Pump'
-                    };
 
-                    let selectedList = [];
-                    for (const key in appliances) {
-                        if (appliances[key].qty > 0) {
-                            selectedList.push(`• ${appliances[key].qty}x ${applianceNames[key] || key} (${appliances[key].watts * appliances[key].qty}W)`);
-                        }
-                    }
-
-                    let message = `Hi Ahammed! I used your website Electrical Load Calculator:\n\n` +
-                                  `⚡ Total Calculated Load: *${totalKw} kW*\n` +
-                                  `🔌 Recommended Supply: *${phase}*\n\n`;
-
-                    if (selectedList.length > 0) {
-                        message += `📋 Appliances Selected:\n${selectedList.join('\n')}\n\n`;
-                    }
-                    message += `Could you please provide a quotation and check availability for villa inspection / installation?`;
-
-                    const whatsappUrl = `https://wa.me/971526393293?text=${encodeURIComponent(message)}`;
-                    window.open(whatsappUrl, '_blank', 'noopener');
-                });
-            }
 
             /* ── REGISTER PWA SERVICE WORKER ── */
             if ('serviceWorker' in navigator) {
