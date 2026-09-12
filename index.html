@@ -1920,6 +1920,77 @@
             font-weight: 600;
         }
 
+        /* ── BILL VERIFICATION & AUDIT ACCORDION ── */
+        .bill-audit-box {
+            margin-top: 14px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            border-radius: var(--radius);
+            overflow: hidden;
+            font-size: 0.84rem;
+        }
+
+        .bill-audit-summary {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(245, 158, 11, 0.07);
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--hi);
+            user-select: none;
+            transition: background 0.2s ease;
+            list-style: none;
+        }
+
+        .bill-audit-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .bill-audit-summary:hover {
+            background: rgba(245, 158, 11, 0.12);
+        }
+
+        .bill-audit-summary i.chevron {
+            transition: transform 0.25s ease;
+            color: var(--accent);
+        }
+
+        details[open] .bill-audit-summary i.chevron {
+            transform: rotate(180deg);
+        }
+
+        .bill-audit-content {
+            padding: 14px 16px;
+            color: var(--mid);
+            line-height: 1.6;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bill-audit-step {
+            margin-bottom: 12px;
+            padding-left: 8px;
+            border-left: 2px solid var(--accent);
+        }
+
+        .bill-audit-step strong {
+            color: var(--hi);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .bill-audit-badge {
+            display: inline-block;
+            padding: 2px 7px;
+            font-size: 0.72rem;
+            border-radius: 4px;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
         /* ── CONTACT & HIRE ME SECTION ── */
         .contact-section {
             background: var(--surface);
@@ -3895,6 +3966,41 @@
                                 <div class="calc-verdict-box" id="dewa-res-verdict">
                                     Calculating energy analysis...
                                 </div>
+
+                                <!-- 🔍 Bill Verification & Discrepancy Audit Guide -->
+                                <details class="bill-audit-box">
+                                    <summary class="bill-audit-summary">
+                                        <span><i class="fa-solid fa-circle-question" style="color: var(--accent); margin-right: 6px;"></i> Why does my actual authority bill vary? (Verification Guide)</span>
+                                        <i class="fa-solid fa-chevron-down chevron"></i>
+                                    </summary>
+                                    <div class="bill-audit-content">
+                                        <div class="bill-audit-step">
+                                            <span class="bill-audit-badge">1. Tariff Slab Escalation</span>
+                                            <strong>Progressive Tier Jumps</strong>
+                                            DEWA & FEWA bill on progressive slabs. Once consumption crosses 2,000 kWh, rates increase from 23–28 fils up to 38–43 fils/kWh. Even a minor increase in AC running hours pushes the extra units into the highest tariff tier.
+                                        </div>
+                                        <div class="bill-audit-step">
+                                            <span class="bill-audit-badge">2. Summer vs. Winter Ambient Factor</span>
+                                            <strong>Extreme 50°C Rooftop Heat</strong>
+                                            In UAE summer (May–September), AC condenser units operate against 48°C–52°C ambient heat. Compressors draw 25% to 40% more current and cycle twice as frequently compared to cooler winter months.
+                                        </div>
+                                        <div class="bill-audit-step">
+                                            <span class="bill-audit-badge">3. Municipal & Tenancy Surcharges</span>
+                                            <strong>Housing Fee & Fuel Surcharge (FSC)</strong>
+                                            DEWA collects the <strong>Dubai Municipality Housing Fee</strong> (5% of annual tenancy contract, split into 12 monthly installments). In addition, fuel adjustment surcharges (5.0 to 6.5 fils/kWh) vary based on global energy prices.
+                                        </div>
+                                        <div class="bill-audit-step">
+                                            <span class="bill-audit-badge">4. Physical Meter vs. Estimated Reading</span>
+                                            <strong>Smart Meter Reading Check</strong>
+                                            Compare the "Current Reading" on your PDF bill with the digital display on your boundary smart meter. If the bill reading exceeds the physical meter display, the bill was estimated by the utility and will auto-adjust upon actual meter read.
+                                        </div>
+                                        <div class="bill-audit-step" style="border-left-color: #10b981; margin-bottom: 0;">
+                                            <span class="bill-audit-badge" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">5. Self-Audit Isolation Test</span>
+                                            <strong>Detecting Phantom Draw & Hidden Water Leaks</strong>
+                                            Turn off all branch breakers in your DB: your smart meter's red pulse light (`imp/kWh`) should stop blinking completely. For water, close all villa fixtures for 1 hour; if the water meter spinner continues revolving, you have an underground line leak or cracked roof tank float valve.
+                                        </div>
+                                    </div>
+                                </details>
 
                                 <button type="button" id="btn-export-dewa-whatsapp" class="btn-primary" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
                                     <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Consult Ahammed for Energy & AC Tune-up
