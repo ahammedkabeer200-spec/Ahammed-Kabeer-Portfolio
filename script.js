@@ -1071,11 +1071,12 @@
                         },
                         body: JSON.stringify(data)
                     })
-                    .then(response => {
+                    .then(async response => {
+                        const result = await response.json().catch(() => ({}));
                         if (!response.ok) {
-                            throw new Error('Network response was not ok');
+                            throw new Error(result.message || 'Submission failed');
                         }
-                        return response.json();
+                        return result;
                     })
                     .then(result => {
                         // FormSubmit returns result.success as a string "true" or boolean true
@@ -1083,12 +1084,16 @@
                             showNotification('success', 'Message sent successfully! Ahammed will get back to you soon.');
                             contactForm.reset();
                         } else {
-                            showNotification('error', 'Failed to send message. Please try again or use WhatsApp.');
+                            const errMsg = result.message || 'Failed to send message. Please try again or use WhatsApp.';
+                            showNotification('error', errMsg);
                         }
                     })
                     .catch(error => {
                         console.error('Error submitting form:', error);
-                        showNotification('error', 'Connection issue. Please try again or contact via WhatsApp.');
+                        const displayErr = (error && error.message && error.message !== 'Submission failed') 
+                            ? error.message 
+                            : 'Connection issue. Please try again or contact via WhatsApp.';
+                        showNotification('error', displayErr);
                     })
                     .finally(() => {
                         // Reset button loading state
