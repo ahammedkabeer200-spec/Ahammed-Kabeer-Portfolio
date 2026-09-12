@@ -1,39 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- This XML sitemap is formatted to Yoast SEO & Google Image standards -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
    <url>
       <loc>https://ahammedkabeerkp.netlify.app/</loc>
-      <lastmod>2026-09-05</lastmod>
+      <lastmod>2026-09-12</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
+      <image:image>
+         <image:loc>https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg</image:loc>
+         <image:title>Ahammed Kabeer - Residential Electrical &amp; Maintenance Specialist UAE</image:title>
+         <image:caption>Ahammed Kabeer portfolio and residential electrical services across Umm Al Quwain and Dubai</image:caption>
+      </image:image>
    </url>
    <url>
       <loc>https://ahammedkabeerkp.netlify.app/guides/elcb-rccb-tripping-troubleshooting.html</loc>
-      <lastmod>2026-09-05</lastmod>
+      <lastmod>2026-09-12</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
+      <image:image>
+         <image:loc>https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg</image:loc>
+         <image:title>Why Your Main ELCB/RCCB Breaker Keeps Tripping in UAE: Complete Diagnostic Guide</image:title>
+         <image:caption>Step-by-step ELCB/RCCB earth leakage diagnosis in UAE residential villas</image:caption>
+      </image:image>
    </url>
    <url>
       <loc>https://ahammedkabeerkp.netlify.app/guides/three-phase-db-wiring-balancing.html</loc>
-      <lastmod>2026-09-05</lastmod>
+      <lastmod>2026-09-12</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
+      <image:image>
+         <image:loc>https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg</image:loc>
+         <image:title>3-Phase Distribution Board (DB) Dressing, Phase Balancing &amp; UAE Standards</image:title>
+         <image:caption>Technical guide on 3-phase DB panel dressing, cable ferrule labeling, and phase balancing</image:caption>
+      </image:image>
    </url>
    <url>
       <loc>https://ahammedkabeerkp.netlify.app/guides/ac-circuit-sizing-overload-prevention.html</loc>
-      <lastmod>2026-09-05</lastmod>
+      <lastmod>2026-09-12</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
+      <image:image>
+         <image:loc>https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg</image:loc>
+         <image:title>AC Circuit Sizing, Cable Selection &amp; Overload Prevention for UAE Villas</image:title>
+         <image:caption>Engineering guide for split and ducted AC wiring and isolator installations</image:caption>
+      </image:image>
    </url>
    <url>
       <loc>https://ahammedkabeerkp.netlify.app/guides/residential-villa-electrical-safety-inspection.html</loc>
-      <lastmod>2026-09-05</lastmod>
+      <lastmod>2026-09-12</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
+      <image:image>
+         <image:loc>https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg</image:loc>
+         <image:title>Residential Villa Electrical Safety Inspection Checklist (UAE Standards)</image:title>
+         <image:caption>Practical safety inspection checklist for UAE homeowners and property managers</image:caption>
+      </image:image>
    </url>
    <url>
       <loc>https://ahammedkabeerkp.netlify.app/guides/water-pump-wiring-pressure-switch-repair.html</loc>
-      <lastmod>2026-09-05</lastmod>
+      <lastmod>2026-09-12</lastmod>
       <changefreq>monthly</changefreq>
       <priority>0.9</priority>
+      <image:image>
+         <image:loc>https://i.ibb.co/R4hCQ1fr/IMG-1302-1.jpg</image:loc>
+         <image:title>Villa Water Booster Pump Wiring, Pressure Switch Calibration &amp; Fault Repair</image:title>
+         <image:caption>Troubleshooting water booster pumps, pressure switches, and expansion tanks</image:caption>
+      </image:image>
    </url>
 </urlset>
