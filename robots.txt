@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ahammedkabeerkp.netlify.app/sitemap.xml
+Sitemap: https://ahammed-kabeer-portfolio.vercel.app/sitemap.xml
