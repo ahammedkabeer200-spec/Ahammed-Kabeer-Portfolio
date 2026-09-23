@@ -4385,7 +4385,7 @@
                                         <span>Connected Load (Power)</span>
                                         <span class="val-badge" id="cable-load-badge">7.5 kW (~36.9 A)</span>
                                     </label>
-                                    <input type="range" id="cable-load" class="calc-slider" min="1.0" max="45.0" value="7.5" step="0.5">
+                                    <input type="range" id="cable-load" class="calc-slider" min="1.0" max="450.0" value="7.5" step="1.0">
                                 </div>
 
                                 <div class="calc-input-group">
@@ -4393,7 +4393,7 @@
                                         <span>Cable Route Length</span>
                                         <span class="val-badge" id="cable-length-badge">30 Meters</span>
                                     </label>
-                                    <input type="range" id="cable-length" class="calc-slider" min="5" max="150" value="30" step="5">
+                                    <input type="range" id="cable-length" class="calc-slider" min="5" max="500" value="30" step="5">
                                 </div>
 
                                 <div class="calc-input-group">
@@ -5446,15 +5446,23 @@
             // Standard Copper Cable Data (BS 7671 / DEWA)
             // size (mm²), capacity XLPE 90C (A), capacity PVC 70C (A), mV/A/m single-phase, mV/A/m three-phase
             const cableTable = [
-                { size: 1.5,  xlpe: 23,  pvc: 17.5, mvSingle: 29.0,  mvThree: 25.0,  mcb: "10A Type B/C" },
-                { size: 2.5,  xlpe: 31,  pvc: 24,   mvSingle: 18.0,  mvThree: 15.0,  mcb: "16A or 20A Type C" },
-                { size: 4.0,  xlpe: 42,  pvc: 32,   mvSingle: 11.0,  mvThree: 9.5,   mcb: "25A or 32A Type C" },
-                { size: 6.0,  xlpe: 54,  pvc: 41,   mvSingle: 7.3,   mvThree: 6.4,   mcb: "40A Type C" },
-                { size: 10.0, xlpe: 75,  pvc: 57,   mvSingle: 4.4,   mvThree: 3.8,   mcb: "50A or 63A Type C" },
-                { size: 16.0, xlpe: 100, pvc: 76,   mvSingle: 2.8,   mvThree: 2.4,   mcb: "80A Type C" },
-                { size: 25.0, xlpe: 135, pvc: 101,  mvSingle: 1.75,  mvThree: 1.5,   mcb: "100A MCCB" },
-                { size: 35.0, xlpe: 169, pvc: 125,  mvSingle: 1.25,  mvThree: 1.1,   mcb: "125A MCCB" },
-                { size: 50.0, xlpe: 207, pvc: 151,  mvSingle: 0.93,  mvThree: 0.81,  mcb: "160A MCCB" }
+                { size: 1.5,   xlpe: 23,  pvc: 17.5, mvSingle: 29.0,   mvThree: 25.0,   mcb: "10A Type B/C" },
+                { size: 2.5,   xlpe: 31,  pvc: 24,   mvSingle: 18.0,   mvThree: 15.0,   mcb: "16A or 20A Type C" },
+                { size: 4.0,   xlpe: 42,  pvc: 32,   mvSingle: 11.0,   mvThree: 9.5,    mcb: "25A or 32A Type C" },
+                { size: 6.0,   xlpe: 54,  pvc: 41,   mvSingle: 7.3,    mvThree: 6.4,    mcb: "40A Type C" },
+                { size: 10.0,  xlpe: 75,  pvc: 57,   mvSingle: 4.4,    mvThree: 3.8,    mcb: "50A or 63A Type C" },
+                { size: 16.0,  xlpe: 100, pvc: 76,   mvSingle: 2.8,    mvThree: 2.4,    mcb: "80A Type C" },
+                { size: 25.0,  xlpe: 135, pvc: 101,  mvSingle: 1.75,   mvThree: 1.5,    mcb: "100A MCCB" },
+                { size: 35.0,  xlpe: 169, pvc: 125,  mvSingle: 1.25,   mvThree: 1.1,    mcb: "125A MCCB" },
+                { size: 50.0,  xlpe: 207, pvc: 151,  mvSingle: 0.93,   mvThree: 0.81,   mcb: "160A MCCB" },
+                { size: 70.0,  xlpe: 268, pvc: 196,  mvSingle: 0.63,   mvThree: 0.55,   mcb: "200A MCCB" },
+                { size: 95.0,  xlpe: 328, pvc: 241,  mvSingle: 0.46,   mvThree: 0.40,   mcb: "250A MCCB" },
+                { size: 120.0, xlpe: 383, pvc: 282,  mvSingle: 0.36,   mvThree: 0.31,   mcb: "315A MCCB" },
+                { size: 150.0, xlpe: 444, pvc: 324,  mvSingle: 0.29,   mvThree: 0.25,   mcb: "350A MCCB" },
+                { size: 185.0, xlpe: 510, pvc: 371,  mvSingle: 0.23,   mvThree: 0.20,   mcb: "400A MCCB" },
+                { size: 240.0, xlpe: 607, pvc: 439,  mvSingle: 0.175,  mvThree: 0.155,  mcb: "500A MCCB" },
+                { size: 300.0, xlpe: 703, pvc: 508,  mvSingle: 0.145,  mvThree: 0.130,  mcb: "630A ACB / MCCB" },
+                { size: 400.0, xlpe: 823, pvc: 594,  mvSingle: 0.115,  mvThree: 0.105,  mcb: "800A ACB / MCCB" }
             ];
 
             cablePillBtns.forEach(btn => {
@@ -5546,7 +5554,8 @@
                 const maxRun = Ib > 0 && mvRate > 0 ? Math.round((maxPermissibleVd * 1000) / (mvRate * Ib)) : 100;
 
                 // Update UI elements
-                if (cableResSize) cableResSize.textContent = chosenCable.size.toFixed(1);
+                const formattedSize = Number.isInteger(chosenCable.size) ? chosenCable.size.toString() : chosenCable.size.toFixed(1);
+                if (cableResSize) cableResSize.textContent = formattedSize;
                 if (cableResCapacity) cableResCapacity.textContent = `${deratedCap.toFixed(1)} A`;
                 if (cableResCurrent) cableResCurrent.textContent = `${Ib.toFixed(1)} A`;
                 if (cableResVdVolts) cableResVdVolts.textContent = calculatedVdVolts.toFixed(1);
